@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      1.1.2
+// @version      1.2.0
 // @description  Hierarchical slash-command palette for ChatGPT with Gaurev's creative workflow bundles.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
@@ -33,9 +33,14 @@
     maxResults: 22,
     showDescriptions: true,
     tabStacks: true,
+    projectAware: true,
+    projectOverrides: {},
+    manualProjects: {},
   };
 
   let settings = Object.assign({}, DEFAULTS, GM_getValue('gk_settings', {}));
+  settings.projectOverrides = Object.assign({}, settings.projectOverrides || {});
+  settings.manualProjects = Object.assign({}, settings.manualProjects || {});
   let paletteOpen = false;
   let selectedIndex = 0;
   let currentEditable = null;
@@ -44,9 +49,246 @@
   let recent = [];
   let mode = 'categories'; // categories | commands | search
   let activeCategory = null;
-  let host, shadow, listEl, hintEl, crumbEl, titleEl;
+  let host, shadow, listEl, hintEl, crumbEl, titleEl, projectStatusEl;
+  let projectBadgeHost, projectBadgeEl;
+  let projectState = { kind:'generic', name:'', key:'', source:'none' };
+  let detectionTimer = 0;
+  let lastLocationHref = location.href;
 
   function save() { GM_setValue('gk_settings', settings); }
+
+  function cleanProjectName(value) {
+    return String(value || '')
+      .replace(/^\s*(?:✓|!|•)?\s*(?:active\s+)?project\s*:\s*/i, '')
+      .replace(/^\s*open\s+project\s*:?\s*/i, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 120);
+  }
+
+  function projectRouteKey(url = location.href) {
+    const parsed = new URL(url, location.origin);
+    const conversation = parsed.pathname.match(/\/c\/([a-zA-Z0-9-]+)/);
+    if (conversation) return `conversation:${conversation[1]}`;
+    return `route:${parsed.pathname}${parsed.search}`;
+  }
+
+  function projectNameFromSlug(segment) {
+    const match = String(segment || '').match(/^g-p-[a-zA-Z0-9]{8,}-(.+)$/);
+    if (!match) return '';
+    try {
+      return cleanProjectName(decodeURIComponent(match[1]).replace(/[-_]+/g, ' '));
+    } catch {
+      return cleanProjectName(match[1].replace(/[-_]+/g, ' '));
+    }
+  }
+
+  function parseProjectUrl(url = location.href) {
+    const parsed = new URL(url, location.origin);
+    const segments = parsed.pathname.split('/').filter(Boolean).map(segment => {
+      try { return decodeURIComponent(segment); } catch { return segment; }
+    });
+    let id = segments.find(segment => /^g-p-[a-zA-Z0-9_-]+$/i.test(segment)) || '';
+
+    if (!id) {
+      const projectIndex = segments.findIndex(segment => /^(?:projects?|project)$/i.test(segment));
+      if (projectIndex >= 0 && segments[projectIndex + 1]) id = segments[projectIndex + 1];
+    }
+
+    if (!id) {
+      for (const parameter of ['project', 'projectId', 'project_id', 'gizmoId', 'gizmo_id']) {
+        const value = parsed.searchParams.get(parameter);
+        if (value && (parameter.startsWith('project') || /^g-p-/i.test(value))) { id = value; break; }
+      }
+    }
+
+    if (!id) return { isProject:false, id:'', key:'', name:'' };
+    return {
+      isProject:true,
+      id,
+      key:`project:${id}`,
+      name:projectNameFromSlug(id),
+    };
+  }
+
+  function projectNameFromElement(element) {
+    if (!element) return '';
+    const values = [
+      element.getAttribute?.('data-project-name'),
+      element.getAttribute?.('aria-label'),
+      element.getAttribute?.('title'),
+      element.textContent,
+    ];
+    for (const value of values) {
+      const name = cleanProjectName(value);
+      if (!name || name.length > 120) continue;
+      if (/^(?:projects?|open|more|options|chatgpt)$/i.test(name)) continue;
+      return name;
+    }
+    return '';
+  }
+
+  function findProjectNameInDom(urlInfo, root = document) {
+    const directSelectors = [
+      '[data-testid="project-name"]',
+      '[data-testid="project-title"]',
+      'header [aria-label^="Project:"]',
+      'header [data-testid*="project"]',
+    ];
+    for (const selector of directSelectors) {
+      const name = projectNameFromElement(root.querySelector?.(selector));
+      if (name) return name;
+    }
+
+    if (urlInfo?.id) {
+      const anchors = root.querySelectorAll?.('a[href]') || [];
+      for (const anchor of anchors) {
+        let href = '';
+        try { href = new URL(anchor.getAttribute('href'), location.origin).href; } catch {}
+        if (!href.includes(encodeURIComponent(urlInfo.id)) && !href.includes(urlInfo.id)) continue;
+        const name = projectNameFromElement(anchor);
+        if (name) return name;
+      }
+    }
+
+    const attributedName = projectNameFromElement(root.querySelector?.('[data-project-name]'));
+    if (attributedName) return attributedName;
+
+    const activeSelectors = [
+      'a[aria-current="page"][href*="/g/g-p-"]',
+      'a[aria-current="page"][href*="/project"]',
+      '[data-state="active"] a[href*="/g/g-p-"]',
+      '[data-active="true"] a[href*="/g/g-p-"]',
+      '[data-testid*="project"][aria-current="page"]',
+    ];
+    for (const selector of activeSelectors) {
+      const element = root.querySelector?.(selector);
+      const name = projectNameFromElement(element);
+      if (name) return name;
+    }
+    return '';
+  }
+
+  function detectProject(root = document, url = location.href) {
+    let urlInfo = parseProjectUrl(url);
+
+    if (!urlInfo.isProject) {
+      const active = root.querySelector?.(
+        'a[aria-current="page"][href*="/g/g-p-"], [data-state="active"] a[href*="/g/g-p-"], [data-active="true"] a[href*="/g/g-p-"]'
+      );
+      if (active?.getAttribute('href')) {
+        try { urlInfo = parseProjectUrl(new URL(active.getAttribute('href'), location.origin).href); } catch {}
+      }
+    }
+
+    if (urlInfo.isProject) {
+      const override = cleanProjectName(settings.projectOverrides[urlInfo.key]);
+      const domName = findProjectNameInDom(urlInfo, root);
+      return {
+        kind:'project',
+        name:override || domName || urlInfo.name || '',
+        key:urlInfo.key,
+        source:override ? 'override' : (domName ? 'dom' : (urlInfo.name ? 'url' : 'unresolved')),
+      };
+    }
+
+    const routeKey = projectRouteKey(url);
+    const manualName = cleanProjectName(settings.manualProjects[routeKey]);
+    if (manualName) return { kind:'project', name:manualName, key:routeKey, source:'manual' };
+    return { kind:'generic', name:'', key:routeKey, source:'none' };
+  }
+
+  function projectBadgeText(state = projectState) {
+    if (!settings.projectAware) return '• Project-Aware Mode off';
+    if (state.kind === 'project' && state.name) return `✓ Project: ${state.name}`;
+    if (state.kind === 'project') return '! Project name not detected';
+    return '• Generic chat';
+  }
+
+  function ensureProjectBadge() {
+    if (projectBadgeHost || !document.documentElement) return;
+    projectBadgeHost = document.createElement('div');
+    projectBadgeHost.id = 'gk-vm-project-badge';
+    projectBadgeHost.style.cssText = 'all:initial;position:fixed;right:14px;bottom:14px;z-index:2147483646;';
+    document.documentElement.appendChild(projectBadgeHost);
+    const badgeShadow = projectBadgeHost.attachShadow({mode:'open'});
+    badgeShadow.innerHTML = `
+      <style>
+        :host{all:initial}
+        button{all:unset;box-sizing:border-box;max-width:min(420px,calc(100vw - 28px));padding:8px 11px;border-radius:999px;
+          border:1px solid rgba(128,128,128,.25);background:rgba(255,255,255,.95);color:#262626;
+          box-shadow:0 7px 26px rgba(0,0,0,.17);backdrop-filter:blur(16px);cursor:pointer;
+          font:700 11px ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+          white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        button:hover{transform:translateY(-1px);box-shadow:0 9px 30px rgba(0,0,0,.22)}
+        button[data-state="project"]{border-color:rgba(22,163,74,.38);color:#166534}
+        button[data-state="unresolved"]{border-color:rgba(217,119,6,.45);color:#92400e}
+        @media(prefers-color-scheme:dark){button{background:rgba(29,29,31,.95);color:#f4f4f5}button[data-state="project"]{color:#86efac}button[data-state="unresolved"]{color:#fcd34d}}
+        :host-context(.dark) button{background:rgba(29,29,31,.95);color:#f4f4f5}
+        :host-context(.dark) button[data-state="project"]{color:#86efac}
+        :host-context(.dark) button[data-state="unresolved"]{color:#fcd34d}
+      </style><button type="button" title="Click to confirm or override the active Project"></button>`;
+    projectBadgeEl = badgeShadow.querySelector('button');
+    projectBadgeEl.addEventListener('click', () => promptProjectOverride());
+  }
+
+  function updateProjectUi() {
+    ensureProjectBadge();
+    const label = projectBadgeText();
+    if (projectBadgeEl) {
+      projectBadgeEl.textContent = label;
+      projectBadgeEl.dataset.state = !settings.projectAware
+        ? 'disabled'
+        : (projectState.kind === 'project' ? (projectState.name ? 'project' : 'unresolved') : 'generic');
+    }
+    if (projectStatusEl) projectStatusEl.textContent = `Project-Aware: ${label}`;
+  }
+
+  function refreshProjectState(force = false) {
+    const next = detectProject();
+    const changed = force || JSON.stringify(next) !== JSON.stringify(projectState);
+    projectState = next;
+    lastLocationHref = location.href;
+    if (changed) {
+      updateProjectUi();
+      if (paletteOpen) render();
+    }
+    return projectState;
+  }
+
+  function promptProjectOverride() {
+    refreshProjectState();
+    const detected = projectState.kind === 'project';
+    const message = detected
+      ? 'Confirm or override the active ChatGPT Project name.\n\nEnter the Project name. Leave blank to clear a saved override.'
+      : 'No ChatGPT Project was detected.\n\nIf this chat belongs to a Project, enter its name to confirm manually. Cancel keeps Generic chat mode.';
+    const answer = prompt(message, projectState.name || '');
+    if (answer === null) return false;
+    const name = cleanProjectName(answer);
+
+    if (detected && projectState.key.startsWith('project:')) {
+      if (name) settings.projectOverrides[projectState.key] = name;
+      else delete settings.projectOverrides[projectState.key];
+    } else {
+      const key = projectRouteKey();
+      if (name) settings.manualProjects[key] = name;
+      else delete settings.manualProjects[key];
+    }
+    save();
+    refreshProjectState(true);
+    return Boolean(projectState.kind === 'project' && projectState.name);
+  }
+
+  function projectContext(name) {
+    return `[PROJECT CONTEXT: ${name} | Treat this active ChatGPT Project's instructions, files, references, prior decisions and existing conversation context as authoritative. Apply the command specifically to this project; do not answer generically or ask me to repeat information already available in the project.]`;
+  }
+
+  function buildInsertion(commandName, stack, state = projectState) {
+    const suffix = stack && settings.tabStacks ? '\n/' : ' ';
+    if (!settings.projectAware || state.kind !== 'project') return commandName + suffix;
+    if (!state.name) return null;
+    return `${commandName}\n\n${projectContext(state.name)}${suffix}`;
+  }
 
   function isEditable(el) {
     if (!el || !(el instanceof Element)) return null;
@@ -241,6 +483,7 @@
         .title{font-weight:800;font-size:12px;letter-spacing:.02em}
         .hint{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;opacity:.55}
         .crumb{font-size:10px;opacity:.56;margin-top:5px}
+        .project-status{font-size:10px;font-weight:700;margin-top:6px;color:#166534;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .list{max-height:500px;overflow:auto;padding:8px}
         .category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
         .category{
@@ -269,6 +512,7 @@
         @media(prefers-color-scheme:dark){
           .panel{background:rgba(29,29,31,.98);color:#f4f4f5}
           .bundle{color:#c4b5fd}
+          .project-status{color:#86efac}
           .category:hover,.category.sel{background:rgba(139,92,246,.16);border-color:rgba(139,92,246,.32)}
         }
       </style>
@@ -279,6 +523,7 @@
             <span class="hint"></span>
           </div>
           <div class="crumb"></div>
+          <div class="project-status"></div>
         </div>
         <div class="list"></div>
         <div class="foot">
@@ -293,6 +538,8 @@
     hintEl = shadow.querySelector('.hint');
     crumbEl = shadow.querySelector('.crumb');
     titleEl = shadow.querySelector('.title');
+    projectStatusEl = shadow.querySelector('.project-status');
+    updateProjectUi();
   }
 
   function position(editable) {
@@ -307,6 +554,8 @@
 
   function render() {
     ensurePalette();
+    refreshProjectState();
+    updateProjectUi();
     listEl.innerHTML = '';
 
     if (mode === 'categories') {
@@ -421,8 +670,18 @@
     const c = item.command;
     if (!c || !currentEditable || !currentFragment) return;
 
-    const suffix = stack && settings.tabStacks ? '\n/' : ' ';
-    replaceText(currentEditable, currentFragment.start, currentFragment.end, c.name + suffix);
+    refreshProjectState();
+    let insertion = buildInsertion(c.name, stack);
+    if (insertion === null) {
+      const resolved = promptProjectOverride();
+      insertion = resolved ? buildInsertion(c.name, stack) : null;
+      if (insertion === null) {
+        alert('Command insertion paused: ChatGPT Project mode is active, but the Project name is not resolved. Confirm the Project name from the badge or Violentmonkey menu, then select the command again.');
+        return;
+      }
+    }
+
+    replaceText(currentEditable, currentFragment.start, currentFragment.end, insertion);
     recent = [c.name,...recent.filter(x=>x!==c.name)].slice(0,8);
 
     if (stack && settings.tabStacks) {
@@ -487,8 +746,63 @@
 
   window.addEventListener('resize',()=>{if(paletteOpen&&currentEditable)position(currentEditable)});
 
+  function scheduleProjectDetection() {
+    clearTimeout(detectionTimer);
+    detectionTimer = setTimeout(() => refreshProjectState(), 180);
+  }
+
+  function initProjectAwareness() {
+    refreshProjectState(true);
+
+    for (const method of ['pushState', 'replaceState']) {
+      const original = history[method];
+      if (!original || original.__gkProjectWrapped) continue;
+      const wrapped = function(...args) {
+        const result = original.apply(this, args);
+        scheduleProjectDetection();
+        return result;
+      };
+      wrapped.__gkProjectWrapped = true;
+      try { history[method] = wrapped; } catch {}
+    }
+
+    window.addEventListener('popstate', scheduleProjectDetection);
+    window.addEventListener('hashchange', scheduleProjectDetection);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) scheduleProjectDetection();
+    });
+
+    const observer = new MutationObserver(scheduleProjectDetection);
+    observer.observe(document.documentElement, {
+      subtree:true,
+      childList:true,
+      attributes:true,
+      attributeFilter:['aria-current', 'data-state', 'data-active', 'data-project-name', 'href', 'title'],
+    });
+
+    setInterval(() => {
+      if (location.href !== lastLocationHref) scheduleProjectDetection();
+    }, 1000);
+  }
+
   GM_registerMenuCommand(settings.enabled?'Disable command palette':'Enable command palette',()=>{
     settings.enabled=!settings.enabled;save();location.reload();
+  });
+  GM_registerMenuCommand('Enable/Disable Project-Aware Mode',()=>{
+    settings.projectAware=!settings.projectAware;
+    save();
+    refreshProjectState(true);
+    alert(`Project-Aware Mode ${settings.projectAware?'enabled':'disabled'}.`);
+  });
+  GM_registerMenuCommand('Confirm/override active Project',()=>{
+    promptProjectOverride();
+  });
+  GM_registerMenuCommand('Show Project status',()=>{
+    refreshProjectState();
+    const detail = !settings.projectAware
+      ? `Project-Aware Mode: Disabled\nDetected route: ${projectBadgeText(projectState)}`
+      : `Project-Aware Mode: Enabled\nStatus: ${projectBadgeText(projectState)}\nDetection source: ${projectState.source}`;
+    alert(`Gaurev Command Palette\n${detail}`);
   });
   GM_registerMenuCommand(settings.showDescriptions?'Hide command descriptions':'Show command descriptions',()=>{
     settings.showDescriptions=!settings.showDescriptions;save();location.reload();
@@ -502,6 +816,8 @@
   });
   GM_registerMenuCommand('Show installed version',()=>{
     const version=GM_info?.script?.version||'unknown';
-    alert(`Gaurev Command Palette\nVersion: ${version}\nCommands: ${COMMANDS.length}\nUI: Hierarchical categories`);
+    alert(`Gaurev Command Palette\nVersion: ${version}\nCommands: ${COMMANDS.length}\nUI: Hierarchical categories\nProject-Aware Mode: ${settings.projectAware?'Enabled':'Disabled'}`);
   });
+
+  initProjectAwareness();
 })();
