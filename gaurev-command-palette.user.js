@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      1.2.0
+// @version      1.2.1
 // @description  Hierarchical slash-command palette for ChatGPT with Gaurev's creative workflow bundles.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
@@ -51,7 +51,7 @@
   let activeCategory = null;
   let host, shadow, listEl, hintEl, crumbEl, titleEl, projectStatusEl;
   let projectBadgeHost, projectBadgeEl;
-  let projectState = { kind:'generic', name:'', key:'', source:'none' };
+  let activeProject = { kind:'generic', name:'', key:'', source:'none' };
   let detectionTimer = 0;
   let lastLocationHref = location.href;
 
@@ -169,7 +169,7 @@
     return '';
   }
 
-  function detectProject(root = document, url = location.href) {
+  function detectActiveProject(root = document, url = location.href) {
     let urlInfo = parseProjectUrl(url);
 
     if (!urlInfo.isProject) {
@@ -198,7 +198,7 @@
     return { kind:'generic', name:'', key:routeKey, source:'none' };
   }
 
-  function projectBadgeText(state = projectState) {
+  function projectBadgeText(state = activeProject) {
     if (!settings.projectAware) return '• Project-Aware Mode off';
     if (state.kind === 'project' && state.name) return `✓ Project: ${state.name}`;
     if (state.kind === 'project') return '! Project name not detected';
@@ -207,6 +207,7 @@
 
   function ensureProjectBadge() {
     if (projectBadgeHost || !document.documentElement) return;
+    // Project badge: persistent status and entry point for manual Project override.
     projectBadgeHost = document.createElement('div');
     projectBadgeHost.id = 'gk-vm-project-badge';
     projectBadgeHost.style.cssText = 'all:initial;position:fixed;right:14px;bottom:14px;z-index:2147483646;';
@@ -227,7 +228,7 @@
         :host-context(.dark) button{background:rgba(29,29,31,.95);color:#f4f4f5}
         :host-context(.dark) button[data-state="project"]{color:#86efac}
         :host-context(.dark) button[data-state="unresolved"]{color:#fcd34d}
-      </style><button type="button" title="Click to confirm or override the active Project"></button>`;
+      </style><button type="button" aria-label="Project badge" title="Project badge — click for manual Project override"></button>`;
     projectBadgeEl = badgeShadow.querySelector('button');
     projectBadgeEl.addEventListener('click', () => promptProjectOverride());
   }
@@ -239,36 +240,36 @@
       projectBadgeEl.textContent = label;
       projectBadgeEl.dataset.state = !settings.projectAware
         ? 'disabled'
-        : (projectState.kind === 'project' ? (projectState.name ? 'project' : 'unresolved') : 'generic');
+        : (activeProject.kind === 'project' ? (activeProject.name ? 'project' : 'unresolved') : 'generic');
     }
     if (projectStatusEl) projectStatusEl.textContent = `Project-Aware: ${label}`;
   }
 
   function refreshProjectState(force = false) {
-    const next = detectProject();
-    const changed = force || JSON.stringify(next) !== JSON.stringify(projectState);
-    projectState = next;
+    const next = detectActiveProject();
+    const changed = force || JSON.stringify(next) !== JSON.stringify(activeProject);
+    activeProject = next;
     lastLocationHref = location.href;
     if (changed) {
       updateProjectUi();
       if (paletteOpen) render();
     }
-    return projectState;
+    return activeProject;
   }
 
   function promptProjectOverride() {
     refreshProjectState();
-    const detected = projectState.kind === 'project';
+    const detected = activeProject.kind === 'project';
     const message = detected
       ? 'Confirm or override the active ChatGPT Project name.\n\nEnter the Project name. Leave blank to clear a saved override.'
       : 'No ChatGPT Project was detected.\n\nIf this chat belongs to a Project, enter its name to confirm manually. Cancel keeps Generic chat mode.';
-    const answer = prompt(message, projectState.name || '');
+    const answer = prompt(message, activeProject.name || '');
     if (answer === null) return false;
     const name = cleanProjectName(answer);
 
-    if (detected && projectState.key.startsWith('project:')) {
-      if (name) settings.projectOverrides[projectState.key] = name;
-      else delete settings.projectOverrides[projectState.key];
+    if (detected && activeProject.key.startsWith('project:')) {
+      if (name) settings.projectOverrides[activeProject.key] = name;
+      else delete settings.projectOverrides[activeProject.key];
     } else {
       const key = projectRouteKey();
       if (name) settings.manualProjects[key] = name;
@@ -276,14 +277,14 @@
     }
     save();
     refreshProjectState(true);
-    return Boolean(projectState.kind === 'project' && projectState.name);
+    return Boolean(activeProject.kind === 'project' && activeProject.name);
   }
 
   function projectContext(name) {
     return `[PROJECT CONTEXT: ${name} | Treat this active ChatGPT Project's instructions, files, references, prior decisions and existing conversation context as authoritative. Apply the command specifically to this project; do not answer generically or ask me to repeat information already available in the project.]`;
   }
 
-  function buildInsertion(commandName, stack, state = projectState) {
+  function buildInsertion(commandName, stack, state = activeProject) {
     const suffix = stack && settings.tabStacks ? '\n/' : ' ';
     if (!settings.projectAware || state.kind !== 'project') return commandName + suffix;
     if (!state.name) return null;
@@ -752,6 +753,7 @@
   }
 
   function initProjectAwareness() {
+    // automatic Project switching detection: history hooks, DOM observation, and URL polling.
     refreshProjectState(true);
 
     for (const method of ['pushState', 'replaceState']) {
@@ -800,8 +802,8 @@
   GM_registerMenuCommand('Show Project status',()=>{
     refreshProjectState();
     const detail = !settings.projectAware
-      ? `Project-Aware Mode: Disabled\nDetected route: ${projectBadgeText(projectState)}`
-      : `Project-Aware Mode: Enabled\nStatus: ${projectBadgeText(projectState)}\nDetection source: ${projectState.source}`;
+      ? `Project-Aware Mode: Disabled\nDetected route: ${projectBadgeText(activeProject)}`
+      : `Project-Aware Mode: Enabled\nStatus: ${projectBadgeText(activeProject)}\nDetection source: ${activeProject.source}`;
     alert(`Gaurev Command Palette\n${detail}`);
   });
   GM_registerMenuCommand(settings.showDescriptions?'Hide command descriptions':'Show command descriptions',()=>{
