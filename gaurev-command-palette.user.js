@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      2.1.0
-// @description  Neon-green project-aware Creative Studio command center for ChatGPT with smart slash-command execution.
+// @version      2.3.0
+// @description  Neon-green Creative Studio command center with universal owned/shared Project Registry and instant global command search.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
 // @match        https://chat.openai.com/*
@@ -48,7 +48,39 @@
 
   const CREATIVE_STUDIO_RUNTIME = "Priority: current user brief/files > active project/brand > selected command > defaults. For social feed default to 1080x1350 4:5 unless overridden, and deliver a finished graphic-designed creative rather than a plain photo/CGI plate; use at least three intentional design devices when appropriate. Multiple requested assets/slides/posts must be separate standalone outputs—never collage/contact sheet—unless collage is explicitly requested. Treat multiple angles of the same product as one reference set; preserve exact product/packaging/logo/label/geometry unless redesign is explicitly requested. If quantity is unspecified for product social creatives, default to two genuinely different concepts per product. Never invent claims, prices, nutrition facts, certifications, features, statistics, achievements, ingredients or profile facts. Fresh variations must change at least six major art-direction decisions and avoid repeated default templates. Brand fit overrides generic premium styling. Beverage work should default to playful flavour-led graphic energy, not supplement/spa styling. For video/UGC enforce continuity, realistic physics/camera/hands, no label/face/product morphing, and market-authentic performance.";
   const ART_DIRECTION_FAMILIES = ["Typography-led campaign poster","Editorial product poster","Graphic sports-performance ad","Playful beverage campaign","Minimal premium poster","Maximalist social ad","Modular Swiss-inspired layout","Kinetic diagonal poster","Ingredient infographic-poster hybrid","CGI-plus-graphic campaign","Fake OOH social poster","Editorial lifestyle ad","Abstract geometry poster","Macro-detail campaign","Monochrome branded poster","Retro-modern ad system","Technical performance poster","Culture-led poster","Fashion-editorial product ad","Bold ecommerce-social hybrid"];
-  const KNOWN_BRAND_PROFILES = {"uji":{"name":"Uji","category":"Beverage","tone":"Playful, fresh, youthful, vibrant","visual":"Flavour-led, dynamic, bright premium, expressive typography, custom shapes/stickers, energetic product scale","avoid":"Static bottle + fruit, spa/wellness styling, supplement-ad language, generic luxury poster, random fruit plate"},"ans performance":{"name":"ANS Performance","category":"Sports nutrition","tone":"Bold, strong, performance-driven, premium, authoritative","visual":"High-energy athletic commercial, powerful clean CGI, performance graphics, disciplined hierarchy","avoid":"Cute beverage styling, weak pastels, spa/wellness, generic fruit-ad language"},"halt":{"name":"Halt Nutrition","category":"Nutrition / supplements","tone":"Clean, premium, modern, credible, confident","visual":"Bright commercial, modern wellness, polished ecommerce, refined CGI, clean editorial","avoid":"Childish styling, cheap sale clutter, random playful props, repeated dark backgrounds"},"joker nutrition":{"name":"Joker Nutrition","category":"Sports nutrition","tone":"Bold, edgy, high-impact, rebellious, energetic","visual":"Dark premium, aggressive graphic system, dramatic contrast, performance energy","avoid":"Soft wellness, cute beverage look, catalogue setup, gentle pastels, generic luxury serif poster"},"ace vitals":{"name":"Ace Vitals","category":"Sports nutrition","tone":"Clean, energetic, premium, modern","visual":"White premium, fresh commercial, performance-focused, ingredient-led","avoid":"Muddy dark styling, cheap gym poster, crowded text, repeated pedestal scenes"},"muscle mantra":{"name":"Muscle Mantra","category":"Sports nutrition","tone":"Strong, energetic, credible, bold","visual":"Performance commercial, bold product hero, gym energy, premium supplement","avoid":"Spa styling, cute treatment, perfume-ad language"},"bodybuilding india":{"name":"Bodybuilding India","category":"Retail / bodybuilding","tone":"Credible, strong, professional, community-driven","visual":"Bright premium, retail authority, performance, event-ready","avoid":"Soft lifestyle-only imagery, cute illustration, muddy design"},"chawla bakers":{"name":"Chawla Bakers","category":"Bakery / food","tone":"Warm, delicious, friendly, premium local","visual":"Appetite-led, warm editorial, fresh bakery, celebratory","avoid":"Supplement-style ad, cold technical CGI, bottle-poster compositions"},"rasa":{"name":"Rasa","category":"Restaurant / hospitality","tone":"Inviting, appetizing, premium, warm, cultural","visual":"Food-first hospitality editorial, rich culinary imagery, modern Indian design","avoid":"Supplement ads, clinical layouts, packshot treatment, inaccessible dark food"},"pashtun":{"name":"Pashtun","category":"Restaurant / hospitality","tone":"Bold, social, flavourful, warm, premium casual","visual":"Food/drink lifestyle, rich atmosphere, social dining, modern restaurant","avoid":"Ecommerce clinical look, supplement CGI language, object-on-pedestal"},"ekyam":{"name":"Ekyam","category":"Enterprise technology / AI","tone":"Modern, intelligent, clear, premium, technical","visual":"3D system visuals, clean enterprise design, minimal info design, soft-blue technology","avoid":"Consumer-product advertising, food styling, random cyberpunk, overloaded dashboards"},"acestar":{"name":"ACESTAR","category":"Sports nutrition","tone":"Premium, strong, technical, confident","visual":"Metallic gold, black premium, structured performance design","avoid":"Cute styling, soft pastel wellness, random colorful props"}};
+  const KNOWN_BRAND_PROFILES = {"uji":{"name":"Uji","category":"Beverage","tone":"Playful, fresh, youthful, vibrant","visual":"Flavour-led, dynamic, bright premium, expressive typography, custom shapes/stickers, energetic product scale","avoid":"Static bottle + fruit, spa/wellness styling, supplement-ad language, generic luxury poster, random fruit plate"},"ans performance":{"name":"ANS Performance","category":"Sports nutrition","tone":"Bold, strong, performance-driven, premium, authoritative","visual":"High-energy athletic commercial, powerful clean CGI, performance graphics, disciplined hierarchy","avoid":"Cute beverage styling, weak pastels, spa/wellness, generic fruit-ad language"},"halt":{"name":"Halt Nutrition","category":"Nutrition / supplements","tone":"Clean, premium, modern, credible, confident","visual":"Bright commercial, modern wellness, polished ecommerce, refined CGI, clean editorial","avoid":"Childish styling, cheap sale clutter, random playful props, repeated dark backgrounds"},"joker nutrition":{"name":"Joker Nutrition","category":"Sports nutrition","tone":"Bold, edgy, high-impact, rebellious, energetic","visual":"Dark premium, aggressive graphic system, dramatic contrast, performance energy","avoid":"Soft wellness, cute beverage look, catalogue setup, gentle pastels, generic luxury serif poster"},"ace vitals":{"name":"Ace Vitals","category":"Sports nutrition","tone":"Clean, energetic, premium, modern","visual":"White premium, fresh commercial, performance-focused, ingredient-led","avoid":"Muddy dark styling, cheap gym poster, crowded text, repeated pedestal scenes"},"muscle mantra":{"name":"Muscle Mantra","category":"Sports nutrition","tone":"Strong, energetic, credible, bold","visual":"Performance commercial, bold product hero, gym energy, premium supplement","avoid":"Spa styling, cute treatment, perfume-ad language"},"bodybuilding india":{"name":"Bodybuilding India","category":"Retail / bodybuilding","tone":"Credible, strong, professional, community-driven","visual":"Bright premium, retail authority, performance, event-ready","avoid":"Soft lifestyle-only imagery, cute illustration, muddy design"},"chawla bakers":{"name":"Chawla Bakers","category":"Bakery / food","tone":"Warm, delicious, friendly, premium local","visual":"Appetite-led, warm editorial, fresh bakery, celebratory","avoid":"Supplement-style ad, cold technical CGI, bottle-poster compositions"},"rasa":{"name":"Rasa","category":"Restaurant / hospitality","tone":"Inviting, appetizing, premium, warm, cultural","visual":"Food-first hospitality editorial, rich culinary imagery, modern Indian design","avoid":"Supplement ads, clinical layouts, packshot treatment, inaccessible dark food"},"pashtun":{"name":"Pashtun","category":"Restaurant / hospitality","tone":"Bold, social, flavourful, warm, premium casual","visual":"Food/drink lifestyle, rich atmosphere, social dining, modern restaurant","avoid":"Ecommerce clinical look, supplement CGI language, object-on-pedestal"},"ekyam":{"name":"Ekyam","category":"Enterprise technology / AI","tone":"Modern, intelligent, clear, premium, technical","visual":"3D system visuals, clean enterprise design, minimal info design, soft-blue technology","avoid":"Consumer-product advertising, food styling, random cyberpunk, overloaded dashboards"},"acestar":{"name":"ACESTAR","category":"Sports nutrition","tone":"Premium, strong, technical, confident","visual":"Metallic gold, black premium, structured performance design","avoid":"Cute styling, soft pastel wellness, random colorful props"},"techairevolution":{"name":"TechAIrevolution","category":"AI / creative technology","tone":"Futuristic, intelligent, premium, confident, creator-led","visual":"Clean advanced-AI editorial, bold information hierarchy, high-end digital systems, modern motion/3D accents","avoid":"Generic neon cyberpunk, fake dashboards, unreadable AI text, cliché robot imagery"},"top1consultancy":{"name":"Top1Consultancy","category":"Consultancy / marketing","tone":"Strategic, authoritative, modern, commercially sharp","visual":"Premium business editorial, strong proof-led hierarchy, founder/authority content, clear conversion structure","avoid":"Cheap agency templates, unsupported business claims, excessive futuristic decoration"},"skillboat immigration":{"name":"Skillboat Immigration","category":"Immigration / education services","tone":"Trustworthy, clear, professional, reassuring","visual":"Clean international education/travel editorial, structured information, human credibility, bright premium layouts","avoid":"Guaranteed-visa claims, fake approvals, cluttered travel clichés, misleading urgency"},"klevvrtech":{"name":"Klevvrtech","category":"Technology / IT services","tone":"Modern, capable, intelligent, enterprise-ready","visual":"Clean systems thinking, premium product/technology editorial, structured diagrams, subtle advanced-tech cues","avoid":"Random cyberpunk, fake code/screens, overloaded futuristic UI"},"zarriya":{"name":"Zarriya","category":"Jewellery / luxury","tone":"Elegant, refined, premium Indian, emotionally rich","visual":"Luxury jewellery editorial, precise macro detail, warm premium materials, sophisticated Indian fashion cues","avoid":"Jewellery geometry drift, fake stones, gaudy gold clutter, generic wedding-template styling"},"totbelly":{"name":"Totbelly","category":"Food / home kitchen","tone":"Warm, appetizing, friendly, contemporary","visual":"Food-first editorial, fresh ingredients, authentic serving moments, bright appetite-led social design","avoid":"Supplement-style layouts, cold technical CGI, generic pedestal product shots"},"offbeat store":{"name":"Offbeat Store","category":"Fashion / apparel retail","tone":"Youthful, expressive, premium-casual, distinctive","visual":"Fashion editorial, graphic streetwear systems, bold crop/type, social-first styling","avoid":"Generic ecommerce grids, luxury-perfume clichés, weak catalogue presentation"},"skillboat learning":{"name":"Skillboat Learning","category":"Education / learning","tone":"Clear, encouraging, credible, modern","visual":"Clean educational editorial, modular information design, human learning moments, accessible hierarchy","avoid":"Childish school clip-art, fake credentials, cluttered text-heavy layouts"}};
+
+  // Universal Project Registry: seeded aliases improve naming, while the runtime learns
+  // every owned OR shared ChatGPT Project that appears in the sidebar/current DOM.
+  // A seed never declares that the user is inside a project; it only improves matching
+  // after ChatGPT exposes a project link/name.
+  const PROJECT_NAME_SEEDS = [
+    {name:"Misc (Metrics Mule)", aliases:["misc metrics mule","metrics mule"]},
+    {name:"Gaurev Kohli — LinkedIn Authority Engine", aliases:["gaurev kohli linkedin authority engine","linkedin authority engine"]},
+    {name:"TechAIrevolution", aliases:["techairevolution","tech ai revolution"]},
+    {name:"Klevvrtech", aliases:["klevvrtech","klevvr tech"]},
+    {name:"Top1Consultancy", aliases:["top1consultancy","top 1 consultancy"]},
+    {name:"Skillboat Immigration", aliases:["skillboat immigration"]},
+    {name:"Skillboat Learning", aliases:["skillboat learning"]},
+    {name:"Muscle Mantra", aliases:["muscle mantra"]},
+    {name:"ANS Performance India", aliases:["ans performance india","ans performance"]},
+    {name:"Bodybuilding India", aliases:["bodybuilding india","body building india","bbi"]},
+    {name:"TechAIrevolution Creative Studio", aliases:["techairevolution creative studio"]},
+    {name:"Zarriya", aliases:["zarriya"]},
+    {name:"Uji", aliases:["uji","uji foods"]},
+    {name:"Halt Nutrition", aliases:["halt nutrition","halt"]},
+    {name:"Joker Nutrition", aliases:["joker nutrition"]},
+    {name:"Ace Vitals", aliases:["ace vitals"]},
+    {name:"ACESTAR", aliases:["acestar"]},
+    {name:"Chawla Bakers", aliases:["chawla bakers","chawla baker's"]},
+    {name:"Rasa", aliases:["rasa"]},
+    {name:"Pashtun", aliases:["pashtun","restaurant pashtun"]},
+    {name:"Ekyam", aliases:["ekyam"]},
+    {name:"Totbelly", aliases:["totbelly"]},
+    {name:"Offbeat Store", aliases:["offbeat store"]},
+    {name:"DealOut", aliases:["dealout","deal out"]}
+  ];
+
 
 
   const DEFAULTS = {
@@ -62,6 +94,7 @@
     smartCommandInstructions: true,
     creativeStudioRuntime: true,
     projectOverrides: {},
+    projectRegistry: {},
   };
 
   let settings = Object.assign({}, DEFAULTS, GM_getValue('gk_settings', {}));
@@ -75,10 +108,12 @@
   let activeCategory = null;
   let activeHub = 'Creatives';
   let activeQuickFilter = null;
-  let host, shadow, listEl, hintEl, crumbEl, titleEl, sideEl, hubEl, quickEl, brandChipEl, projectLineEl, footerVersionEl, syncButtonEl;
+  let paletteSearchQuery = '';
+  let host, shadow, listEl, hintEl, crumbEl, titleEl, sideEl, hubEl, quickEl, brandChipEl, projectLineEl, footerVersionEl, syncButtonEl, searchBarEl, searchInputEl, searchClearEl, searchCountEl;
   let projectBadgeHost, projectBadgeShadow, projectBadgeButton;
-  let activeProject = { inProject:false, id:null, name:null, source:'none' };
+  let activeProject = { inProject:false, id:null, name:null, source:'none', shared:false };
   let lastProjectSignature = '';
+  let lastRegistryScan = 0;
 
   function save() { GM_setValue('gk_settings', settings); }
 
@@ -86,101 +121,236 @@
     if (!value) return null;
     let s = String(value).replace(/\s+/g, ' ').trim();
     s = s.replace(/^project\s*[:\-–—]\s*/i, '').trim();
-    if (s.length < 2 || s.length > 100) return null;
+    s = s.replace(/\s+(?:shared with you|shared project)$/i, '').trim();
+    if (s.length < 2 || s.length > 120) return null;
     const blocked = new Set([
       'project','projects','chatgpt','new chat','temporary chat','search chats',
-      'share','settings','close','open sidebar','more','rename','delete'
+      'share','shared','shared with you','settings','close','open sidebar','more','rename','delete'
     ]);
     if (blocked.has(s.toLowerCase())) return null;
     return s;
   }
 
+  function normalizeProjectName(value) {
+    return String(value || '')
+      .toLowerCase()
+      .normalize?.('NFKD')
+      ?.replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,' ')
+      .trim() || '';
+  }
+
+  function seededProjectName(value) {
+    const raw = cleanProjectName(value);
+    if (!raw) return null;
+    const q = normalizeProjectName(raw);
+    for (const seed of PROJECT_NAME_SEEDS) {
+      const names = [seed.name, ...(seed.aliases || [])].map(normalizeProjectName).filter(Boolean);
+      if (names.some(alias => q === alias || (alias.length >= 5 && q.includes(alias)))) return seed.name;
+    }
+    return raw;
+  }
+
+  function projectIdentityFromUrl(url = location.href) {
+    let parsed;
+    try { parsed = new URL(url, location.origin); } catch { return {id:null,key:null,isProject:false}; }
+    const path = parsed.pathname;
+    let id = path.match(/(g-p-[A-Za-z0-9_-]+)/)?.[1] || null;
+    if (!id) {
+      for (const key of ['project','projectId','project_id','gizmo','gizmoId','gizmo_id']) {
+        const v = parsed.searchParams.get(key);
+        if (v && (/^g-p-/i.test(v) || key.startsWith('project'))) { id = v; break; }
+      }
+    }
+    if (!id) {
+      const m = path.match(/\/(?:projects?|project)\/([^/?#]+)/i);
+      if (m && m[1] && !/^(?:new|create|shared|settings)$/i.test(m[1])) id = decodeURIComponent(m[1]);
+    }
+    const isProject = Boolean(id || /\/(?:projects?|project)\//i.test(path));
+    return { id, key:id ? `project:${id}` : (isProject ? `route:${path}` : null), isProject };
+  }
+
   function getProjectIdFromUrl() {
-    const m = location.pathname.match(/(g-p-[A-Za-z0-9_-]+)/);
-    return m ? m[1] : null;
+    return projectIdentityFromUrl().id;
   }
 
   function getProjectOverrideKey(projectId) {
-    return projectId || `path:${location.pathname.split('/').slice(0,5).join('/')}`;
+    return projectId ? `project:${projectId}` : `path:${location.pathname.split('/').slice(0,6).join('/')}`;
+  }
+
+  function isSharedProjectElement(el) {
+    let node = el;
+    for (let i=0; node && i<4; i++, node=node.parentElement) {
+      const meta = [node.getAttribute?.('aria-label'), node.getAttribute?.('title'), node.getAttribute?.('data-testid')]
+        .filter(Boolean).join(' ');
+      if (/shared(?:\s+with\s+you)?/i.test(meta)) return true;
+    }
+    return false;
+  }
+
+  function registryEntryForId(projectId) {
+    if (!projectId) return null;
+    const registry = settings.projectRegistry || {};
+    return registry[`project:${projectId}`] || null;
+  }
+
+  function rememberProject({id, name, href, shared=false, source='dom'} = {}) {
+    name = seededProjectName(name);
+    if (!id || !name) return false;
+    settings.projectRegistry = settings.projectRegistry || {};
+    const key = `project:${id}`;
+    const prev = settings.projectRegistry[key] || {};
+    const aliases = new Set([...(prev.aliases || []), name]);
+    const next = {
+      id,
+      name: prev.name || name,
+      aliases:[...aliases].slice(-12),
+      shared:Boolean(prev.shared || shared),
+      href: href || prev.href || '',
+      source,
+      firstSeen: prev.firstSeen || Date.now(),
+      lastSeen: Date.now(),
+    };
+    const materiallyChanged = !prev.id || prev.name !== next.name || prev.shared !== next.shared || prev.href !== next.href || JSON.stringify(prev.aliases || []) !== JSON.stringify(next.aliases);
+    settings.projectRegistry[key] = next;
+    if (materiallyChanged) save();
+    return materiallyChanged;
+  }
+
+  function scanProjectRegistryFromDom(force=false) {
+    const now = Date.now();
+    if (!force && now - lastRegistryScan < 1500) return Object.values(settings.projectRegistry || {});
+    lastRegistryScan = now;
+    settings.projectRegistry = settings.projectRegistry || {};
+
+    const links = document.querySelectorAll('a[href]');
+    links.forEach(link => {
+      const href = link.getAttribute('href') || '';
+      const info = projectIdentityFromUrl(href);
+      if (!info.id || !info.isProject) return;
+      const values = [link.textContent, link.getAttribute('aria-label'), link.getAttribute('title')];
+      const name = values.map(cleanProjectName).find(Boolean);
+      if (!name) return;
+      rememberProject({id:info.id, name, href, shared:isSharedProjectElement(link), source:'sidebar'});
+    });
+    return Object.values(settings.projectRegistry || {});
+  }
+
+  function projectCandidatesForId(projectId) {
+    const out=[];
+    if (projectId) {
+      document.querySelectorAll(`a[href*="${CSS.escape(projectId)}"], button[aria-controls*="${CSS.escape(projectId)}"]`).forEach(el=>out.push(el));
+    }
+    document.querySelectorAll([
+      'a[aria-current="page"][href*="g-p-"]',
+      'a[data-active="true"][href*="g-p-"]',
+      'a[aria-current="page"][href*="/project"]',
+      'a[data-active="true"][href*="/project"]',
+      'header a[href*="g-p-"]',
+      'nav a[href*="g-p-"]',
+      'aside a[href*="g-p-"]'
+    ].join(',')).forEach(el=>out.push(el));
+    return [...new Set(out)];
   }
 
   function detectActiveProject() {
-    let projectId = getProjectIdFromUrl();
+    scanProjectRegistryFromDom(false);
+    let info = projectIdentityFromUrl();
+    let projectId = info.id;
 
     if (!projectId) {
       const activeProjectLink = document.querySelector(
-        'a[aria-current="page"][href*="/g/g-p-"], a[data-active="true"][href*="/g/g-p-"]'
+        'a[aria-current="page"][href*="g-p-"], a[data-active="true"][href*="g-p-"], a[aria-current="page"][href*="/project"]'
       );
-      const href = activeProjectLink?.getAttribute('href') || '';
-      const m = href.match(/(g-p-[A-Za-z0-9_-]+)/);
-      if (m) projectId = m[1];
+      if (activeProjectLink?.getAttribute('href')) {
+        const parsed = projectIdentityFromUrl(activeProjectLink.getAttribute('href'));
+        if (parsed.id) { projectId = parsed.id; info = parsed; }
+      }
     }
 
     const looksLikeProject = Boolean(
-      projectId ||
-      /\/projects?\//i.test(location.pathname) ||
-      document.querySelector('a[aria-current="page"][href*="/g/g-p-"]')
+      projectId || info.isProject || /\/(?:projects?|project)\//i.test(location.pathname) ||
+      document.querySelector('a[aria-current="page"][href*="g-p-"], a[aria-current="page"][href*="/project"]')
     );
 
-    const overrideKey = getProjectOverrideKey(projectId);
-    const override = cleanProjectName(settings.projectOverrides?.[overrideKey]);
-    if (override) {
-      return { inProject:true, id:projectId, name:override, source:'manual' };
-    }
-
-    const candidates = [];
-
-    if (projectId) {
-      document.querySelectorAll(`a[href*="${projectId}"], button[aria-controls*="${projectId}"]`).forEach(el => {
-        candidates.push(el);
-      });
-    }
-
-    document.querySelectorAll(
-      'a[aria-current="page"][href*="/g/g-p-"], a[data-active="true"][href*="/g/g-p-"], header a[href*="/g/g-p-"], nav a[href*="/g/g-p-"]'
-    ).forEach(el => candidates.push(el));
-
+    const candidates = projectCandidatesForId(projectId);
     let best = null;
     let bestScore = -1;
+    let bestShared = false;
 
     for (const el of candidates) {
       const href = el.getAttribute?.('href') || '';
-      if (projectId && href && !href.includes(projectId)) continue;
+      if (projectId && href) {
+        const linked = projectIdentityFromUrl(href);
+        if (linked.id && linked.id !== projectId) continue;
+      }
 
       const rect = el.getBoundingClientRect?.();
       const visible = rect ? (rect.width > 0 && rect.height > 0) : true;
-
-      const values = [
-        el.textContent,
-        el.getAttribute?.('aria-label'),
-        el.getAttribute?.('title')
-      ];
+      const values = [el.textContent, el.getAttribute?.('aria-label'), el.getAttribute?.('title')];
 
       for (const value of values) {
         const name = cleanProjectName(value);
         if (!name) continue;
-
         let score = 0;
         if (visible) score += 20;
-        if (el.getAttribute?.('aria-current') === 'page') score += 30;
-        if (el.getAttribute?.('data-active') === 'true') score += 20;
-        if (href.includes('/g/g-p-')) score += 15;
-        if (projectId && href.includes(projectId)) score += 25;
-        if (name.length <= 50) score += 5;
-
+        if (el.getAttribute?.('aria-current') === 'page') score += 40;
+        if (el.getAttribute?.('data-active') === 'true') score += 25;
+        if (/g-p-|\/project/i.test(href)) score += 15;
+        if (projectId && href.includes(projectId)) score += 30;
+        if (name.length <= 60) score += 5;
         if (score > bestScore) {
-          best = name;
+          best = seededProjectName(name);
           bestScore = score;
+          bestShared = isSharedProjectElement(el);
         }
       }
     }
 
-    if (best) return { inProject:true, id:projectId, name:best, source:'dom' };
-    return { inProject:looksLikeProject, id:projectId, name:null, source:looksLikeProject?'unresolved':'none' };
+    if (best) {
+      if (projectId) rememberProject({id:projectId,name:best,href:location.href,shared:bestShared,source:'active-dom'});
+      return { inProject:true, id:projectId, name:best, source:'dom', shared:bestShared };
+    }
+
+    const remembered = registryEntryForId(projectId);
+    if (remembered?.name) {
+      return { inProject:true, id:projectId, name:remembered.name, source:'registry', shared:Boolean(remembered.shared) };
+    }
+
+    // Last-resort current-page heading/name detection. This also learns shared projects
+    // opened directly by a URL before they are pinned/rendered in the sidebar.
+    if (looksLikeProject) {
+      const pageCandidates = [
+        '[data-testid="project-name"]','[data-testid="project-title"]',
+        'header h1','header h2','main h1','[aria-label^="Project:"]'
+      ];
+      for (const selector of pageCandidates) {
+        const el = document.querySelector(selector);
+        const name = cleanProjectName(el?.textContent || el?.getAttribute?.('aria-label') || el?.getAttribute?.('title'));
+        if (name) {
+          const canonical = seededProjectName(name);
+          if (projectId) rememberProject({id:projectId,name:canonical,href:location.href,shared:isSharedProjectElement(el),source:'page'});
+          return { inProject:true,id:projectId,name:canonical,source:'page',shared:isSharedProjectElement(el) };
+        }
+      }
+    }
+
+    // Manual override is deliberately the final fallback. Automatic URL/DOM/header/registry
+    // evidence always wins so renamed/shared projects self-correct without stale overrides.
+    if (looksLikeProject) {
+      const overrideKey = getProjectOverrideKey(projectId);
+      const override = cleanProjectName(settings.projectOverrides?.[overrideKey]);
+      if (override) {
+        if (projectId) rememberProject({id:projectId,name:override,href:location.href,source:'manual-fallback'});
+        return { inProject:true, id:projectId, name:override, source:'manual', shared:Boolean(registryEntryForId(projectId)?.shared) };
+      }
+    }
+
+    return { inProject:looksLikeProject, id:projectId, name:null, source:looksLikeProject?'unresolved':'none', shared:false };
   }
 
   function projectSignature(p) {
-    return `${p.inProject}|${p.id || ''}|${p.name || ''}|${p.source || ''}`;
+    return `${p.inProject}|${p.id || ''}|${p.name || ''}|${p.source || ''}|${p.shared?'shared':'owned-or-unknown'}`;
   }
 
   function ensureProjectBadge() {
@@ -225,7 +395,7 @@
 
     if (p.inProject && p.name) {
       projectBadgeButton.className = 'ok';
-      projectBadgeButton.textContent = `✓ Project: ${p.name}`;
+      projectBadgeButton.textContent = `✓ ${p.shared?'Shared Project':'Project'}: ${p.name}`;
     } else if (p.inProject) {
       projectBadgeButton.className = 'warn';
       projectBadgeButton.textContent = '! Project name not detected';
@@ -277,7 +447,7 @@
     const existing = getText(root);
     if (/\[PROJECT CONTEXT:/i.test(existing)) return '';
 
-    return `\n[PROJECT CONTEXT: ${p.name} | Treat this active ChatGPT Project's instructions, files, references, prior decisions and existing conversation context as authoritative. Apply the command specifically to this project; do not answer generically or ask me to repeat information already available in the project.]`;
+    return `\n[PROJECT CONTEXT: ${p.name}${p.shared?' | Shared Project':''} | Treat this active ChatGPT Project's instructions, files, references, prior decisions and existing conversation context as authoritative. Apply the command specifically to this project; do not answer generically or ask me to repeat information already available in the project.]`;
   }
 
 
@@ -286,10 +456,11 @@
   }
 
   function brandProfileForProject(projectName) {
-    const q = String(projectName || '').toLowerCase().trim();
+    const q = normalizeProjectName(projectName);
     if (!q) return null;
     for (const [alias, profile] of Object.entries(KNOWN_BRAND_PROFILES)) {
-      if (q.includes(alias)) return profile;
+      const a = normalizeProjectName(alias);
+      if (q.includes(a) || a.includes(q)) return profile;
     }
     return null;
   }
@@ -422,31 +593,53 @@
     return counts;
   }
 
-  function score(c, q) {
-    q = (q || '').toLowerCase().trim();
-    const name = c.name.toLowerCase();
-    const desc = (c.description || '').toLowerCase();
-    const cat = (c.category || '').toLowerCase();
+  function normalizeSearchQuery(q) {
+    return String(q || '').toLowerCase().trim().replace(/^\/+/, '').replace(/\s+/g, ' ');
+  }
+
+  function score(c, rawQuery) {
+    const q = normalizeSearchQuery(rawQuery);
+    if (!q) return 0;
+    const name = String(c.name || '').toLowerCase();
+    const bare = name.replace(/^\//, '');
+    const desc = String(c.description || '').toLowerCase();
+    const cat = String(c.category || '').toLowerCase();
+    const expansion = String(c.expansion || '').toLowerCase();
+    const tags = (c.tags || []).join(' ').toLowerCase();
+    const words = q.split(' ').filter(Boolean);
     let s = 0;
-    if (name === '/' + q) s += 300;
-    if (name.startsWith('/' + q)) s += 220;
-    if (name.includes(q)) s += 120;
-    if (desc.includes(q)) s += 45;
-    if (cat.includes(q)) s += 35;
-    if ((settings.favorites || []).includes(c.name)) s += 10;
-    let qi = 0, hay = name.slice(1);
-    for (const ch of hay) {
+    if (bare === q) s += 420;
+    if (bare.startsWith(q)) s += 300;
+    if (bare.includes(q)) s += 190;
+    if (desc.includes(q)) s += 90;
+    if (cat.includes(q)) s += 70;
+    if (tags.includes(q)) s += 55;
+    if (expansion.includes(q)) s += 45;
+    if (words.length > 1) {
+      const hay = `${bare} ${desc} ${cat} ${tags} ${expansion}`;
+      const matched = words.filter(w => hay.includes(w)).length;
+      s += matched * 45;
+      if (matched === words.length) s += 90;
+    }
+    if ((settings.favorites || []).includes(c.name)) s += 12;
+    let qi = 0;
+    for (const ch of bare) {
       if (ch === q[qi]) qi++;
-      if (qi === q.length) { s += 30; break; }
+      if (qi === q.length) { s += 38; break; }
     }
     return s;
   }
 
-  function searchCommands(q) {
+  function searchCommandMatches(q) {
+    if (!normalizeSearchQuery(q)) return [];
     return COMMANDS.map(c => ({ c, s: score(c, q) }))
       .filter(x => x.s > 0)
-      .sort((a,b) => b.s - a.s || a.c.name.localeCompare(b.c.name))
-      .slice(0, Number(settings.maxResults || 22))
+      .sort((a,b) => b.s - a.s || a.c.name.localeCompare(b.c.name));
+  }
+
+  function searchCommands(q) {
+    return searchCommandMatches(q)
+      .slice(0, 100)
       .map(x => ({ type:'command', command:x.c }));
   }
 
@@ -519,6 +712,14 @@
         .hub{all:unset;box-sizing:border-box;cursor:pointer;min-height:48px;border:1px solid rgba(255,255,255,.07);border-radius:13px;background:linear-gradient(180deg,#111719,#0d1214);display:flex;align-items:center;justify-content:center;gap:8px;color:#aab2ae;font-size:12px;font-weight:820;transition:.14s ease}.hub .hi{font-size:15px;opacity:.85}.hub:hover{border-color:rgba(156,255,0,.28);color:#eaffd6}.hub.sel{color:white;border-color:rgba(156,255,0,.78);background:linear-gradient(180deg,rgba(135,255,0,.24),rgba(69,126,0,.16));box-shadow:0 0 0 1px rgba(156,255,0,.18) inset,0 0 23px rgba(156,255,0,.15)}.hub.sel .hi{color:var(--neon);filter:drop-shadow(0 0 7px rgba(156,255,0,.6))}
         .quickbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:9px 18px 11px;border-bottom:1px solid var(--line)}
         .quick{all:unset;box-sizing:border-box;cursor:pointer;height:34px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:#101517;color:#a6afaa;display:flex;align-items:center;justify-content:center;gap:7px;font-size:10.5px;font-weight:720;transition:.13s ease}.quick:hover{border-color:rgba(156,255,0,.28);color:#eaffd6}.quick.sel{border-color:rgba(156,255,0,.62);color:#fff;background:rgba(156,255,0,.10);box-shadow:0 0 16px rgba(156,255,0,.08)}.quick .qi{color:var(--neon);font-weight:900}
+        .searchwrap{display:flex;align-items:center;gap:10px;padding:10px 18px 11px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(8,13,14,.74),rgba(8,12,13,.92))}
+        .searchbox{min-width:0;flex:1;height:44px;display:grid;grid-template-columns:34px minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:0 10px;border:1px solid rgba(156,255,0,.20);border-radius:13px;background:linear-gradient(180deg,rgba(15,22,20,.96),rgba(10,16,15,.97));box-shadow:0 0 0 1px rgba(255,255,255,.018) inset;transition:border-color .14s ease,box-shadow .14s ease,background .14s ease}
+        .searchbox:focus-within{border-color:rgba(156,255,0,.78);background:linear-gradient(180deg,rgba(19,29,23,.98),rgba(10,18,14,.98));box-shadow:0 0 0 2px rgba(156,255,0,.08),0 0 26px rgba(156,255,0,.11)}
+        .searchicon{display:grid;place-items:center;color:var(--neon);font-size:17px;filter:drop-shadow(0 0 7px rgba(156,255,0,.34))}
+        .searchinput{all:unset;box-sizing:border-box;width:100%;min-width:0;color:#f8fff3;font-size:13px;font-weight:690;letter-spacing:.002em;caret-color:var(--neon)}.searchinput::placeholder{color:#68736c;font-weight:610}
+        .searchscope{white-space:nowrap;padding:5px 7px;border:1px solid rgba(156,255,0,.13);border-radius:7px;background:rgba(156,255,0,.045);color:#7f9184;font:800 8.5px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em}
+        .searchcount{white-space:nowrap;min-width:64px;text-align:right;color:#87928b;font:800 9.5px ui-monospace,SFMono-Regular,Menlo,monospace}.searchcount.hit{color:#bfff78}
+        .searchclear{all:unset;box-sizing:border-box;display:none;cursor:pointer;width:25px;height:25px;border-radius:7px;place-items:center;color:#8e9992;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.025);font-size:14px;font-weight:900}.searchclear.show{display:grid}.searchclear:hover{color:#fff;border-color:rgba(156,255,0,.35);background:rgba(156,255,0,.08)}
         .workspace{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0;min-height:0;flex:1}
         .sidebar{border-right:1px solid var(--line);background:linear-gradient(180deg,rgba(13,18,20,.78),rgba(7,11,12,.7));padding:11px 9px;overflow:auto}
         .side{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:7px;padding:9px 10px;margin-bottom:5px;border:1px solid transparent;border-radius:10px;color:#a5ada9;font-size:11px;transition:.13s ease;position:relative}.side:hover{background:rgba(255,255,255,.035);color:#e6ece8}.side.sel{background:linear-gradient(90deg,rgba(156,255,0,.16),rgba(156,255,0,.04));color:#fff;border-color:rgba(156,255,0,.32);box-shadow:0 0 18px rgba(156,255,0,.055)}.side.sel:before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:0 4px 4px 0;background:var(--neon);box-shadow:0 0 10px rgba(156,255,0,.7)}.side .si{font-size:15px;text-align:center;color:#909b95}.side.sel .si{color:var(--neon)}.side .sl{font-weight:740;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.side .sc{font-size:9px;color:#657069}
@@ -531,7 +732,7 @@
         .empty{padding:42px 18px;text-align:center;color:#7f8983;font-size:12px}.empty b{display:block;color:#d7ded9;font-size:14px;margin-bottom:5px}
         .footer{height:44px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 15px;background:rgba(7,11,12,.87);flex:0 0 auto}.version{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#6e7872}.keys{display:flex;gap:10px;color:#626c66;font-size:9.5px}.keys kbd{font:inherit;color:#9ba49f;border:1px solid rgba(255,255,255,.11);border-radius:5px;padding:2px 5px;background:rgba(255,255,255,.025)}.sync{all:unset;box-sizing:border-box;cursor:pointer;padding:7px 12px;border-radius:10px;border:1px solid rgba(156,255,0,.52);background:linear-gradient(180deg,rgba(156,255,0,.18),rgba(156,255,0,.06));color:#f3ffe7;font-size:10.5px;font-weight:850;box-shadow:0 0 18px rgba(156,255,0,.08);transition:.13s ease}.sync:hover{border-color:var(--neon);box-shadow:0 0 24px rgba(156,255,0,.19)}
         @media(max-width:820px){.panel{width:calc(100vw - 16px);height:min(760px,88vh)}.workspace{grid-template-columns:158px minmax(0,1fr)}.row{grid-template-columns:36px minmax(120px,180px) minmax(0,1fr) 18px}.sidebar{padding:9px 6px}.hubbar{gap:5px;padding-left:9px;padding-right:9px}.quickbar{padding-left:9px;padding-right:9px}.hub{font-size:10px}.head{padding-left:14px;padding-right:14px}.title{font-size:17px}}
-        @media(max-width:620px){.panel{height:90vh}.workspace{grid-template-columns:1fr}.sidebar{display:flex;border-right:0;border-bottom:1px solid var(--line);overflow:auto;padding:7px;gap:5px;min-height:48px}.side{width:auto;min-width:max-content;margin:0;grid-template-columns:18px 1fr;padding:7px 9px}.side .sc{display:none}.content{min-height:0}.hubbar{grid-template-columns:repeat(3,1fr)}.quickbar{grid-template-columns:repeat(5,minmax(72px,1fr));overflow:auto}.row{grid-template-columns:34px minmax(120px,1fr) 18px}.copy{grid-column:2/3}.cmd{font-size:11.5px}.name{font-size:12px}.desc{font-size:10px}.arrow{grid-column:3}.keys{display:none}.brand-chip{font-size:10px}.subline{display:none}}
+        @media(max-width:620px){.panel{height:90vh}.workspace{grid-template-columns:1fr}.sidebar{display:flex;border-right:0;border-bottom:1px solid var(--line);overflow:auto;padding:7px;gap:5px;min-height:48px}.side{width:auto;min-width:max-content;margin:0;grid-template-columns:18px 1fr;padding:7px 9px}.side .sc{display:none}.content{min-height:0}.hubbar{grid-template-columns:repeat(3,1fr)}.quickbar{grid-template-columns:repeat(5,minmax(72px,1fr));overflow:auto}.searchwrap{padding:8px}.searchbox{grid-template-columns:30px minmax(0,1fr) auto;height:42px}.searchscope{display:none}.searchcount{font-size:8.5px;min-width:54px}.row{grid-template-columns:34px minmax(120px,1fr) 18px}.copy{grid-column:2/3}.cmd{font-size:11.5px}.name{font-size:12px}.desc{font-size:10px}.arrow{grid-column:3}.keys{display:none}.brand-chip{font-size:10px}.subline{display:none}}
       </style>
       <div class="panel">
         <div class="head">
@@ -542,11 +743,12 @@
         </div>
         <div class="hubbar"></div>
         <div class="quickbar"></div>
+        <div class="searchwrap"><div class="searchbox"><span class="searchicon">⌕</span><input class="searchinput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Find any command" placeholder="Find any command — try seedance, product, carousel, identity…"><span class="searchscope">ALL COMMANDS</span><span class="searchcount">⌘K / Ctrl K</span><button class="searchclear" type="button" aria-label="Clear search">×</button></div></div>
         <div class="workspace">
           <div class="sidebar"></div>
           <div class="content"><div class="contenthead"><div class="crumb"></div><div class="hint"></div></div><div class="list"></div></div>
         </div>
-        <div class="footer"><div class="version"></div><div class="keys"><span><kbd>↑↓</kbd> navigate</span><span><kbd>Enter</kbd> insert</span><span><kbd>Tab</kbd> stack</span><span><kbd>←</kbd> clear filter</span><span><kbd>Esc</kbd> close</span></div><button class="sync" type="button">⚡ Sync context</button></div>
+        <div class="footer"><div class="version"></div><div class="keys"><span><kbd>⌘K</kbd> find</span><span><kbd>↑↓</kbd> navigate</span><span><kbd>Enter</kbd> insert</span><span><kbd>Tab</kbd> stack</span><span><kbd>←</kbd> clear filter</span><span><kbd>Esc</kbd> close</span></div><button class="sync" type="button">⚡ Sync context</button></div>
       </div>`;
     listEl = shadow.querySelector('.list');
     hintEl = shadow.querySelector('.hint');
@@ -555,10 +757,45 @@
     sideEl = shadow.querySelector('.sidebar');
     hubEl = shadow.querySelector('.hubbar');
     quickEl = shadow.querySelector('.quickbar');
+    searchBarEl = shadow.querySelector('.searchbox');
+    searchInputEl = shadow.querySelector('.searchinput');
+    searchClearEl = shadow.querySelector('.searchclear');
+    searchCountEl = shadow.querySelector('.searchcount');
     brandChipEl = shadow.querySelector('.brand-chip');
     projectLineEl = shadow.querySelector('.project-line');
     footerVersionEl = shadow.querySelector('.version');
     syncButtonEl = shadow.querySelector('.sync');
+
+    function clearPaletteSearch(keepFocus=false) {
+      paletteSearchQuery='';
+      mode='commands';
+      selectedIndex=0;
+      if (searchInputEl) searchInputEl.value='';
+      render();
+      if (keepFocus) setTimeout(()=>searchInputEl?.focus(),0);
+    }
+
+    searchBarEl?.addEventListener('mousedown',e=>e.stopPropagation());
+    searchInputEl?.addEventListener('click',e=>e.stopPropagation());
+    searchInputEl?.addEventListener('input',e=>{
+      e.stopPropagation();
+      paletteSearchQuery=e.target.value;
+      mode=normalizeSearchQuery(paletteSearchQuery)?'search':'commands';
+      activeCategory=null;
+      activeQuickFilter=null;
+      selectedIndex=0;
+      render();
+    });
+    searchInputEl?.addEventListener('keydown',e=>{
+      e.stopPropagation();
+      if ((e.metaKey||e.ctrlKey) && ['k','f'].includes(e.key.toLowerCase())) { e.preventDefault(); searchInputEl.select(); return; }
+      if (e.key==='ArrowDown') { e.preventDefault(); selectedIndex=(selectedIndex+1)%Math.max(1,visibleItems.length); updateSelection(); }
+      else if (e.key==='ArrowUp') { e.preventDefault(); selectedIndex=(selectedIndex-1+Math.max(1,visibleItems.length))%Math.max(1,visibleItems.length); updateSelection(); }
+      else if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); activateItem(selectedIndex,false); }
+      else if (e.key==='Tab') { e.preventDefault(); activateItem(selectedIndex,true); }
+      else if (e.key==='Escape') { e.preventDefault(); if(normalizeSearchQuery(paletteSearchQuery)) clearPaletteSearch(true); else closePalette(); }
+    });
+    searchClearEl?.addEventListener('mousedown',e=>{e.preventDefault();e.stopPropagation();clearPaletteSearch(true);});
 
     brandChipEl.addEventListener('click',()=>setProjectOverrideInteractively());
     syncButtonEl.addEventListener('click',()=>{
@@ -620,7 +857,7 @@
       const b=document.createElement('button');
       b.type='button'; b.className='hub'+(activeHub===hubName?' sel':'');
       b.innerHTML=`<span class="hi">${meta[0]}</span><span>${escapeHtml(meta[1])}</span>`;
-      b.addEventListener('mousedown',e=>{e.preventDefault();activeHub=hubName;activeCategory=null;activeQuickFilter=null;mode='commands';selectedIndex=0;render();});
+      b.addEventListener('mousedown',e=>{e.preventDefault();activeHub=hubName;activeCategory=null;activeQuickFilter=null;paletteSearchQuery='';mode='commands';selectedIndex=0;render();});
       hubEl.appendChild(b);
     });
   }
@@ -632,7 +869,7 @@
       const on=activeQuickFilter?.label===q.label;
       b.className='quick'+(on?' sel':'');
       b.innerHTML=`<span class="qi">${escapeHtml(q.icon)}</span><span>${escapeHtml(q.label)}</span>`;
-      b.addEventListener('mousedown',e=>{e.preventDefault();activeQuickFilter=on?null:q;activeCategory=null;mode='commands';selectedIndex=0;render();});
+      b.addEventListener('mousedown',e=>{e.preventDefault();activeQuickFilter=on?null:q;activeCategory=null;paletteSearchQuery='';mode='commands';selectedIndex=0;render();});
       quickEl.appendChild(b);
     });
   }
@@ -647,7 +884,7 @@
       const on=activeCategory===item.cat;
       b.className='side'+(on?' sel':'');
       b.innerHTML=`<span class="si">${escapeHtml(item.icon)}</span><span class="sl">${escapeHtml(item.label)}</span><span class="sc">${item.count}</span>`;
-      b.addEventListener('mousedown',e=>{e.preventDefault();activeCategory=item.cat;activeQuickFilter=null;mode='commands';selectedIndex=0;render();});
+      b.addEventListener('mousedown',e=>{e.preventDefault();activeCategory=item.cat;activeQuickFilter=null;paletteSearchQuery='';mode='commands';selectedIndex=0;render();});
       sideEl.appendChild(b);
     });
   }
@@ -658,13 +895,14 @@
     const brand=profile?.name || (p?.name || 'Generic');
     brandChipEl.textContent=`Brand → ${brand} ⌄`;
     if(p?.inProject && p?.name){
-      projectLineEl.innerHTML=`<span class="led"></span><span><strong>Brand/Project: ${escapeHtml(brand)}</strong> <span class="dot">•</span> AUTO PROJECT</span>`;
+      const registryCount=Object.keys(settings.projectRegistry||{}).length;
+      projectLineEl.innerHTML=`<span class="led"></span><span><strong>${p.shared?'Shared Project':'Brand/Project'}: ${escapeHtml(brand)}</strong> <span class="dot">•</span> AUTO PROJECT <span class="dot">•</span> ${registryCount} learned</span>`;
     }else if(p?.inProject){
       projectLineEl.innerHTML=`<span class="led"></span><span><strong>Project detected</strong> <span class="dot">•</span> name unresolved</span>`;
     }else{
       projectLineEl.innerHTML=`<span class="led"></span><span><strong>Generic chat</strong> <span class="dot">•</span> Project-aware ready</span>`;
     }
-    const version=GM_info?.script?.version||'2.1.0';
+    const version=GM_info?.script?.version||'2.3.0';
     footerVersionEl.textContent=`Script ${version}  •  ${COMMANDS.length} commands  •  ${CATEGORY_ORDER.length} sections`;
   }
 
@@ -676,11 +914,19 @@
     renderSidebar();
     listEl.innerHTML='';
 
-    if(mode==='search'){
-      const q=currentFragment?.query||'';
-      visibleItems=searchCommands(q);
-      crumbEl.innerHTML=`<strong>Live Search</strong>  ›  /${escapeHtml(q)}`;
-      hintEl.textContent=`${visibleItems.length} matches`;
+    const searchQ=paletteSearchQuery || currentFragment?.query || '';
+    if (searchInputEl && searchInputEl.value !== paletteSearchQuery) searchInputEl.value=paletteSearchQuery;
+    const totalSearchMatches=normalizeSearchQuery(searchQ)?searchCommandMatches(searchQ).length:0;
+    searchClearEl?.classList.toggle('show',!!normalizeSearchQuery(searchQ));
+    if (searchCountEl) {
+      searchCountEl.textContent=normalizeSearchQuery(searchQ)?`${totalSearchMatches} found`:'⌘K / Ctrl K';
+      searchCountEl.classList.toggle('hit',totalSearchMatches>0);
+    }
+
+    if(mode==='search' && normalizeSearchQuery(searchQ)){
+      visibleItems=searchCommands(searchQ);
+      crumbEl.innerHTML=`<strong>Global Search</strong>  ›  ${escapeHtml(searchQ)}`;
+      hintEl.textContent=totalSearchMatches>visibleItems.length?`${visibleItems.length} of ${totalSearchMatches} matches`:`${totalSearchMatches} matches`;
     }else{
       visibleItems=hubCommandItems();
       const trail=[activeHub];
@@ -692,7 +938,7 @@
 
     selectedIndex=Math.min(selectedIndex,Math.max(0,visibleItems.length-1));
     if(!visibleItems.length){
-      listEl.innerHTML='<div class="empty"><b>No matching commands</b>Clear the filter or continue typing after /.</div>';
+      listEl.innerHTML='<div class="empty"><b>No matching commands</b>Try a command name, category, description, tag, or workflow keyword.</div>';
       return;
     }
     visibleItems.forEach((item,i)=>{
@@ -723,6 +969,7 @@
     host.style.display='block';
     paletteOpen=true;
     selectedIndex=0;
+    paletteSearchQuery=fragment.query||'';
     if(fragment.query){mode='search';activeCategory=null;activeQuickFilter=null;}
     else{mode='commands';}
     render();
@@ -737,6 +984,7 @@
     currentFragment=null;
     activeCategory=null;
     activeQuickFilter=null;
+    paletteSearchQuery='';
     mode='commands';
   }
 
@@ -789,6 +1037,7 @@
   function goBack() {
     if (mode === 'search') {
       mode='commands';
+      paletteSearchQuery='';
       selectedIndex=0;
       if (currentFragment) currentFragment.query='';
       render();
@@ -810,6 +1059,13 @@
 
   document.addEventListener('keydown',e=>{
     if (!paletteOpen) return;
+
+    if ((e.metaKey||e.ctrlKey) && ['k','f'].includes(e.key.toLowerCase())) {
+      e.preventDefault();e.stopPropagation();
+      searchInputEl?.focus();
+      searchInputEl?.select();
+      return;
+    }
 
     if (e.key==='ArrowDown') {
       e.preventDefault();e.stopPropagation();
@@ -860,6 +1116,18 @@
   GM_registerMenuCommand('Confirm / override active Project',()=>{
     setProjectOverrideInteractively();
   });
+  GM_registerMenuCommand('Rescan Projects (owned + shared)',()=>{
+    const before=Object.keys(settings.projectRegistry||{}).length;
+    const rows=scanProjectRegistryFromDom(true);
+    refreshProjectContext(true);
+    const after=Object.keys(settings.projectRegistry||{}).length;
+    alert(`Project Registry scan complete.\nLearned projects: ${after}\nNew this scan: ${Math.max(0,after-before)}\nShared projects are included whenever ChatGPT exposes them in the sidebar/current page.`);
+  });
+  GM_registerMenuCommand('Show learned Project Registry',()=>{
+    const rows=Object.values(settings.projectRegistry||{}).sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+    const text=rows.length ? rows.map((r,i)=>`${i+1}. ${r.name}${r.shared?' [shared]':''}\n   ${r.id}`).join('\n') : 'No project IDs learned yet. Open/visit Projects and the registry will learn them automatically.';
+    alert(`Gaurev Project Registry (${rows.length})\n\n${text.slice(0,7000)}`);
+  });
   GM_registerMenuCommand('Show Project status',()=>{
     const p=refreshProjectContext(true);
     alert(
@@ -884,6 +1152,7 @@
     );
   });
 
+  scanProjectRegistryFromDom(true);
   refreshProjectContext(true);
-  setInterval(()=>refreshProjectContext(false),1200);
+  setInterval(()=>{ scanProjectRegistryFromDom(false); refreshProjectContext(false); },1200);
 })();
