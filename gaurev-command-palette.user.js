@@ -1,8 +1,8 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      2.14.0
-// @description  ChatGPT 2026-native Creative Command OS with Images 2.5 workflows, model-adaptive routing, Astra-ready fallbacks, premium command intelligence and universal Projects.
+// @version      2.15.0
+// @description  Creative Command OS with live System Monitor, verified release checks, direct update installation and universal Projects.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
 // @match        https://chat.openai.com/*
@@ -13,6 +13,10 @@
 // @grant        GM_registerMenuCommand
 // @grant        GM_setClipboard
 // @grant        GM_info
+// @grant        GM_xmlhttpRequest
+// @grant        GM_openInTab
+// @connect      raw.githubusercontent.com
+// @noframes
 // @downloadURL  https://raw.githubusercontent.com/gaurevkohli1/gaurev-command-palette/main/gaurev-command-palette.user.js
 // @updateURL    https://raw.githubusercontent.com/gaurevkohli1/gaurev-command-palette/main/gaurev-command-palette.user.js
 // @homepageURL  https://github.com/gaurevkohli1/gaurev-command-palette
@@ -159,6 +163,252 @@
 
 
   function save() { GM_setValue('gk_settings', settings); }
+
+  // SYSTEM_MONITOR: local observations and a read-only, versioned public status feed.
+  const SYSTEM_MONITOR = (() => {
+    const BUILD_VERSION = '2.15.0';
+    const ROOT = 'https://raw.githubusercontent.com/gaurevkohli1/gaurev-command-palette/main/';
+    const INSTALL_URL = ROOT + 'gaurev-command-palette.user.js';
+    const STATUS_URL = ROOT + 'command-center-status.json';
+    const META_URL = ROOT + 'gaurev-command-palette.meta.js';
+    const KEY = 'gk_monitor_v1';
+    const VERSION_RE = /^\d{1,5}\.\d{1,5}\.\d{1,5}$/;
+    const runningVersion = typeof GM_info !== 'undefined' && VERSION_RE.test(GM_info.script?.version || '') ? GM_info.script.version : BUILD_VERSION;
+    let saved = {};
+    try { const v = GM_getValue(KEY, {}); if (v && typeof v === 'object' && !Array.isArray(v)) saved = v; } catch (_) {}
+    let feed = null, publishedVersion = null, connected = false, busy = false, failures = 0;
+    let lastAttempt = 0, lastSuccess = Number(saved.lastSuccess) || 0, problem = '', nextCheck = 0;
+    let monitorHost, root, dialog, launcher, panelBody, connectionEl, installButton, refreshButton, clockEl, returnFocus;
+    let isOpen = false, timer, health = null, renderSignature = '', installPending = false;
+    let events = Array.isArray(saved.events) ? saved.events.slice(0, 30) : [];
+    const text = (v, max = 500) => typeof v === 'string' ? v.slice(0, max) : '';
+    const validDate = v => typeof v === 'string' && Number.isFinite(Date.parse(v));
+    const fmt = v => validDate(v) ? new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:true}).format(new Date(v)) + ' IST' : 'Not reported';
+    const age = ms => ms ? Math.max(0, Math.floor((Date.now() - ms) / 1000)) : null;
+    const escape = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function compareVersions(a, b) {
+      if (!VERSION_RE.test(a || '') || !VERSION_RE.test(b || '')) throw new Error('Invalid version');
+      const x = a.split('.').map(Number), y = b.split('.').map(Number);
+      for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] > y[i] ? 1 : -1;
+      return 0;
+    }
+    function validateFeed(value) {
+      if (!value || value.schema_version !== 1 || value.project !== 'gaurev-command-palette') throw new Error('Unrecognized status feed');
+      if (!validDate(value.updated_at) || Date.parse(value.updated_at) > Date.now() + 300000) throw new Error('Invalid status timestamp');
+      if (!VERSION_RE.test(value.release?.version || '') || !Number.isSafeInteger(value.release?.command_count) || value.release.command_count < 1) throw new Error('Invalid release record');
+      if (!value.pipeline || !value.scan || !Array.isArray(value.history) || value.history.length > 60) throw new Error('Incomplete status record');
+      const states = new Set(['not_run','scheduled','running','passed','failed','prepared','published','verified','blocked','skipped','idle','unknown']);
+      for (const stage of ['scan','build','test','deploy']) if (!states.has(value.pipeline[stage]?.state)) throw new Error('Invalid pipeline state');
+      for (const key of ['commands_added','commands_updated','trends','skipped','sources']) if (!Array.isArray(value.scan[key]) || value.scan[key].length > 200) throw new Error('Invalid scan detail');
+      for (const key of ['commands_added','commands_updated','trends','skipped']) if (value.scan[key].some(v => typeof v !== 'string' && (!v || typeof v !== 'object' || Array.isArray(v)))) throw new Error('Invalid scan entry');
+      if (value.scan.sources.some(v => !v || typeof v !== 'object' || Array.isArray(v)) || value.history.some(v => !v || typeof v !== 'object' || Array.isArray(v))) throw new Error('Invalid history or source entry');
+      for (const key of ['started_at','completed_at']) if (value.scan[key] != null && (!validDate(value.scan[key]) || Date.parse(value.scan[key]) > Date.now()+300000)) throw new Error('Invalid scan timestamp');
+      return value;
+    }
+    try { if (saved.feed) feed = validateFeed(saved.feed); } catch (_) {}
+    if (VERSION_RE.test(saved.publishedVersion || '')) publishedVersion = saved.publishedVersion;
+    function persist() {
+      try { GM_setValue(KEY, {feed, publishedVersion, lastSuccess, events, observedVersion:runningVersion, observedAt:saved.observedAt}); }
+      catch (_) { problem = 'Local monitor history could not be saved.'; }
+    }
+    function log(message) {
+      events.unshift({at:new Date().toISOString(), message:text(message, 240)});
+      events = events.slice(0, 30); persist(); renderSignature = '';
+    }
+    function request(url, maxBytes) {
+      return new Promise((resolve, reject) => {
+        if (typeof GM_xmlhttpRequest !== 'function') return reject(new Error('Network permission missing. Reinstall this version through Violentmonkey.'));
+        let settled = false, handle;
+        const finish = (fn, value) => { if (settled) return; settled = true; clearTimeout(watchdog); fn(value); };
+        const watchdog = setTimeout(() => { finish(reject,new Error('Status request timed out')); handle?.abort(); }, 17000);
+        try {
+          handle = GM_xmlhttpRequest({method:'GET', url:url + '?t=' + Math.floor(Date.now()/60000), anonymous:true, timeout:15000, responseType:'text',
+            onload:r => {
+              if (r.status !== 200) return finish(reject,new Error('Status source returned HTTP ' + r.status));
+              if (r.finalUrl && !r.finalUrl.startsWith(ROOT)) return finish(reject,new Error('Unexpected status redirect'));
+              if (typeof r.responseText !== 'string' || r.responseText.length > maxBytes) return finish(reject,new Error('Invalid status response size'));
+              finish(resolve,r.responseText);
+            },
+            onerror:() => finish(reject,new Error('Cannot reach the published status source')),
+            ontimeout:() => finish(reject,new Error('Status request timed out')),
+            onabort:() => finish(reject,new Error('Status request was cancelled'))
+          });
+        } catch (_) { finish(reject,new Error('Status request could not start. Check Violentmonkey permissions.')); }
+      });
+    }
+    function checkHealth() {
+      const names = COMMANDS.map(c => c.name), nameSet = new Set(names);
+      const missing = Object.entries(BUNDLES).flatMap(([name, refs]) => [name,...refs].filter(n => !nameSet.has(n)));
+      const probes = [['h3 meta',/h3/i],['storyboard',/storyboard/i],['camera lens',/camera|lens/i],['identity',/identity|face|gaurev/i],['ad multiplier',/multiplier|ad3x/i]];
+      const checks = [
+        {name:'Command names are unique',pass:nameSet.size === names.length},
+        {name:'All bundle references resolve',pass:missing.length === 0},
+        {name:'Command library is readable',pass:COMMANDS.every(c => typeof c.name === 'string' && c.name.startsWith('/') && typeof c.category === 'string')},
+        ...probes.map(([q, expected]) => ({name:'Search: '+q,pass:searchCommandMatches(q).slice(0,5).some(x => expected.test(x.c.name))}))
+      ];
+      health = {at:new Date().toISOString(),status:checks.every(c => c.pass)?'passed':'failed',checks};
+      renderSignature = ''; return health;
+    }
+    function connection() {
+      if (navigator.onLine === false) return {label:'OFFLINE · cached data',tone:'warn'};
+      if (busy) return {label:'CHECKING STATUS',tone:'cyan'};
+      if (problem) return {label:'CONNECTION ISSUE',tone:'warn'};
+      if (!connected) return {label:lastSuccess?'CACHED · awaiting refresh':'NOT CONNECTED YET',tone:'muted'};
+      if (age(lastSuccess) > 120) return {label:'STALE · last check '+Math.floor(age(lastSuccess)/60)+'m ago',tone:'warn'};
+      return {label:'CONNECTED · checked '+age(lastSuccess)+'s ago',tone:'ok'};
+    }
+    function canInstall() {
+      return connected && !problem && age(lastSuccess) <= 120 && publishedVersion && compareVersions(publishedVersion,runningVersion)>0;
+    }
+    async function refresh(force = false) {
+      if (busy || (force && Date.now()-lastAttempt < 5000)) return;
+      if (!force && (document.hidden || Date.now() < nextCheck)) return;
+      if (navigator.onLine === false) { connected = false; nextCheck=Date.now()+60000; render(); return; }
+      busy=true; lastAttempt=Date.now(); render();
+      try {
+        const results = await Promise.allSettled([request(STATUS_URL,262144),request(META_URL,16384)]);
+        for (const result of results) if (result.status==='rejected') throw result.reason;
+        const candidate = validateFeed(JSON.parse(results[0].value));
+        const meta=results[1].value;
+        const version=meta.match(/^\/\/\s*@version\s+(\d+\.\d+\.\d+)\s*$/m)?.[1];
+        const name=meta.match(/^\/\/\s*@name\s+(.+)$/m)?.[1]?.trim();
+        const namespace=meta.match(/^\/\/\s*@namespace\s+(.+)$/m)?.[1]?.trim();
+        if (!VERSION_RE.test(version||'') || name!=='Gaurev Command Palette for ChatGPT' || namespace!=='https://chatgpt.com/gaurev-command-palette') throw new Error('Release metadata did not match this Command Center');
+        if (candidate.release.version !== version) throw new Error('Release is still synchronizing. Metadata and status versions differ; retry shortly.');
+        const wasVersion=publishedVersion, previousRun=feed?.scan?.completed_at;
+        feed=candidate; publishedVersion=version; lastSuccess=Date.now(); connected=true; failures=0; problem='';
+        if (wasVersion !== version) log('Published release detected: v'+version);
+        if (feed.scan.completed_at && feed.scan.completed_at !== previousRun) log('New trend-scan record received');
+        persist(); renderSignature='';
+      } catch (error) {
+        connected=false; failures++; const message=text(error.message || 'Status check failed');
+        if (problem !== message) log(message);
+        problem=message;
+      } finally {
+        busy=false; nextCheck=Date.now()+(failures ? Math.min(300000,60000*Math.pow(2,Math.min(failures-1,3))) : (isOpen?60000:300000)); render();
+      }
+    }
+    function install() {
+      if (!canInstall()) return;
+      try {
+        if (typeof GM_openInTab==='function') GM_openInTab(INSTALL_URL,{active:true,insert:true});
+        else if (!window.open(INSTALL_URL,'_blank','noopener,noreferrer')) throw new Error('popup');
+        installPending=true; log('Opened installer for v'+publishedVersion+'; waiting for installation and page reload.'); render();
+      } catch (_) { problem='Installer could not open. Use the direct install link in the repository README.'; render(); }
+    }
+    function ensure() {
+      if (monitorHost) return;
+      monitorHost=document.createElement('div'); monitorHost.id='gk-system-monitor';
+      monitorHost.style.cssText='all:initial;position:fixed;inset:0;z-index:2147483647;pointer-events:none;';
+      root=monitorHost.attachShadow({mode:'open'});
+      root.innerHTML=`<style>
+        :host{--green:#b2ff55;--cyan:#64e2ef;--gold:#f4cc77;--muted:#8eaaa2;--line:#243531;all:initial;color:#eef6ef;font:13px/1.5 ui-sans-serif,system-ui,-apple-system,sans-serif}
+        *{box-sizing:border-box}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}button:disabled{opacity:.48;cursor:default}
+        .launcher{pointer-events:auto;position:fixed;bottom:18px;left:18px;display:flex;align-items:center;gap:8px;color:#def9d0;background:#101a16;border:1px solid #4e703a;border-radius:12px;padding:10px 14px;font-size:12px;box-shadow:0 8px 24px #0003}.launcher[hidden]{display:none}.lamp{width:7px;height:7px;border-radius:50%;background:currentColor}
+        .veil{display:none;pointer-events:auto;position:fixed;inset:0;background:#020707bc;backdrop-filter:blur(7px);padding:24px;place-items:center}.veil.open{display:grid}
+        .window{width:min(1100px,100%);max-height:calc(100dvh - 48px);display:flex;flex-direction:column;border:1px solid #40593a;border-radius:22px;background:radial-gradient(ellipse at 12% 0,#1c2b164d,transparent 50%),#08100e;box-shadow:0 35px 120px #000b;overflow:hidden}
+        .top{padding:23px 26px 19px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--green);font:700 10px ui-monospace,monospace;letter-spacing:.16em}.top h1{font-size:25px;letter-spacing:-.04em;line-height:1.2;margin:7px 0}.sub{color:var(--muted);font-size:12px}.close{border:1px solid var(--line);background:#15201b;border-radius:9px;color:#e7f2e9;padding:5px 12px;font-size:21px}.connection{margin-top:8px;font:700 10px ui-monospace,monospace;letter-spacing:.04em}
+        .body{padding:22px 26px;overflow:auto;scrollbar-color:#547637 #0a1410}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{padding:15px 17px;border:1px solid var(--line);border-radius:13px;background:#111c17}.label{color:var(--muted);font-size:10px;letter-spacing:.075em;text-transform:uppercase}.value{font-size:29px;font-weight:700;letter-spacing:-.055em;margin:3px 0}.detail{font-size:11px;color:var(--muted)}
+        .pipeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0}.stage{padding:13px;border:1px solid var(--line);border-radius:11px;background:#101914}.stage b{display:block;font-size:11px;letter-spacing:.04em}.stage span{display:block;font-size:12px;margin-top:5px}.ok{color:var(--green)}.cyan{color:var(--cyan)}.warn{color:var(--gold)}.bad{color:#ff9898}.muted{color:var(--muted)}
+        .columns{display:grid;grid-template-columns:1.12fr 1fr;gap:14px}.card{border:1px solid var(--line);border-radius:13px;padding:18px;background:#0c1712;margin-bottom:14px}.card h2{font-size:14px;letter-spacing:-.01em;margin:0 0 13px}.row{display:flex;justify-content:space-between;gap:18px;padding:8px 0;border-bottom:1px solid #21342c7a;font-size:12px}.row:last-child{border-bottom:0}.row>span{color:var(--muted)}.row strong{text-align:right;overflow-wrap:anywhere;font-weight:600;max-width:66%}.note{padding:12px 14px;border:1px solid #556735;border-radius:10px;background:#19220f;color:#d9edb7;font-size:12px;margin-bottom:16px;overflow-wrap:anywhere}.notice{padding:11px 13px;background:#2b2315;border:1px solid #675533;border-radius:10px;color:#f3d599;margin:0 0 14px;font-size:12px;overflow-wrap:anywhere}
+        .checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px}.check{display:flex;gap:7px;padding:5px 0;color:#c1d4c8}.list{list-style:none;margin:0;padding:0}.list li{padding:9px 0;border-bottom:1px solid #21342c7a;font-size:12px;overflow-wrap:anywhere}.list time{font-size:10px;color:var(--muted);display:block;margin-top:3px}.list a{color:var(--cyan);text-underline-offset:3px}.empty{color:var(--muted);font-size:12px;line-height:1.65}.countline{display:flex;gap:18px;margin:10px 0;font-size:12px}.countline b{color:var(--green)}
+        .foot{padding:15px 26px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0c1510}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #3c5145;background:#17241b;color:#e5f3e7;border-radius:9px;padding:9px 12px;font-size:12px}.primary{background:var(--green);border-color:var(--green);color:#102007;font-weight:750}.fine{font-size:10px;color:var(--muted);max-width:360px}details{margin-top:12px}summary{font-size:12px;color:#c2d6c8;cursor:pointer}
+        @media(max-width:720px){.veil{padding:8px}.window{max-height:calc(100dvh - 16px);border-radius:16px}.top,.body,.foot{padding:16px}.metrics{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr}.pipeline{grid-template-columns:repeat(2,1fr)}.foot{align-items:flex-start;flex-direction:column}.value{font-size:25px}.checks{grid-template-columns:1fr}.top h1{font-size:22px}.launcher{bottom:12px;left:12px}}
+      </style>
+      <button class="launcher" type="button" aria-label="Open System Monitor"><span class="lamp"></span><span class="launcher-label">System Monitor</span></button>
+      <div class="veil"><section class="window" role="dialog" aria-modal="true" aria-labelledby="monitor-title" tabindex="-1">
+        <header class="top"><div><div class="eyebrow">GAUREV / COMMAND CENTER</div><h1 id="monitor-title">System Monitor</h1><div class="sub">Your installed system. Your next release. One clear view.</div><div class="connection" aria-live="polite"></div></div><button class="close" type="button" aria-label="Close System Monitor">×</button></header>
+        <main class="body"></main><footer class="foot"><div class="fine"><span class="clock"></span><br>Local health updates live. Published status refreshes every 60s while open; network caching can add delay.</div><div class="actions"><button class="btn refresh" type="button">Check now</button><button class="btn health" type="button">Run health checks</button><button class="btn primary install" type="button" disabled>Up to date</button></div></footer>
+      </section></div>`;
+      document.documentElement.appendChild(monitorHost);
+      dialog=root.querySelector('.veil'); launcher=root.querySelector('.launcher'); panelBody=root.querySelector('.body'); connectionEl=root.querySelector('.connection');
+      installButton=root.querySelector('.install'); refreshButton=root.querySelector('.refresh'); clockEl=root.querySelector('.clock');
+      launcher.addEventListener('click',open); root.querySelector('.close').addEventListener('click',close);
+      refreshButton.addEventListener('click',()=>refresh(true)); installButton.addEventListener('click',install);
+      root.querySelector('.health').addEventListener('click',()=>{checkHealth();log('Local health checks: '+health.status);render();});
+      dialog.addEventListener('click',e=>{if(e.target===dialog)close();});
+      root.addEventListener('keydown',e=>{
+        if (!isOpen) return;
+        if (e.key==='Escape') {e.preventDefault();e.stopPropagation();close();}
+        if (e.key==='Tab') {
+          const nodes=[...dialog.querySelectorAll('button:not(:disabled),a[href],summary')];
+          const first=nodes[0], last=nodes[nodes.length-1];
+          if(e.shiftKey && (root.activeElement===first || root.activeElement===root.querySelector('.window'))){e.preventDefault();last?.focus();}
+          else if(!e.shiftKey && root.activeElement===last){e.preventDefault();first?.focus();}
+        }
+      });
+    }
+    function open() {
+      ensure(); returnFocus=currentEditable || document.activeElement;
+      closePalette(); isOpen=true; dialog.classList.add('open'); launcher.hidden=true;
+      checkHealth();renderSignature='';render(); root.querySelector('.close').focus();
+      if (Date.now()-lastAttempt>=5000) refresh(true);
+    }
+    function close() {isOpen=false;dialog?.classList.remove('open');if(launcher)launcher.hidden=false;returnFocus?.focus?.();}
+    const tone = state => ['passed','verified','published'].includes(state)?'ok':['failed','blocked'].includes(state)?'bad':state==='running'?'cyan':'warn';
+    const stateLabel = state => ({not_run:'Not run',scheduled:'Scheduled',running:'Running',passed:'Passed',failed:'Failed',prepared:'Prepared',published:'Published',verified:'Verified',blocked:'Blocked',skipped:'Skipped',idle:'Idle',unknown:'Not reported'}[state] || 'Not reported');
+    const row = (label,value) => `<div class="row"><span>${escape(label)}</span><strong>${escape(value)}</strong></div>`;
+    function listDetails(items, empty) {return items.length?`<ul class="list">${items.slice(0,25).map(v=>`<li>${escape(typeof v==='string'?v:(v.name||v.title||v.reason||'Record'))}${v.reason&&v.name?' — '+escape(v.reason):''}</li>`).join('')}</ul>`:`<p class="empty">${escape(empty)}</p>`;}
+    function render() {
+      if (!monitorHost) return;
+      const conn=connection(); launcher.className='launcher '+conn.tone;
+      root.querySelector('.launcher-label').textContent=canInstall()?'Update available · v'+publishedVersion:'System Monitor';
+      if (!isOpen) return;
+      connectionEl.className='connection '+conn.tone;connectionEl.textContent=conn.label;
+      clockEl.textContent=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(new Date())+' IST';
+      refreshButton.disabled=busy;
+      installButton.disabled=!canInstall();
+      installButton.textContent=canInstall()?'Update to v'+publishedVersion:!connected?'Check connection':publishedVersion===runningVersion?'Up to date':'Running newer build';
+      const project=activeProject?.name || (activeProject?.inProject?'Project name unresolved':'Generic chat');
+      const signature=JSON.stringify([feed?.updated_at,connected,problem,health?.at,events[0]?.at,installPending,project,Object.keys(settings.projectRegistry||{}).length,settings.enabled,settings.projectAware]);
+      if (signature===renderSignature) return; renderSignature=signature;
+      const scan=feed?.scan, pipeline=feed?.pipeline;
+      const scanAge=validDate(scan?.completed_at)?Date.now()-Date.parse(scan.completed_at):null;
+      const remoteOld=feed && Date.now()-Date.parse(feed.updated_at)>36*3600000;
+      const metric=(label,value,detail)=>`<div class="metric"><div class="label">${escape(label)}</div><div class="value">${escape(value)}</div><div class="detail">${escape(detail)}</div></div>`;
+      let installState=publishedVersion?(compareVersions(publishedVersion,runningVersion)>0?'Update available':compareVersions(publishedVersion,runningVersion)===0?'Running published version':'Running newer build'):'Not checked';
+      const stage=(name,state,note)=>`<div class="stage"><b>${name}</b><span class="${tone(state)}">${escape(note || stateLabel(state))}</span></div>`;
+      const sources=(scan?.sources||[]).slice(0,15).map(s=>{
+        let url='';try{const u=new URL(s.url);if(u.protocol==='https:' && !u.username && !u.password)url=u.href;}catch(_){}
+        return `<li>${url?`<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(s.title||s.url)}</a>`:escape(s.title||'Source')}${s.status?' · '+escape(s.status):''}</li>`;
+      }).join('');
+      const history=(feed?.history||[]).slice(0,8).map(h=>`<li><b>${escape(h.version?'v'+h.version:h.title||'Run')}</b> · ${escape(h.summary||h.status||'Recorded')}<time>${escape(fmt(h.at))}</time></li>`).join('');
+      panelBody.innerHTML=`
+        ${problem?`<div class="notice">${escape(problem)}${feed?' Last successful data is retained and may be stale.':''}</div>`:''}
+        ${remoteOld?'<div class="notice">The published monitor record is more than 36 hours old. A successful connection does not confirm a new daily scan.</div>':''}
+        ${installPending?'<div class="note">Installer opened. Complete the update in Violentmonkey, then reload ChatGPT to run the new version. Opening the installer alone does not install the update.</div>':''}
+        <div class="metrics">${metric('Running in this tab','v'+runningVersion,'Observed '+fmt(saved.observedAt))}${metric('Published release',publishedVersion?'v'+publishedVersion:'—',connected?'Checked against release metadata':'Not verified this session')}${metric('Installed commands',COMMANDS.length,new Set(COMMANDS.map(c=>c.category)).size+' categories · '+Object.keys(BUNDLES).length+' bundles')}${metric('Local health',health?.status==='passed'?'PASS':health?'FAIL':'—','Library, bundles and search checks')}</div>
+        <div class="pipeline">${stage('01 / SCAN',pipeline?.scan?.state)}${stage('02 / BUILD',pipeline?.build?.state)}${stage('03 / TEST',pipeline?.test?.state)}${stage('04 / PUBLISH',pipeline?.deploy?.state)}${stage('05 / THIS BROWSER',publishedVersion===runningVersion?'verified':'prepared',installState)}</div>
+        ${feed?.action_required?`<div class="note">${escape(feed.action_required)}</div>`:''}
+        <div class="columns"><div>
+          <section class="card"><h2>Daily intelligence</h2>${row('Schedule',feed?.schedule?.label || 'Not reported')}${row('Latest completed scan',fmt(scan?.completed_at))}${row('Scan result',scan?.status || 'No scan record connected')}${row('Pinterest intelligence',scan?.pinterest_status || 'Not reported')}${row('ChatGPT intelligence',scan?.chatgpt_status || 'Not reported')}${row('Scan freshness',scanAge===null?'No completed scan yet':scanAge>36*3600000?'Over 36h old':'Within 36h')}
+          <div class="countline"><span><b>${scan?.commands_added?.length??'—'}</b> added</span><span><b>${scan?.commands_updated?.length??'—'}</b> modified</span><span><b>${scan?.skipped?.length??'—'}</b> skipped</span></div><div class="detail">Counts belong to the latest reported scan.</div>
+          <details><summary>Commands and trends</summary><h3 class="label">Added</h3>${listDetails(scan?.commands_added||[],'No additions reported.')}<h3 class="label">Modified</h3>${listDetails(scan?.commands_updated||[],'No modifications reported.')}<h3 class="label">Trends</h3>${listDetails(scan?.trends||[],'No trend research has been reported.')}<h3 class="label">Skipped</h3>${listDetails(scan?.skipped||[],'Nothing skipped has been reported.')}</details>
+          <details><summary>Sources checked</summary>${sources?'<ul class="list">'+sources+'</ul>':'<p class="empty">No research sources have been recorded yet.</p>'}</details></section>
+          <section class="card"><h2>Release history</h2>${row('Status record updated',fmt(feed?.updated_at))}${row('Latest release built',fmt(feed?.release?.built_at))}${history?'<ul class="list">'+history+'</ul>':'<p class="empty">Connect to the status feed to see published history.</p>'}<details><summary>Published test scope</summary><p class="empty">${escape(pipeline?.test?.scope || 'No test scope has been reported.')}</p></details></section>
+        </div><div>
+          <section class="card"><h2>System health <span class="${health?.status==='passed'?'ok':'warn'}">/ ${health?.status==='passed'?'PASS':'CHECK'}</span></h2><div class="checks">${(health?.checks||[]).map(c=>`<div class="check"><span class="${c.pass?'ok':'bad'}">${c.pass?'✓':'×'}</span>${escape(c.name)}</div>`).join('')}</div>${row('Palette',settings.enabled?'Enabled':'Disabled')}${row('Project-aware mode',settings.projectAware?'Enabled':'Disabled')}${row('Active context',project)}${row('Learned projects',Object.keys(settings.projectRegistry||{}).length)}${row('Published regression',stateLabel(pipeline?.test?.state))}<p class="detail">Local checks test library structure and search. Browser installation and model availability are separate states.</p></section>
+          <section class="card"><h2>Activity in this browser</h2><ul class="list">${events.slice(0,6).map(e=>`<li>${escape(e.message)}<time>${escape(fmt(e.at))}</time></li>`).join('')}</ul><p class="detail">Activity stays in your browser. Status requests send no prompts, project names, credentials or command history.</p></section>
+        </div></div>`;
+    }
+    function init() {
+      try {
+        ensure();checkHealth();
+        if(saved.observedVersion!==runningVersion || !validDate(saved.observedAt)) {
+          saved.observedAt=new Date().toISOString();log('Running version observed: v'+runningVersion);
+        }
+        GM_registerMenuCommand('Open System Monitor',open);
+        GM_registerMenuCommand('Check Command Center updates',()=>{open();});
+        document.addEventListener('visibilitychange',()=>{if(!document.hidden){nextCheck=0;refresh();}});
+        window.addEventListener('online',()=>{nextCheck=0;refresh();});
+        window.addEventListener('offline',()=>{connected=false;render();});
+        timer=setInterval(()=>{render();refresh();},1000);
+        setTimeout(()=>refresh(),1500);
+      } catch(error) { console.warn('Command Center monitor could not start:',error?.message); }
+    }
+    return {init,open,close,refresh,checkHealth,compareVersions,validateFeed,install,canInstall};
+  })();
+
 
 
   function cleanProjectName(value) {
@@ -1093,7 +1343,7 @@
         @media(max-width:620px){.panel{height:92vh;border-radius:16px}.workspace{grid-template-columns:1fr}.sidebar{display:flex;border-right:0;border-bottom:1px solid var(--line);overflow:auto;padding:6px;gap:4px;min-height:45px}.side{width:auto;min-width:max-content;margin:0;grid-template-columns:17px 1fr;padding:6px 8px}.side .sc{display:none}.hubbar{padding-top:7px;padding-bottom:7px}.hub{min-width:88px;height:34px;font-size:9.5px}.quickbar{display:none}.searchwrap{padding:7px}.searchbox{grid-template-columns:28px minmax(0,1fr) auto;height:41px}.searchscope{display:none}.searchcount{font-size:8px;min-width:52px}.bundlegrid{grid-template-columns:1fr;padding-left:8px;padding-right:8px}.bundlehero{padding-left:10px;padding-right:10px}.sectionbar{padding-left:10px;padding-right:10px}.recentbar{padding-left:8px;padding-right:8px}.row{grid-template-columns:31px minmax(110px,1fr) 18px}.copy{grid-column:2/3}.cmd{font-size:10.5px}.name{font-size:11.5px}.desc{font-size:9px}.arrow{grid-column:3}.keys{display:none}.brand-chip{font-size:9px;padding:7px 9px}.subline{display:none}.title{font-size:17px}.osbadge{display:none}}
       </style>
       <div class="panel">
-        <div class="head"><div class="topline"><div class="identity"><div class="logo">⚡</div><div><div class="titleline"><div class="title">Gaurev Command Palette</div><span class="osbadge">COMMAND OS</span></div><div class="subline">Bundle-first workflow <span class="dot">•</span> Face / Portrait hub <span class="dot">•</span> Project aware <span class="dot">•</span> Zero auto-send</div><div class="project-line"></div></div></div><div class="head-actions"><button class="brand-chip" type="button"></button></div></div></div>
+        <div class="head"><div class="topline"><div class="identity"><div class="logo">⚡</div><div><div class="titleline"><div class="title">Gaurev Command Palette</div><span class="osbadge">COMMAND OS</span></div><div class="subline">Bundle-first workflow <span class="dot">•</span> Face / Portrait hub <span class="dot">•</span> Project aware <span class="dot">•</span> Zero auto-send</div><div class="project-line"></div></div></div><div class="head-actions"><button class="brand-chip monitor-button" type="button">◉ System Monitor</button><button class="brand-chip" type="button"></button></div></div></div>
         <div class="hubbar"></div>
         <div class="quickbar"></div>
         <div class="searchwrap"><div class="searchbox"><span class="searchicon">⌕</span><input class="searchinput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Find any command" placeholder="Search 615+ commands — try storyboard, realism, 85mm, product, AIOS…"><span class="searchscope">GLOBAL</span><span class="searchcount">⌘K / Ctrl K</span><button class="searchclear" type="button" aria-label="Clear search">×</button></div></div>
@@ -1111,7 +1361,8 @@
     searchInputEl = shadow.querySelector('.searchinput');
     searchClearEl = shadow.querySelector('.searchclear');
     searchCountEl = shadow.querySelector('.searchcount');
-    brandChipEl = shadow.querySelector('.brand-chip');
+    brandChipEl = shadow.querySelector('.brand-chip:not(.monitor-button)');
+    shadow.querySelector('.monitor-button').addEventListener('click',()=>SYSTEM_MONITOR.open());
     projectLineEl = shadow.querySelector('.project-line');
     footerVersionEl = shadow.querySelector('.version');
     syncButtonEl = shadow.querySelector('.sync');
@@ -1298,7 +1549,7 @@
     }else{
       projectLineEl.innerHTML=`<span class="led"></span><span><strong>Generic chat</strong> <span class="dot">•</span> Project-aware ready</span>`;
     }
-    const version=GM_info?.script?.version||'2.14.0';
+    const version=GM_info?.script?.version||'2.15.0';
     footerVersionEl.textContent=`v${version}  •  ${COMMANDS.length} commands  •  ${COMMANDS.filter(isBundle).length} bundles  •  ChatGPT 2026 / Images 2.5 ready`;
   }
 
@@ -1611,6 +1862,7 @@
   });
 
 
+  SYSTEM_MONITOR.init();
   scanProjectRegistryFromDom(true);
   refreshProjectContext(true);
   setInterval(()=>{ scanProjectRegistryFromDom(false); refreshProjectContext(false); },1200);
