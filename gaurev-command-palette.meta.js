@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      2.16.0
+// @version      2.17.0
 // @description  Creative Command OS with live System Monitor, verified release checks, direct update installation and universal Projects.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
