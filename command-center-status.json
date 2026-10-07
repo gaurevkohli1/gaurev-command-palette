@@ -1,62 +1,52 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-06T03:30:39.000Z",
+  "updated_at": "2026-10-07T03:26:09.000Z",
   "release": {
-    "version": "2.16.0",
-    "built_at": "2026-10-06T03:29:43.000Z",
-    "command_count": 714,
+    "version": "2.17.0",
+    "built_at": "2026-10-07T03:25:37.000Z",
+    "command_count": 715,
     "category_count": 42,
     "bundle_count": 40,
-    "sha256": "8907762a28707a2a6947bfc4b7ad34e079104da7a162238289a412440e1e0c6a"
+    "sha256": "16cfadd4ec3ea4db1a3fd43d1dd5302bb7eb41bf577a75b147c64e6feac76c42"
   },
   "pipeline": {
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-10-06T03:17:05.000Z",
-      "completed_at": "2026-10-06T03:28:13.000Z",
-      "pinterest_status": "Official Pinterest trend, business and public inspiration sources checked on 6 October 2026. No newer material visual-design signal displaced the ongoing 2026 themes; the useful staged controls remained Zine Revival, visual-search readiness, Neo Deco, emotional palette, tactile/analog craft, editorial asymmetry and theatrical opulence.",
-      "chatgpt_status": "Production v2.15.0 with 705 commands was read first. The stronger live System Monitor was preserved, the nine previously researched commands were merged, and repository release v2.16.0 with 714 commands was published and verified. Browser installation remains locally observable only after userscript reload.",
+      "started_at": "2026-10-07T03:22:14.000Z",
+      "completed_at": "2026-10-07T03:26:09.000Z",
+      "pinterest_status": "Official Pinterest reporting, Pinterest Trends and public Pinterest design boards were checked on 7 October 2026. The new 6 October Pinterest Beauty Trend Report introduced a material specificity-first creative signal; other public design-board patterns repeated existing gradient, editorial, collage, risograph, inflated-type and neon-maximalism controls.",
+      "chatgpt_status": "Production v2.16.0 with 714 commands was read before editing. All commands, bundles, settings and monitor compatibility were preserved; v2.17.0 adds one reusable beauty-system command and is published with 715 commands. Browser installation remains locally observable only after userscript reload.",
       "trends": [
-        "Zine Revival and scrapbook editorial systems",
-        "visual-search-ready product and social compositions",
-        "Neo Deco geometry and metallic contrast",
-        "emotion-led Pinterest Palette direction",
-        "tactile surrealism and analog keepsake texture",
-        "editorial asymmetry with controlled hierarchy",
-        "theatrical opulence",
-        "no genuinely new 6 October trend signal requiring another command"
+        "beauty specificity: define an exact hero feature, placement, finish and palette instead of a generic look",
+        "makeup maximalism using one amplified focal feature",
+        "Arctic Frost reflective metallic, crystal and pastel-blue finishes",
+        "Cheeky Flush controlled high-blush placement with soft skin and blurred lips",
+        "Romantic Reverie natural texture and softly windswept portrait direction",
+        "Latte Lacquer dessert and orchard-inspired translucent finishes",
+        "Copper Waves layered mocha, cherry-cola, plum and oxidized-copper color",
+        "public design boards repeated existing vibrant gradients, risograph texture, inflated type, collage and neon-maximalist poster systems"
       ],
       "commands_added": [
-        "/zine-editorial-system",
-        "/visual-search-ready",
-        "/trend-to-brand",
-        "/neo-deco-system",
-        "/editorial-asymmetry",
-        "/tactile-surreal",
-        "/analog-keepsake",
-        "/emotional-palette",
-        "/theatrical-opulence"
+        "/beauty-trend-system"
       ],
-      "commands_updated": [
-        "System Monitor history now accepts updated_at while retaining legacy at compatibility"
-      ],
+      "commands_updated": [],
       "skipped": [
-        "No duplicate aliases for vertical 2:3, product-first imagery, stacked-story hierarchy or catalogue localisation because existing social, layout, product-ad and regional-market commands already cover them",
-        "No extra collage, typography or aesthetic aliases from generic public boards without a distinct reusable production behavior",
-        "No new 6 October command because current official sources repeated already-covered signals"
+        "No separate /makeup-maximalism alias because /beauty-trend-system defines the reusable feature-level behavior without locking the catalogue to a seasonal label",
+        "No separate /arctic-frost, /cheeky-flush, /latte-lacquer, /copper-waves or /romantic-reverie commands because these are selectable looks inside the new system and existing palette, material, portrait, makeup and hair controls",
+        "No new commands from public design boards because gradient posters, editorial layouts, collage, risograph texture, inflated typography and neon maximalism are already covered by existing visual-style, typography and layout intelligence"
       ],
       "sources": [
         {
-          "title": "Pinterest Newsroom",
-          "url": "https://newsroom.pinterest.com/",
+          "title": "Pinterest Beauty Trend Report 2026",
+          "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
           "status": "accessed",
           "access_status": "accessed"
         },
         {
           "title": "Pinterest Predicts 2026",
-          "url": "https://business.pinterest.com/pinterest-predicts/",
+          "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
           "status": "accessed",
           "access_status": "accessed"
         },
@@ -67,32 +57,26 @@
           "access_status": "accessed"
         },
         {
-          "title": "Pinterest Men's Trend Report 2026",
-          "url": "https://newsroom.pinterest.com/news/men-trend-report-2026/",
+          "title": "Pinterest Trends",
+          "url": "https://trends.pinterest.com/",
+          "status": "accessed_no_public_detail",
+          "access_status": "accessed_no_public_detail"
+        },
+        {
+          "title": "Public Pinterest 2026 Design Trends board",
+          "url": "https://mx.pinterest.com/dosdemirelle/2026-design-trends/",
           "status": "accessed",
           "access_status": "accessed"
         },
         {
-          "title": "Pinterest Visual Search Performance Ads",
-          "url": "https://newsroom.pinterest.com/news/new-pinterest-visual-search-performance-ads/",
+          "title": "Public Pinterest Graphic Design board",
+          "url": "https://www.pinterest.com/gabbyrfp/graphic-design/",
           "status": "accessed",
           "access_status": "accessed"
         },
         {
-          "title": "Pinterest Marketing Moments",
-          "url": "https://business.pinterest.com/en-in/marketing-moments/",
-          "status": "accessed",
-          "access_status": "accessed"
-        },
-        {
-          "title": "Public Pinterest zine editorial inspiration",
-          "url": "https://www.pinterest.com/search/pins/?q=zine%20editorial%20design",
-          "status": "search_index_accessed",
-          "access_status": "search_index_accessed"
-        },
-        {
-          "title": "Public Pinterest graphic design trends inspiration",
-          "url": "https://www.pinterest.com/search/pins/?q=graphic%20design%20trends",
+          "title": "Pinterest India design inspiration board",
+          "url": "https://in.pinterest.com/elysian_003/designing/",
           "status": "search_index_accessed",
           "access_status": "search_index_accessed"
         }
@@ -100,66 +84,56 @@
     },
     "build": {
       "state": "passed",
-      "detail": "Merged nine previously researched Pinterest-derived commands into the current production v2.15.0 base, preserved the stronger live System Monitor and all 705 existing commands, bumped @version and BUILD_VERSION to 2.16.0, and regenerated metadata.",
-      "scope": "v2.16.0 candidate: 714 commands, 42 categories, 40 executable bundle mappings"
+      "detail": "Added one specificity-first beauty creative system derived from Pinterest's 6 October Beauty Trend Report. Bumped @version and BUILD_VERSION to 2.17.0 and regenerated metadata while preserving the complete live catalogue, bundles, settings and monitor behavior.",
+      "scope": "v2.17.0: 715 commands, 42 categories, 40 executable bundle mappings"
     },
     "test": {
       "state": "passed",
-      "detail": "14 of 14 regression checks passed: JavaScript syntax, version sync, complete production-catalogue preservation, counts, uniqueness, trend-command presence, category and bundle counts, bundle references, metadata parity, monitor anchors, settings compatibility, history timestamps and runtime closure.",
-      "scope": "sha256 8907762a28707a2a6947bfc4b7ad34e079104da7a162238289a412440e1e0c6a"
+      "detail": "15 of 15 regression checks passed: syntax, version sync, 705-command base preservation, nine prior trend commands preserved byte-for-byte, counts, uniqueness, required trend commands, categories, bundles, bundle references, metadata parity, monitor anchors, settings compatibility, history timestamps and runtime closure.",
+      "scope": "sha256 16cfadd4ec3ea4db1a3fd43d1dd5302bb7eb41bf577a75b147c64e6feac76c42"
     },
     "deploy": {
       "state": "verified",
-      "detail": "Published workflow, matching v2.16.0 metadata and userscript to main with conflict guards. Refetched origin/main over public HTTPS and verified the released userscript bytes, version and SHA-256. Browser installation is not claimed.",
-      "scope": "gaurevkohli1/gaurev-command-palette main at commit fd50fab9212ce35ac7017ee12b0c026e92191391; final status record follows in a separate guarded commit"
+      "detail": "Published matching v2.17.0 metadata and userscript to main with current blob-SHA conflict guards. Refetched origin/main over public HTTPS and verified the released userscript version and SHA-256. Browser installation is not claimed.",
+      "scope": "gaurevkohli1/gaurev-command-palette main at commit a9bcebc020aa7a7e9d75ee2f15afd5176f961010; completed status record follows in a guarded commit"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-10-06T03:17:05.000Z",
-    "completed_at": "2026-10-06T03:28:13.000Z",
-    "pinterest_status": "Official Pinterest trend, business and public inspiration sources checked on 6 October 2026. No newer material visual-design signal displaced the ongoing 2026 themes; the useful staged controls remained Zine Revival, visual-search readiness, Neo Deco, emotional palette, tactile/analog craft, editorial asymmetry and theatrical opulence.",
-    "chatgpt_status": "Production v2.15.0 with 705 commands was read first. The stronger live System Monitor was preserved, the nine previously researched commands were merged, and repository release v2.16.0 with 714 commands was published and verified. Browser installation remains locally observable only after userscript reload.",
+    "started_at": "2026-10-07T03:22:14.000Z",
+    "completed_at": "2026-10-07T03:26:09.000Z",
+    "pinterest_status": "Official Pinterest reporting, Pinterest Trends and public Pinterest design boards were checked on 7 October 2026. The new 6 October Pinterest Beauty Trend Report introduced a material specificity-first creative signal; other public design-board patterns repeated existing gradient, editorial, collage, risograph, inflated-type and neon-maximalism controls.",
+    "chatgpt_status": "Production v2.16.0 with 714 commands was read before editing. All commands, bundles, settings and monitor compatibility were preserved; v2.17.0 adds one reusable beauty-system command and is published with 715 commands. Browser installation remains locally observable only after userscript reload.",
     "trends": [
-      "Zine Revival and scrapbook editorial systems",
-      "visual-search-ready product and social compositions",
-      "Neo Deco geometry and metallic contrast",
-      "emotion-led Pinterest Palette direction",
-      "tactile surrealism and analog keepsake texture",
-      "editorial asymmetry with controlled hierarchy",
-      "theatrical opulence",
-      "no genuinely new 6 October trend signal requiring another command"
+      "beauty specificity: define an exact hero feature, placement, finish and palette instead of a generic look",
+      "makeup maximalism using one amplified focal feature",
+      "Arctic Frost reflective metallic, crystal and pastel-blue finishes",
+      "Cheeky Flush controlled high-blush placement with soft skin and blurred lips",
+      "Romantic Reverie natural texture and softly windswept portrait direction",
+      "Latte Lacquer dessert and orchard-inspired translucent finishes",
+      "Copper Waves layered mocha, cherry-cola, plum and oxidized-copper color",
+      "public design boards repeated existing vibrant gradients, risograph texture, inflated type, collage and neon-maximalist poster systems"
     ],
     "commands_added": [
-      "/zine-editorial-system",
-      "/visual-search-ready",
-      "/trend-to-brand",
-      "/neo-deco-system",
-      "/editorial-asymmetry",
-      "/tactile-surreal",
-      "/analog-keepsake",
-      "/emotional-palette",
-      "/theatrical-opulence"
+      "/beauty-trend-system"
     ],
-    "commands_updated": [
-      "System Monitor history now accepts updated_at while retaining legacy at compatibility"
-    ],
+    "commands_updated": [],
     "skipped": [
-      "No duplicate aliases for vertical 2:3, product-first imagery, stacked-story hierarchy or catalogue localisation because existing social, layout, product-ad and regional-market commands already cover them",
-      "No extra collage, typography or aesthetic aliases from generic public boards without a distinct reusable production behavior",
-      "No new 6 October command because current official sources repeated already-covered signals"
+      "No separate /makeup-maximalism alias because /beauty-trend-system defines the reusable feature-level behavior without locking the catalogue to a seasonal label",
+      "No separate /arctic-frost, /cheeky-flush, /latte-lacquer, /copper-waves or /romantic-reverie commands because these are selectable looks inside the new system and existing palette, material, portrait, makeup and hair controls",
+      "No new commands from public design boards because gradient posters, editorial layouts, collage, risograph texture, inflated typography and neon maximalism are already covered by existing visual-style, typography and layout intelligence"
     ],
     "sources": [
       {
-        "title": "Pinterest Newsroom",
-        "url": "https://newsroom.pinterest.com/",
+        "title": "Pinterest Beauty Trend Report 2026",
+        "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
         "status": "accessed",
         "access_status": "accessed"
       },
       {
         "title": "Pinterest Predicts 2026",
-        "url": "https://business.pinterest.com/pinterest-predicts/",
+        "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
         "status": "accessed",
         "access_status": "accessed"
       },
@@ -170,32 +144,26 @@
         "access_status": "accessed"
       },
       {
-        "title": "Pinterest Men's Trend Report 2026",
-        "url": "https://newsroom.pinterest.com/news/men-trend-report-2026/",
+        "title": "Pinterest Trends",
+        "url": "https://trends.pinterest.com/",
+        "status": "accessed_no_public_detail",
+        "access_status": "accessed_no_public_detail"
+      },
+      {
+        "title": "Public Pinterest 2026 Design Trends board",
+        "url": "https://mx.pinterest.com/dosdemirelle/2026-design-trends/",
         "status": "accessed",
         "access_status": "accessed"
       },
       {
-        "title": "Pinterest Visual Search Performance Ads",
-        "url": "https://newsroom.pinterest.com/news/new-pinterest-visual-search-performance-ads/",
+        "title": "Public Pinterest Graphic Design board",
+        "url": "https://www.pinterest.com/gabbyrfp/graphic-design/",
         "status": "accessed",
         "access_status": "accessed"
       },
       {
-        "title": "Pinterest Marketing Moments",
-        "url": "https://business.pinterest.com/en-in/marketing-moments/",
-        "status": "accessed",
-        "access_status": "accessed"
-      },
-      {
-        "title": "Public Pinterest zine editorial inspiration",
-        "url": "https://www.pinterest.com/search/pins/?q=zine%20editorial%20design",
-        "status": "search_index_accessed",
-        "access_status": "search_index_accessed"
-      },
-      {
-        "title": "Public Pinterest graphic design trends inspiration",
-        "url": "https://www.pinterest.com/search/pins/?q=graphic%20design%20trends",
+        "title": "Pinterest India design inspiration board",
+        "url": "https://in.pinterest.com/elysian_003/designing/",
         "status": "search_index_accessed",
         "access_status": "search_index_accessed"
       }
@@ -208,8 +176,15 @@
     "state": "unknown",
     "detail": "Only the local userscript can confirm the version running in the browser after reload."
   },
-  "action_required": "Reload or update the userscript in Violentmonkey, then open System Monitor to confirm the browser is running v2.16.0.",
+  "action_required": "Update or reload the userscript in Violentmonkey, then open System Monitor to confirm the browser is running v2.17.0.",
   "history": [
+    {
+      "updated_at": "2026-10-07T03:26:09.000Z",
+      "version": "2.17.0",
+      "summary": "Published and verified v2.17.0 with /beauty-trend-system from Pinterest's new specificity-first Beauty Trend Report; all 714 prior commands were preserved and 15 regression checks passed.",
+      "test_state": "passed",
+      "deploy_state": "verified"
+    },
     {
       "updated_at": "2026-10-06T03:30:39.000Z",
       "version": "2.16.0",
