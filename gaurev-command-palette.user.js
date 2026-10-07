@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      2.17.0
+// @version      2.18.0
 // @description  Creative Command OS with live System Monitor, verified release checks, direct update installation and universal Projects.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
@@ -179,7 +179,7 @@
 
   // SYSTEM_MONITOR: local observations and a read-only, versioned public status feed.
   const SYSTEM_MONITOR = (() => {
-    const BUILD_VERSION = '2.17.0';
+    const BUILD_VERSION = '2.18.0';
     const ROOT = 'https://raw.githubusercontent.com/gaurevkohli1/gaurev-command-palette/main/';
     const INSTALL_URL = ROOT + 'gaurev-command-palette.user.js';
     const STATUS_URL = ROOT + 'command-center-status.json';
@@ -304,10 +304,18 @@
     function install() {
       if (!canInstall()) return;
       try {
+        if (typeof GM_setClipboard === 'function') GM_setClipboard(INSTALL_URL, 'text');
         if (typeof GM_openInTab==='function') GM_openInTab(INSTALL_URL,{active:true,insert:true});
         else if (!window.open(INSTALL_URL,'_blank','noopener,noreferrer')) throw new Error('popup');
-        installPending=true; log('Opened installer for v'+publishedVersion+'; waiting for installation and page reload.'); render();
-      } catch (_) { problem='Installer could not open. Use the direct install link in the repository README.'; render(); }
+        installPending=true;
+        log('Opened v'+publishedVersion+' and copied its install URL. If Firefox shows source instead of Violentmonkey, use Violentmonkey → Install from URL and paste.');
+        render();
+      } catch (_) {
+        try { if (typeof GM_setClipboard === 'function') GM_setClipboard(INSTALL_URL, 'text'); } catch (_) {}
+        installPending=true;
+        problem='Firefox could not hand the release directly to Violentmonkey. The install URL was copied; use Violentmonkey → Install from URL and paste it.';
+        render();
+      }
     }
     function ensure() {
       if (monitorHost) return;
@@ -331,7 +339,7 @@
       <button class="launcher" type="button" aria-label="Open System Monitor"><span class="lamp"></span><span class="launcher-label">System Monitor</span></button>
       <div class="veil"><section class="window" role="dialog" aria-modal="true" aria-labelledby="monitor-title" tabindex="-1">
         <header class="top"><div><div class="eyebrow">GAUREV / COMMAND CENTER</div><h1 id="monitor-title">System Monitor</h1><div class="sub">Your installed system. Your next release. One clear view.</div><div class="connection" aria-live="polite"></div></div><button class="close" type="button" aria-label="Close System Monitor">×</button></header>
-        <main class="body"></main><footer class="foot"><div class="fine"><span class="clock"></span><br>Local health updates live. Published status refreshes every 60s while open; network caching can add delay.</div><div class="actions"><button class="btn refresh" type="button">Check now</button><button class="btn health" type="button">Run health checks</button><button class="btn primary install" type="button" disabled>Up to date</button></div></footer>
+        <main class="body"></main><footer class="foot"><div class="fine"><span class="clock"></span><br>Local health updates live. Published status refreshes every 60s while open; network caching can add delay.</div><div class="actions"><button class="btn refresh" type="button">Check Latest Version</button><button class="btn health" type="button">Run health checks</button><button class="btn primary install" type="button" disabled>Up to date</button></div></footer>
       </section></div>`;
       document.documentElement.appendChild(monitorHost);
       dialog=root.querySelector('.veil'); launcher=root.querySelector('.launcher'); panelBody=root.querySelector('.body'); connectionEl=root.querySelector('.connection');
@@ -371,7 +379,7 @@
       clockEl.textContent=new Intl.DateTimeFormat('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(new Date())+' IST';
       refreshButton.disabled=busy;
       installButton.disabled=!canInstall();
-      installButton.textContent=canInstall()?'Update to v'+publishedVersion:!connected?'Check connection':publishedVersion===runningVersion?'Up to date':'Running newer build';
+      installButton.textContent=canInstall()?'Install / Update to v'+publishedVersion:!connected?'Check Latest Version':publishedVersion===runningVersion?'Up to date':'Running newer build';
       const project=activeProject?.name || (activeProject?.inProject?'Project name unresolved':'Generic chat');
       const signature=JSON.stringify([feed?.updated_at,connected,problem,health?.at,events[0]?.at,installPending,project,Object.keys(settings.projectRegistry||{}).length,settings.enabled,settings.projectAware]);
       if (signature===renderSignature) return; renderSignature=signature;
@@ -389,7 +397,7 @@
       panelBody.innerHTML=`
         ${problem?`<div class="notice">${escape(problem)}${feed?' Last successful data is retained and may be stale.':''}</div>`:''}
         ${remoteOld?'<div class="notice">The published monitor record is more than 36 hours old. A successful connection does not confirm a new daily scan.</div>':''}
-        ${installPending?'<div class="note">Installer opened. Complete the update in Violentmonkey, then reload ChatGPT to run the new version. Opening the installer alone does not install the update.</div>':''}
+        ${installPending?'<div class="note">Update URL copied. If Firefox opened source code instead of Violentmonkey, open Violentmonkey → Install from URL, paste the copied URL, install/update, then reload ChatGPT.</div>':''}
         <div class="metrics">${metric('Running in this tab','v'+runningVersion,'Observed '+fmt(saved.observedAt))}${metric('Published release',publishedVersion?'v'+publishedVersion:'—',connected?'Checked against release metadata':'Not verified this session')}${metric('Installed commands',COMMANDS.length,new Set(COMMANDS.map(c=>c.category)).size+' categories · '+Object.keys(BUNDLES).length+' bundles')}${metric('Local health',health?.status==='passed'?'PASS':health?'FAIL':'—','Library, bundles and search checks')}</div>
         <div class="pipeline">${stage('01 / SCAN',pipeline?.scan?.state)}${stage('02 / BUILD',pipeline?.build?.state)}${stage('03 / TEST',pipeline?.test?.state)}${stage('04 / PUBLISH',pipeline?.deploy?.state)}${stage('05 / THIS BROWSER',publishedVersion===runningVersion?'verified':'prepared',installState)}</div>
         ${feed?.action_required?`<div class="note">${escape(feed.action_required)}</div>`:''}
