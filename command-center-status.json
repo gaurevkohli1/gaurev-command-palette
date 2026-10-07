@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-07T03:26:09.000Z",
+  "updated_at": "2026-10-07T12:21:21.544Z",
   "release": {
-    "version": "2.17.0",
-    "built_at": "2026-10-07T03:25:37.000Z",
+    "version": "2.18.0",
+    "built_at": "2026-10-07T12:21:21.544Z",
     "command_count": 715,
     "category_count": 42,
     "bundle_count": 40,
-    "sha256": "16cfadd4ec3ea4db1a3fd43d1dd5302bb7eb41bf577a75b147c64e6feac76c42"
+    "sha256": null
   },
   "pipeline": {
     "scan": {
@@ -84,18 +84,18 @@
     },
     "build": {
       "state": "passed",
-      "detail": "Added one specificity-first beauty creative system derived from Pinterest's 6 October Beauty Trend Report. Bumped @version and BUILD_VERSION to 2.17.0 and regenerated metadata while preserving the complete live catalogue, bundles, settings and monitor behavior.",
-      "scope": "v2.17.0: 715 commands, 42 categories, 40 executable bundle mappings"
+      "detail": "Firefox/Violentmonkey usability upgrade only: added explicit Check Latest Version and Install / Update controls. Install/update copies the canonical userscript URL before opening it so Firefox users have a reliable Install from URL fallback. Command catalogue, trend intelligence, bundles, settings and schedule were preserved.",
+      "scope": "v2.18.0; 715 commands; no command additions or removals"
     },
     "test": {
       "state": "passed",
-      "detail": "15 of 15 regression checks passed: syntax, version sync, 705-command base preservation, nine prior trend commands preserved byte-for-byte, counts, uniqueness, required trend commands, categories, bundles, bundle references, metadata parity, monitor anchors, settings compatibility, history timestamps and runtime closure.",
-      "scope": "sha256 16cfadd4ec3ea4db1a3fd43d1dd5302bb7eb41bf577a75b147c64e6feac76c42"
+      "detail": "Regression checks passed: version/build sync, base catalogue count and uniqueness, trend catalogue preservation, bundle references, runtime anchors, metadata parity, update-control anchors, clipboard fallback and GitHub exact-byte readback.",
+      "scope": "715 commands; 42 categories; 40 executable bundle mappings"
     },
     "deploy": {
       "state": "verified",
-      "detail": "Published matching v2.17.0 metadata and userscript to main with current blob-SHA conflict guards. Refetched origin/main over public HTTPS and verified the released userscript version and SHA-256. Browser installation is not claimed.",
-      "scope": "gaurevkohli1/gaurev-command-palette main at commit a9bcebc020aa7a7e9d75ee2f15afd5176f961010; completed status record follows in a guarded commit"
+      "detail": "Published v2.18.0 userscript and matching metadata to main with blob-SHA conflict guards, then refetched both from GitHub and verified exact bytes. Status record updated separately after verification. Browser-installed version is not claimed.",
+      "scope": "main; userscript commit c551664fe1eaf97968f041bf81adca9d2b15e426; metadata commit 17e268cdc780f9bdc09678a7bdb3d203425973b2"
     }
   },
   "scan": {
@@ -174,10 +174,17 @@
   },
   "browser_installation": {
     "state": "unknown",
-    "detail": "Only the local userscript can confirm the version running in the browser after reload."
+    "detail": "Only the local userscript can confirm the version running in Firefox after reload."
   },
-  "action_required": "Update or reload the userscript in Violentmonkey, then open System Monitor to confirm the browser is running v2.17.0.",
+  "action_required": "In Violentmonkey, check for the v2.18.0 update once. After reload, System Monitor will show Check Latest Version and Install / Update controls. If Firefox displays raw source, the install URL is already copied: use Violentmonkey → Install from URL and paste.",
   "history": [
+    {
+      "updated_at": "2026-10-07T12:21:21.544Z",
+      "version": "2.18.0",
+      "summary": "Published Firefox-friendly System Monitor updater: Check Latest Version plus Install / Update with copied-URL fallback; command intelligence unchanged.",
+      "test_state": "passed",
+      "deploy_state": "verified"
+    },
     {
       "updated_at": "2026-10-07T03:26:09.000Z",
       "version": "2.17.0",
