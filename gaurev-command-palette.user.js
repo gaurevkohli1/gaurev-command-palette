@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gaurev Command Palette for ChatGPT
 // @namespace    https://chatgpt.com/gaurev-command-palette
-// @version      2.18.0
+// @version      2.19.0
 // @description  Creative Command OS with live System Monitor, verified release checks, direct update installation and universal Projects.
 // @author       Gaurev
 // @match        https://chatgpt.com/*
@@ -36,7 +36,7 @@
     {"name":"/analog-keepsake","category":"Social Content","description":"Turn a campaign into a tactile correspondence-led story using stationery, stamps and archival ephemera.","expansion":"Art-direct a contemporary analog-keepsake system using letters, envelopes, stamps, handwriting, receipts, labels, contact sheets or archival marks as narrative devices. Preserve brand typography and message hierarchy, keep text readable, and use physical wear and paper texture with restraint. Adapt cleanly for carousel, poster, invitation or launch teaser.","tags":["trend-intelligence","pinterest-2026"]},
     {"name":"/emotional-palette","category":"Brand Systems","description":"Build a color system from the intended audience emotion, not decorative color picking.","expansion":"Define the desired emotional job first—calm, focus, mystery, energy, warmth or optimism—then build a primary, support, accent and neutral palette with contrast roles, material behavior, lighting response, accessibility notes and channel-specific ratios. If using a trend color, translate it through the brand rather than replacing the brand identity.","tags":["trend-intelligence","pinterest-2026"]},
     {"name":"/theatrical-opulence","category":"Visual Styles","description":"Cinematic theatrical luxury using drapery, depth, florals and stage-light contrast.","expansion":"Create an elevated theatrical world with layered drapery, deep spatial staging, sculptural florals, glass, candelabra or stage architecture, motivated pools of light and controlled darkness. Keep it cinematic and premium; avoid theme-party clutter, flat red overload and imitation period sets.","tags":["trend-intelligence","pinterest-2026"]},
-    {"name":"/beauty-trend-system","category":"Creative Studio","description":"Turn a beauty trend into a precise, identity-safe editorial, UGC and product-ad system.","expansion":"Translate the requested beauty mood into a specific production system instead of a generic makeup label. Define one hero feature, its exact placement, shape, material or finish, color relationship and intensity; then specify supporting skin, hair, lighting and lens behavior. Preserve facial identity, natural anatomy and believable skin texture. Deliver coordinated editorial portrait, close-detail, product-macro and creator/UGC variants while keeping the same visual DNA. Use references as inspiration rather than copying a complete look, and avoid stacking every microtrend into one face.","tags":["trend-intelligence","pinterest-2026","beauty","portrait","ugc","product-ad"]}
+    {"name":"/beauty-trend-system","category":"Creative Studio","description":"Turn a beauty trend or visual reference into a precise, identity-safe editorial, UGC and product-ad system.","expansion":"Translate the requested beauty mood or supplied reference image into a specific, actionable production system instead of a generic makeup label. First decode the visible look: identify the hero feature; exact placement and geometry; hairstyle, cut and color; nail shape and finish when present; makeup zones; material or reflective behavior; palette relationships; intensity; and the lighting or lens conditions affecting appearance. Separate what is directly observed from what is inferred. Then provide a concise recreation plan, reference-safe adaptation notes, suitable product categories without inventing brands, and coordinated editorial portrait, close-detail, product-macro and creator/UGC variants that share the same visual DNA. Preserve facial identity, natural anatomy and believable skin texture; adapt the inspiration rather than copying a complete person-specific look, and avoid stacking every microtrend into one face.","tags":["trend-intelligence","pinterest-2026","beauty","portrait","ugc","product-ad","reference-decode"]}
   ];
 
 
@@ -179,7 +179,7 @@
 
   // SYSTEM_MONITOR: local observations and a read-only, versioned public status feed.
   const SYSTEM_MONITOR = (() => {
-    const BUILD_VERSION = '2.18.0';
+    const BUILD_VERSION = '2.19.0';
     const ROOT = 'https://raw.githubusercontent.com/gaurevkohli1/gaurev-command-palette/main/';
     const INSTALL_URL = ROOT + 'gaurev-command-palette.user.js';
     const STATUS_URL = ROOT + 'command-center-status.json';
