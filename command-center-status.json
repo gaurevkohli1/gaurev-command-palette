@@ -1,45 +1,46 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-08T03:21:27.000Z",
+  "updated_at": "2026-10-09T02:44:43.000Z",
   "release": {
-    "version": "2.19.0",
-    "built_at": "2026-10-08T03:19:49.000Z",
-    "command_count": 715,
+    "version": "2.20.0",
+    "built_at": "2026-10-09T02:44:09.000Z",
+    "command_count": 716,
     "category_count": 42,
     "bundle_count": 40,
-    "sha256": "1e39a5c98a68d3c6df99301da836a019efc1fdb06d738d1360721e9a882be0ae"
+    "sha256": "b24019e938207e3dfdefb4323fad18f24bf85674698d3eba6d4b7aff6a069d96"
   },
   "pipeline": {
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-10-08T03:16:21.000Z",
-      "completed_at": "2026-10-08T03:21:27.000Z",
-      "pinterest_status": "Official Pinterest reporting and public Pinterest inspiration were checked on 8 October 2026. Pinterest's 6 October Beauty Guides launch adds a material visual-to-action pattern: decode a reference into exact features, finishes and practical recreation steps. The Beauty Trend Report remains relevant; one public design board was accessible and repeated already-covered visual patterns, while two other boards were inaccessible.",
-      "chatgpt_status": "Production v2.18.0 with 715 commands was read before editing. v2.19.0 updates exactly one existing command, /beauty-trend-system, while preserving all 714 other commands, 40 executable bundles, settings, compatibility and Firefox updater controls. Repository bytes are verified; the browser-installed version remains locally observable only after userscript reload.",
+      "started_at": "2026-10-09T02:40:38.000Z",
+      "completed_at": "2026-10-09T02:44:43.000Z",
+      "pinterest_status": "Official Pinterest reporting and public Pinterest inspiration were checked on 9 October 2026. Pinterest's holiday optimization guidance supplied a materially useful creative-system signal: use at least three formats and five distinct creatives, with visible product, lifestyle context and an offer understood at a glance. The 6 October Beauty Trend Report and 2026 Palette remain active but are already represented. Public board pages were not directly accessible today; one was available only through its public search index.",
+      "chatgpt_status": "Production v2.19.0 with 715 commands was read before editing. v2.20.0 adds exactly one reusable command, /performance-creative-mix, while preserving all 715 prior commands, 40 executable bundles, settings, compatibility and Firefox updater controls. Repository bytes are verified; the browser-installed version remains locally observable only after userscript reload.",
       "trends": [
-        "visual inspiration to action: decode the supplied reference before generating or adapting it",
-        "beauty reference taxonomy: hero feature, placement, geometry, hairstyle or cut or color, nail shape and finish, makeup zones, materials, palette, intensity, lighting and lens",
-        "observed versus inferred separation to reduce invented details when interpreting reference imagery",
-        "recreation plans that translate a look into ordered steps, adaptation notes and suitable product categories without inventing brands",
-        "cross-format continuity across editorial, detail, product-ad and UGC variants",
-        "ongoing specificity-first beauty direction from Pinterest Beauty Trend Report 2026",
-        "public design boards repeated existing vibrant gradients, collage, risograph texture, inflated type and neon-maximalist poster systems"
+        "performance creative breadth: use at least three genuinely different ad formats within an ad group",
+        "creative learning density: use five or more distinct ads so the system receives enough varied signals",
+        "format roles should span product-first hero, lifestyle or use context, creator/UGC proof, feature detail and concise offer or CTA",
+        "hold product identity, brand, approved claims and offer stable while testing hooks, framing, pacing, story and context deliberately",
+        "every asset needs a clear product, readable first-frame message and an explicit test hypothesis rather than unstructured variation",
+        "Pinterest Beauty Trend Report specificity and Beauty Guides reference-decoding remain active signals already covered by /beauty-trend-system",
+        "Pinterest Palette color-forward creative remains covered by /emotional-palette and existing brand/palette controls"
       ],
-      "commands_added": [],
-      "commands_updated": [
-        "/beauty-trend-system — added visual-reference decoding, an observed/inferred split, recreation planning, product-category guidance and editorial/detail/product/UGC variants"
+      "commands_added": [
+        "/performance-creative-mix — multi-format, five-creative product-ad matrix with explicit hypotheses, funnel roles, placements and testing order"
       ],
+      "commands_updated": [],
       "skipped": [
-        "No separate /beauty-guides command because the durable visual-to-action capability belongs inside the existing /beauty-trend-system workflow",
-        "No additional commands for individual beauty microtrends because the existing system already expresses exact feature, placement, finish, palette and identity-safe adaptation",
-        "No new commands from public design boards because gradients, collage, risograph texture, inflated typography and neon maximalism are already covered by the live catalogue"
+        "No holiday-specific alias because the durable value is the reusable performance creative-mix and test architecture, not seasonal styling",
+        "No additional Beauty Trend Report or Beauty Guides commands because /beauty-trend-system already covers specificity, reference decoding and cross-format adaptation",
+        "No new palette commands because /emotional-palette and the existing brand, color and layout controls already cover monochrome walls, color-forward styling and focal accents",
+        "No commands were derived from inaccessible public board pages; search-index snippets repeated layout and branding inspiration without enough new evidence"
       ],
       "sources": [
         {
-          "title": "Pinterest launches Beauty Guides to turn inspiration into action",
-          "url": "https://newsroom.pinterest.com/news/pinterest-launches-beauty-guides-to-turn-inspiration-into-action/",
+          "title": "Pinterest: Real-Time Holiday 2026 Optimization",
+          "url": "https://business.pinterest.com/blog/holiday-2026-pinterest-campaign-optimization/",
           "status": "accessed",
           "access_status": "accessed"
         },
@@ -51,31 +52,31 @@
         },
         {
           "title": "Pinterest Predicts 2026",
-          "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
+          "url": "https://business.pinterest.com/en-in/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
           "status": "accessed",
           "access_status": "accessed"
         },
         {
-          "title": "Pinterest Business blog",
-          "url": "https://business.pinterest.com/blog/",
+          "title": "Pinterest Palette 2026",
+          "url": "https://business.pinterest.com/en-in/pinterest-palette/",
           "status": "accessed",
           "access_status": "accessed"
+        },
+        {
+          "title": "Public Pinterest Layout, Design and Branding board",
+          "url": "https://at.pinterest.com/littlezbuto/layoutdesignbranding/",
+          "status": "search_index_accessed_direct_page_inaccessible",
+          "access_status": "search_index_accessed_direct_page_inaccessible"
         },
         {
           "title": "Public Pinterest 2026 Design Trends board",
           "url": "https://mx.pinterest.com/dosdemirelle/2026-design-trends/",
-          "status": "accessed",
-          "access_status": "accessed"
-        },
-        {
-          "title": "Public Pinterest Graphic Design board",
-          "url": "https://www.pinterest.com/gabbyrfp/graphic-design/",
           "status": "inaccessible",
           "access_status": "inaccessible"
         },
         {
-          "title": "Pinterest India design inspiration board",
-          "url": "https://in.pinterest.com/elysian_003/designing/",
+          "title": "Public Pinterest Graphic Design board",
+          "url": "https://www.pinterest.com/gabbyrfp/graphic-design/",
           "status": "inaccessible",
           "access_status": "inaccessible"
         }
@@ -83,49 +84,50 @@
     },
     "build": {
       "state": "passed",
-      "detail": "Updated /beauty-trend-system with Pinterest Beauty Guides-derived visual-reference decoding and action planning. Bumped userscript and System Monitor to v2.19.0 and regenerated exact metadata while preserving the complete live catalogue, settings and updater controls.",
-      "scope": "v2.19.0; 715 commands; 714 unchanged; 1 updated; 0 added or removed"
+      "detail": "Added /performance-creative-mix from Pinterest performance guidance, bumped userscript and System Monitor to v2.20.0, and regenerated exact metadata. The entire v2.19.0 catalogue, bundles, settings, personal creative intelligence and updater controls remain intact.",
+      "scope": "v2.20.0; 716 commands; 715 preserved; 1 added; 0 updated or removed"
     },
     "test": {
       "state": "passed",
-      "detail": "All 17 regression checks passed: production preservation, command uniqueness, targeted beauty workflow assertions, bundle references, settings and monitor anchors, exact metadata parity, Firefox updater controls, version synchronization and public exact-byte verification.",
-      "scope": "17/17 checks; 715 commands; 42 categories; 40 executable bundle mappings; SHA-256 1e39a5c98a68d3c6df99301da836a019efc1fdb06d738d1360721e9a882be0ae"
+      "detail": "All 17 regression checks passed: syntax, version/build synchronization, complete production preservation, uniqueness, new-command assertions, category and bundle counts, bundle references, exact metadata parity, monitor/runtime anchors, settings compatibility and Firefox updater controls.",
+      "scope": "17/17 checks; 716 commands; 42 categories; 40 executable bundle mappings; SHA-256 b24019e938207e3dfdefb4323fad18f24bf85674698d3eba6d4b7aff6a069d96"
     },
     "deploy": {
       "state": "verified",
-      "detail": "Published v2.19.0 userscript and matching metadata to main with blob-SHA conflict guards, then refetched both from GitHub and verified exact bytes, version and updater controls. This status record is published separately after that verification. Browser installation is not claimed.",
-      "scope": "main; userscript commit c09dd31f79b7ff2184e3befa127c81bf615e6170; metadata commit ff659d1911536c05a10646cd85e2fa9e5bc32797"
+      "detail": "Published v2.20.0 userscript and matching metadata to main with blob-SHA conflict guards, then refetched both from public GitHub and verified exact bytes, version and hash. This status record is published separately after that verification. Browser installation is not claimed.",
+      "scope": "main; userscript commit 6e75325c977e5e69e661bfdf76773b8459d8aa66; metadata commit 8847daa8b0df7d38d51ce47832f078b4898784db"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-10-08T03:16:21.000Z",
-    "completed_at": "2026-10-08T03:21:27.000Z",
-    "pinterest_status": "Official Pinterest reporting and public Pinterest inspiration were checked on 8 October 2026. Pinterest's 6 October Beauty Guides launch adds a material visual-to-action pattern: decode a reference into exact features, finishes and practical recreation steps. The Beauty Trend Report remains relevant; one public design board was accessible and repeated already-covered visual patterns, while two other boards were inaccessible.",
-    "chatgpt_status": "Production v2.18.0 with 715 commands was read before editing. v2.19.0 updates exactly one existing command, /beauty-trend-system, while preserving all 714 other commands, 40 executable bundles, settings, compatibility and Firefox updater controls. Repository bytes are verified; the browser-installed version remains locally observable only after userscript reload.",
+    "started_at": "2026-10-09T02:40:38.000Z",
+    "completed_at": "2026-10-09T02:44:43.000Z",
+    "pinterest_status": "Official Pinterest reporting and public Pinterest inspiration were checked on 9 October 2026. Pinterest's holiday optimization guidance supplied a materially useful creative-system signal: use at least three formats and five distinct creatives, with visible product, lifestyle context and an offer understood at a glance. The 6 October Beauty Trend Report and 2026 Palette remain active but are already represented. Public board pages were not directly accessible today; one was available only through its public search index.",
+    "chatgpt_status": "Production v2.19.0 with 715 commands was read before editing. v2.20.0 adds exactly one reusable command, /performance-creative-mix, while preserving all 715 prior commands, 40 executable bundles, settings, compatibility and Firefox updater controls. Repository bytes are verified; the browser-installed version remains locally observable only after userscript reload.",
     "trends": [
-      "visual inspiration to action: decode the supplied reference before generating or adapting it",
-      "beauty reference taxonomy: hero feature, placement, geometry, hairstyle or cut or color, nail shape and finish, makeup zones, materials, palette, intensity, lighting and lens",
-      "observed versus inferred separation to reduce invented details when interpreting reference imagery",
-      "recreation plans that translate a look into ordered steps, adaptation notes and suitable product categories without inventing brands",
-      "cross-format continuity across editorial, detail, product-ad and UGC variants",
-      "ongoing specificity-first beauty direction from Pinterest Beauty Trend Report 2026",
-      "public design boards repeated existing vibrant gradients, collage, risograph texture, inflated type and neon-maximalist poster systems"
+      "performance creative breadth: use at least three genuinely different ad formats within an ad group",
+      "creative learning density: use five or more distinct ads so the system receives enough varied signals",
+      "format roles should span product-first hero, lifestyle or use context, creator/UGC proof, feature detail and concise offer or CTA",
+      "hold product identity, brand, approved claims and offer stable while testing hooks, framing, pacing, story and context deliberately",
+      "every asset needs a clear product, readable first-frame message and an explicit test hypothesis rather than unstructured variation",
+      "Pinterest Beauty Trend Report specificity and Beauty Guides reference-decoding remain active signals already covered by /beauty-trend-system",
+      "Pinterest Palette color-forward creative remains covered by /emotional-palette and existing brand/palette controls"
     ],
-    "commands_added": [],
-    "commands_updated": [
-      "/beauty-trend-system — added visual-reference decoding, an observed/inferred split, recreation planning, product-category guidance and editorial/detail/product/UGC variants"
+    "commands_added": [
+      "/performance-creative-mix — multi-format, five-creative product-ad matrix with explicit hypotheses, funnel roles, placements and testing order"
     ],
+    "commands_updated": [],
     "skipped": [
-      "No separate /beauty-guides command because the durable visual-to-action capability belongs inside the existing /beauty-trend-system workflow",
-      "No additional commands for individual beauty microtrends because the existing system already expresses exact feature, placement, finish, palette and identity-safe adaptation",
-      "No new commands from public design boards because gradients, collage, risograph texture, inflated typography and neon maximalism are already covered by the live catalogue"
+      "No holiday-specific alias because the durable value is the reusable performance creative-mix and test architecture, not seasonal styling",
+      "No additional Beauty Trend Report or Beauty Guides commands because /beauty-trend-system already covers specificity, reference decoding and cross-format adaptation",
+      "No new palette commands because /emotional-palette and the existing brand, color and layout controls already cover monochrome walls, color-forward styling and focal accents",
+      "No commands were derived from inaccessible public board pages; search-index snippets repeated layout and branding inspiration without enough new evidence"
     ],
     "sources": [
       {
-        "title": "Pinterest launches Beauty Guides to turn inspiration into action",
-        "url": "https://newsroom.pinterest.com/news/pinterest-launches-beauty-guides-to-turn-inspiration-into-action/",
+        "title": "Pinterest: Real-Time Holiday 2026 Optimization",
+        "url": "https://business.pinterest.com/blog/holiday-2026-pinterest-campaign-optimization/",
         "status": "accessed",
         "access_status": "accessed"
       },
@@ -137,31 +139,31 @@
       },
       {
         "title": "Pinterest Predicts 2026",
-        "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
+        "url": "https://business.pinterest.com/en-in/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
         "status": "accessed",
         "access_status": "accessed"
       },
       {
-        "title": "Pinterest Business blog",
-        "url": "https://business.pinterest.com/blog/",
+        "title": "Pinterest Palette 2026",
+        "url": "https://business.pinterest.com/en-in/pinterest-palette/",
         "status": "accessed",
         "access_status": "accessed"
+      },
+      {
+        "title": "Public Pinterest Layout, Design and Branding board",
+        "url": "https://at.pinterest.com/littlezbuto/layoutdesignbranding/",
+        "status": "search_index_accessed_direct_page_inaccessible",
+        "access_status": "search_index_accessed_direct_page_inaccessible"
       },
       {
         "title": "Public Pinterest 2026 Design Trends board",
         "url": "https://mx.pinterest.com/dosdemirelle/2026-design-trends/",
-        "status": "accessed",
-        "access_status": "accessed"
-      },
-      {
-        "title": "Public Pinterest Graphic Design board",
-        "url": "https://www.pinterest.com/gabbyrfp/graphic-design/",
         "status": "inaccessible",
         "access_status": "inaccessible"
       },
       {
-        "title": "Pinterest India design inspiration board",
-        "url": "https://in.pinterest.com/elysian_003/designing/",
+        "title": "Public Pinterest Graphic Design board",
+        "url": "https://www.pinterest.com/gabbyrfp/graphic-design/",
         "status": "inaccessible",
         "access_status": "inaccessible"
       }
@@ -174,8 +176,15 @@
     "state": "unknown",
     "detail": "Only the local userscript can confirm the version running in Firefox after reload."
   },
-  "action_required": "In the System Monitor, choose Check Latest Version and then Install / Update to v2.19.0. If Firefox displays raw source, paste the already-copied userscript URL into Violentmonkey → Install from URL. Reload ChatGPT and confirm the running version locally.",
+  "action_required": "In the System Monitor, choose Check Latest Version and then Install / Update to v2.20.0. If Firefox displays raw source, paste the copied userscript URL into Violentmonkey → Install from URL. Reload ChatGPT and confirm the running version locally.",
   "history": [
+    {
+      "updated_at": "2026-10-09T02:44:43.000Z",
+      "version": "2.20.0",
+      "summary": "Published and verified v2.20.0 with /performance-creative-mix from Pinterest performance guidance; all 715 prior commands were preserved and 17 regression checks passed.",
+      "test_state": "passed",
+      "deploy_state": "verified"
+    },
     {
       "updated_at": "2026-10-08T03:21:27.000Z",
       "version": "2.19.0",
