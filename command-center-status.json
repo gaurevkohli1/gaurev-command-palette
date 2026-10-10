@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-10T02:47:04.000Z",
+  "updated_at": "2026-10-10T02:48:33.000Z",
   "release": {
     "version": "2.20.0",
     "built_at": "2026-10-09T02:44:09.000Z",
@@ -90,9 +90,9 @@
       "scope": "15/15 checks; SHA-256 b24019e938207e3dfdefb4323fad18f24bf85674698d3eba6d4b7aff6a069d96"
     },
     "deploy": {
-      "state": "published",
-      "detail": "No userscript or metadata deployment was needed. This completed scan record is being published to main; public readback verification follows. Browser installation is not claimed.",
-      "scope": "command-center-status.json only; release remains v2.20.0"
+      "state": "verified",
+      "detail": "No userscript or metadata deployment was needed. The completed scan record was published to main with a blob-SHA conflict guard, then publicly refetched and verified alongside the unchanged v2.20.0 userscript and metadata. Browser installation is not claimed.",
+      "scope": "command-center-status.json commit 6247a9000efa2e84aa72236ee07c84af96f53abc; release remains v2.20.0"
     }
   },
   "scan": {
@@ -173,11 +173,11 @@
   "action_required": "No repository action is required. If the browser is not yet running v2.20.0, use System Monitor → Check Latest Version → Install / Update, reload ChatGPT and confirm locally.",
   "history": [
     {
-      "updated_at": "2026-10-10T02:47:04.000Z",
+      "updated_at": "2026-10-10T02:48:33.000Z",
       "version": "2.20.0",
       "summary": "10 October scan found no material non-duplicate command delta; v2.20.0 remained at 716 commands and passed 15 regression checks.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-09T02:44:43.000Z",
