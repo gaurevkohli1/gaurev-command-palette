@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-09T02:44:43.000Z",
+  "updated_at": "2026-10-10T02:47:04.000Z",
   "release": {
     "version": "2.20.0",
     "built_at": "2026-10-09T02:44:09.000Z",
@@ -14,33 +14,48 @@
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-10-09T02:40:38.000Z",
-      "completed_at": "2026-10-09T02:44:43.000Z",
-      "pinterest_status": "Official Pinterest reporting and public Pinterest inspiration were checked on 9 October 2026. Pinterest's holiday optimization guidance supplied a materially useful creative-system signal: use at least three formats and five distinct creatives, with visible product, lifestyle context and an offer understood at a glance. The 6 October Beauty Trend Report and 2026 Palette remain active but are already represented. Public board pages were not directly accessible today; one was available only through its public search index.",
-      "chatgpt_status": "Production v2.19.0 with 715 commands was read before editing. v2.20.0 adds exactly one reusable command, /performance-creative-mix, while preserving all 715 prior commands, 40 executable bundles, settings, compatibility and Firefox updater controls. Repository bytes are verified; the browser-installed version remains locally observable only after userscript reload.",
+      "started_at": "2026-10-10T02:44:50.000Z",
+      "completed_at": "2026-10-10T02:47:04.000Z",
+      "pinterest_status": "Official Pinterest Newsroom, Pinterest Business guidance and public Pinterest board URLs were checked on 10 October 2026. The Newsroom's newest trend report remains the 6 October Beauty Trend Report. Q5 guidance reinforces intent-aware creative refreshes, everyday utility and 5–10 creative variants, but these behaviors are already covered by /performance-creative-mix, /trend-to-brand and existing product-ad/social controls. Public board pages were inaccessible today.",
+      "chatgpt_status": "Production v2.20.0 with 716 commands was read before any decision. No script change was materially justified. All 716 commands, 42 categories, 40 executable bundles, settings, personal creative intelligence, metadata and Firefox updater controls remain unchanged. The current release passed regression; browser installation remains locally observable only after userscript reload.",
       "trends": [
-        "performance creative breadth: use at least three genuinely different ad formats within an ad group",
-        "creative learning density: use five or more distinct ads so the system receives enough varied signals",
-        "format roles should span product-first hero, lifestyle or use context, creator/UGC proof, feature detail and concise offer or CTA",
-        "hold product identity, brand, approved claims and offer stable while testing hooks, framing, pacing, story and context deliberately",
-        "every asset needs a clear product, readable first-frame message and an explicit test hypothesis rather than unstructured variation",
-        "Pinterest Beauty Trend Report specificity and Beauty Guides reference-decoding remain active signals already covered by /beauty-trend-system",
-        "Pinterest Palette color-forward creative remains covered by /emotional-palette and existing brand/palette controls"
+        "Q5 audience intent shifts from gifting to self-purchase and from celebration to planning",
+        "post-holiday creative should replace deadline urgency with practical utility, routine, organisation, comfort and fresh-start outcomes",
+        "existing assets can be repositioned through headline, overlay, framing, imagery or product-selection changes instead of full reinvention",
+        "creative variety remains valuable, with Pinterest citing 5–10 ads per ad group as correlated with stronger ROAS",
+        "holiday creative continues to favor visual search readiness, multi-format campaigns, clear product feeds and full-funnel alignment",
+        "Beauty Guides and the Beauty Trend Report remain active visual-to-action and specificity signals already represented in the catalogue"
       ],
-      "commands_added": [
-        "/performance-creative-mix — multi-format, five-creative product-ad matrix with explicit hypotheses, funnel roles, placements and testing order"
-      ],
+      "commands_added": [],
       "commands_updated": [],
       "skipped": [
-        "No holiday-specific alias because the durable value is the reusable performance creative-mix and test architecture, not seasonal styling",
-        "No additional Beauty Trend Report or Beauty Guides commands because /beauty-trend-system already covers specificity, reference decoding and cross-format adaptation",
-        "No new palette commands because /emotional-palette and the existing brand, color and layout controls already cover monochrome walls, color-forward styling and focal accents",
-        "No commands were derived from inaccessible public board pages; search-index snippets repeated layout and branding inspiration without enough new evidence"
+        "No /q5-creative-reset command because the durable intent-shift, asset-reuse and variation behaviors already exist across /performance-creative-mix, /trend-to-brand, /variation and product/social controls",
+        "No additional holiday command because visual-search readiness, multi-format product ads, clear offers and full-funnel planning are already covered",
+        "No Beauty Guides or Beauty Trend Report additions because /beauty-trend-system already covers reference decoding, specificity, recreation planning and cross-format variants",
+        "No commands were derived from public Pinterest boards because the directly requested pages were inaccessible today"
       ],
       "sources": [
         {
-          "title": "Pinterest: Real-Time Holiday 2026 Optimization",
-          "url": "https://business.pinterest.com/blog/holiday-2026-pinterest-campaign-optimization/",
+          "title": "Pinterest Newsroom",
+          "url": "https://newsroom.pinterest.com/?change_language=true&page=1",
+          "status": "accessed",
+          "access_status": "accessed"
+        },
+        {
+          "title": "Pinterest: How to refresh your creative for Q5",
+          "url": "https://business.pinterest.com/en-gb/blog/refresh-your-creative-for-q5/",
+          "status": "accessed",
+          "access_status": "accessed"
+        },
+        {
+          "title": "Pinterest Holiday Marketing 2026",
+          "url": "https://business.pinterest.com/holiday-marketing-2026/",
+          "status": "accessed",
+          "access_status": "accessed"
+        },
+        {
+          "title": "Pinterest Beauty Guides",
+          "url": "https://newsroom.pinterest.com/news/pinterest-launches-beauty-guides-to-turn-inspiration-into-action/",
           "status": "accessed",
           "access_status": "accessed"
         },
@@ -49,24 +64,6 @@
           "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
           "status": "accessed",
           "access_status": "accessed"
-        },
-        {
-          "title": "Pinterest Predicts 2026",
-          "url": "https://business.pinterest.com/en-in/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
-          "status": "accessed",
-          "access_status": "accessed"
-        },
-        {
-          "title": "Pinterest Palette 2026",
-          "url": "https://business.pinterest.com/en-in/pinterest-palette/",
-          "status": "accessed",
-          "access_status": "accessed"
-        },
-        {
-          "title": "Public Pinterest Layout, Design and Branding board",
-          "url": "https://at.pinterest.com/littlezbuto/layoutdesignbranding/",
-          "status": "search_index_accessed_direct_page_inaccessible",
-          "access_status": "search_index_accessed_direct_page_inaccessible"
         },
         {
           "title": "Public Pinterest 2026 Design Trends board",
@@ -83,51 +80,66 @@
       ]
     },
     "build": {
-      "state": "passed",
-      "detail": "Added /performance-creative-mix from Pinterest performance guidance, bumped userscript and System Monitor to v2.20.0, and regenerated exact metadata. The entire v2.19.0 catalogue, bundles, settings, personal creative intelligence and updater controls remain intact.",
-      "scope": "v2.20.0; 716 commands; 715 preserved; 1 added; 0 updated or removed"
+      "state": "skipped",
+      "detail": "No materially useful, non-duplicative command or runtime change was identified. Production v2.20.0 was retained unchanged.",
+      "scope": "v2.20.0 retained; 716 commands; 42 categories; 40 executable bundle mappings"
     },
     "test": {
       "state": "passed",
-      "detail": "All 17 regression checks passed: syntax, version/build synchronization, complete production preservation, uniqueness, new-command assertions, category and bundle counts, bundle references, exact metadata parity, monitor/runtime anchors, settings compatibility and Firefox updater controls.",
-      "scope": "17/17 checks; 716 commands; 42 categories; 40 executable bundle mappings; SHA-256 b24019e938207e3dfdefb4323fad18f24bf85674698d3eba6d4b7aff6a069d96"
+      "detail": "All 15 current-release regression checks passed: syntax, version/build sync, catalogue count and uniqueness, /performance-creative-mix integrity, categories, bundles, bundle references, exact metadata parity, monitor/runtime anchors, update URLs, settings compatibility and Firefox updater controls.",
+      "scope": "15/15 checks; SHA-256 b24019e938207e3dfdefb4323fad18f24bf85674698d3eba6d4b7aff6a069d96"
     },
     "deploy": {
-      "state": "verified",
-      "detail": "Published v2.20.0 userscript and matching metadata to main with blob-SHA conflict guards, then refetched both from public GitHub and verified exact bytes, version and hash. This status record is published separately after that verification. Browser installation is not claimed.",
-      "scope": "main; userscript commit 6e75325c977e5e69e661bfdf76773b8459d8aa66; metadata commit 8847daa8b0df7d38d51ce47832f078b4898784db"
+      "state": "published",
+      "detail": "No userscript or metadata deployment was needed. This completed scan record is being published to main; public readback verification follows. Browser installation is not claimed.",
+      "scope": "command-center-status.json only; release remains v2.20.0"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-10-09T02:40:38.000Z",
-    "completed_at": "2026-10-09T02:44:43.000Z",
-    "pinterest_status": "Official Pinterest reporting and public Pinterest inspiration were checked on 9 October 2026. Pinterest's holiday optimization guidance supplied a materially useful creative-system signal: use at least three formats and five distinct creatives, with visible product, lifestyle context and an offer understood at a glance. The 6 October Beauty Trend Report and 2026 Palette remain active but are already represented. Public board pages were not directly accessible today; one was available only through its public search index.",
-    "chatgpt_status": "Production v2.19.0 with 715 commands was read before editing. v2.20.0 adds exactly one reusable command, /performance-creative-mix, while preserving all 715 prior commands, 40 executable bundles, settings, compatibility and Firefox updater controls. Repository bytes are verified; the browser-installed version remains locally observable only after userscript reload.",
+    "started_at": "2026-10-10T02:44:50.000Z",
+    "completed_at": "2026-10-10T02:47:04.000Z",
+    "pinterest_status": "Official Pinterest Newsroom, Pinterest Business guidance and public Pinterest board URLs were checked on 10 October 2026. The Newsroom's newest trend report remains the 6 October Beauty Trend Report. Q5 guidance reinforces intent-aware creative refreshes, everyday utility and 5–10 creative variants, but these behaviors are already covered by /performance-creative-mix, /trend-to-brand and existing product-ad/social controls. Public board pages were inaccessible today.",
+    "chatgpt_status": "Production v2.20.0 with 716 commands was read before any decision. No script change was materially justified. All 716 commands, 42 categories, 40 executable bundles, settings, personal creative intelligence, metadata and Firefox updater controls remain unchanged. The current release passed regression; browser installation remains locally observable only after userscript reload.",
     "trends": [
-      "performance creative breadth: use at least three genuinely different ad formats within an ad group",
-      "creative learning density: use five or more distinct ads so the system receives enough varied signals",
-      "format roles should span product-first hero, lifestyle or use context, creator/UGC proof, feature detail and concise offer or CTA",
-      "hold product identity, brand, approved claims and offer stable while testing hooks, framing, pacing, story and context deliberately",
-      "every asset needs a clear product, readable first-frame message and an explicit test hypothesis rather than unstructured variation",
-      "Pinterest Beauty Trend Report specificity and Beauty Guides reference-decoding remain active signals already covered by /beauty-trend-system",
-      "Pinterest Palette color-forward creative remains covered by /emotional-palette and existing brand/palette controls"
+      "Q5 audience intent shifts from gifting to self-purchase and from celebration to planning",
+      "post-holiday creative should replace deadline urgency with practical utility, routine, organisation, comfort and fresh-start outcomes",
+      "existing assets can be repositioned through headline, overlay, framing, imagery or product-selection changes instead of full reinvention",
+      "creative variety remains valuable, with Pinterest citing 5–10 ads per ad group as correlated with stronger ROAS",
+      "holiday creative continues to favor visual search readiness, multi-format campaigns, clear product feeds and full-funnel alignment",
+      "Beauty Guides and the Beauty Trend Report remain active visual-to-action and specificity signals already represented in the catalogue"
     ],
-    "commands_added": [
-      "/performance-creative-mix — multi-format, five-creative product-ad matrix with explicit hypotheses, funnel roles, placements and testing order"
-    ],
+    "commands_added": [],
     "commands_updated": [],
     "skipped": [
-      "No holiday-specific alias because the durable value is the reusable performance creative-mix and test architecture, not seasonal styling",
-      "No additional Beauty Trend Report or Beauty Guides commands because /beauty-trend-system already covers specificity, reference decoding and cross-format adaptation",
-      "No new palette commands because /emotional-palette and the existing brand, color and layout controls already cover monochrome walls, color-forward styling and focal accents",
-      "No commands were derived from inaccessible public board pages; search-index snippets repeated layout and branding inspiration without enough new evidence"
+      "No /q5-creative-reset command because the durable intent-shift, asset-reuse and variation behaviors already exist across /performance-creative-mix, /trend-to-brand, /variation and product/social controls",
+      "No additional holiday command because visual-search readiness, multi-format product ads, clear offers and full-funnel planning are already covered",
+      "No Beauty Guides or Beauty Trend Report additions because /beauty-trend-system already covers reference decoding, specificity, recreation planning and cross-format variants",
+      "No commands were derived from public Pinterest boards because the directly requested pages were inaccessible today"
     ],
     "sources": [
       {
-        "title": "Pinterest: Real-Time Holiday 2026 Optimization",
-        "url": "https://business.pinterest.com/blog/holiday-2026-pinterest-campaign-optimization/",
+        "title": "Pinterest Newsroom",
+        "url": "https://newsroom.pinterest.com/?change_language=true&page=1",
+        "status": "accessed",
+        "access_status": "accessed"
+      },
+      {
+        "title": "Pinterest: How to refresh your creative for Q5",
+        "url": "https://business.pinterest.com/en-gb/blog/refresh-your-creative-for-q5/",
+        "status": "accessed",
+        "access_status": "accessed"
+      },
+      {
+        "title": "Pinterest Holiday Marketing 2026",
+        "url": "https://business.pinterest.com/holiday-marketing-2026/",
+        "status": "accessed",
+        "access_status": "accessed"
+      },
+      {
+        "title": "Pinterest Beauty Guides",
+        "url": "https://newsroom.pinterest.com/news/pinterest-launches-beauty-guides-to-turn-inspiration-into-action/",
         "status": "accessed",
         "access_status": "accessed"
       },
@@ -136,24 +148,6 @@
         "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
         "status": "accessed",
         "access_status": "accessed"
-      },
-      {
-        "title": "Pinterest Predicts 2026",
-        "url": "https://business.pinterest.com/en-in/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
-        "status": "accessed",
-        "access_status": "accessed"
-      },
-      {
-        "title": "Pinterest Palette 2026",
-        "url": "https://business.pinterest.com/en-in/pinterest-palette/",
-        "status": "accessed",
-        "access_status": "accessed"
-      },
-      {
-        "title": "Public Pinterest Layout, Design and Branding board",
-        "url": "https://at.pinterest.com/littlezbuto/layoutdesignbranding/",
-        "status": "search_index_accessed_direct_page_inaccessible",
-        "access_status": "search_index_accessed_direct_page_inaccessible"
       },
       {
         "title": "Public Pinterest 2026 Design Trends board",
@@ -176,8 +170,15 @@
     "state": "unknown",
     "detail": "Only the local userscript can confirm the version running in Firefox after reload."
   },
-  "action_required": "In the System Monitor, choose Check Latest Version and then Install / Update to v2.20.0. If Firefox displays raw source, paste the copied userscript URL into Violentmonkey → Install from URL. Reload ChatGPT and confirm the running version locally.",
+  "action_required": "No repository action is required. If the browser is not yet running v2.20.0, use System Monitor → Check Latest Version → Install / Update, reload ChatGPT and confirm locally.",
   "history": [
+    {
+      "updated_at": "2026-10-10T02:47:04.000Z",
+      "version": "2.20.0",
+      "summary": "10 October scan found no material non-duplicate command delta; v2.20.0 remained at 716 commands and passed 15 regression checks.",
+      "test_state": "passed",
+      "deploy_state": "published"
+    },
     {
       "updated_at": "2026-10-09T02:44:43.000Z",
       "version": "2.20.0",
