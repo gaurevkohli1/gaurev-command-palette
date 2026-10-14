@@ -1,44 +1,50 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-13T02:48:43.303Z",
+  "updated_at": "2026-10-14T02:52:16.047Z",
   "release": {
-    "version": "2.21.0",
-    "built_at": "2026-10-11T02:59:36.000Z",
-    "command_count": 717,
+    "version": "2.22.0",
+    "built_at": "2026-10-14T02:51:11.000Z",
+    "command_count": 718,
     "category_count": 42,
     "bundle_count": 40,
-    "sha256": "7853f640c08df6ca3a9e0fd6ebefec58863b17a561e39a172eaa64c13fdb328f"
+    "sha256": "941309b2abec93509dd77e4631fe92851a1f90956fd58100e76608280290c76e"
   },
   "pipeline": {
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-10-13T02:45:45.000Z",
-      "completed_at": "2026-10-13T02:47:10.000Z",
-      "pinterest_status": "Pinterest's official Newsroom, Business guidance, public-board URLs and indexed Pinterest inspiration were checked on 13 October 2026. The newest official trend report remains the 6 October Beauty Trend Report. Previously reviewed Q5, holiday optimization and visual-search signals are unchanged. Direct public-board access returned HTTP 403 today; Pinterest's search index exposed only older 2026 design and creative-direction boards, with no sufficiently current or distinct command-level signal.",
-      "chatgpt_status": "Production v2.21.0 with 717 commands was read before the decision. No script or metadata change was materially justified. All 717 commands, 42 categories, 40 executable bundle mappings, personal creative intelligence, settings and Firefox updater controls remain unchanged. The live release passed 18 regression checks; browser installation remains locally observable only after userscript reload.",
+      "started_at": "2026-10-14T02:48:04.000Z",
+      "completed_at": "2026-10-14T02:49:35.000Z",
+      "pinterest_status": "Pinterest's official Newsroom published 'Why intention matters more than attention' on 13 October 2026. It introduces a distinct creative-direction signal: design for customer progress from active discovery to decision and useful real-world action, rather than optimizing only for captured attention or dwell time. Existing Q5, holiday, Beauty and visual-search guidance was also checked. Direct public-board pages returned HTTP 403 today, so no command was derived from inaccessible board content.",
+      "chatgpt_status": "Production v2.21.0 with 717 commands was read before modification. v2.22.0 adds exactly /intent-to-action, preserves all 717 prior commands, 42 categories, 40 executable bundle mappings, personal creative intelligence, settings and Firefox updater compatibility, and passed 18 regression checks. Repository bytes are verified; the version installed in the browser remains locally observable only after userscript reload.",
       "trends": [
-        "the 6 October Beauty Trend Report remains Pinterest’s newest official trend report and is already represented by /beauty-trend-system",
-        "Visual Search Ads remain an active product-discovery signal already represented by /visual-search-ready and product-ad controls",
-        "Q5 self-purchase, planning, utility, asset-reuse and creative-variety guidance remains covered by /performance-creative-mix and /trend-to-brand",
-        "holiday optimization guidance still favors multiple formats, at least five distinct creatives, clear products, lifestyle context and legible offers",
-        "indexed Pinterest inspiration continues to surface retro-pop, packaging, typography, jewellery photography and cinematic photography boards, but no newly accessible or current cluster",
-        "no credible new storyboard, UGC, image-editing, cinematography or creative-direction production method emerged from today’s Pinterest sources"
+        "the intention economy shifts creative success from time captured to meaningful customer progress",
+        "Scroll Mode versus Action Mode distinguishes passive consumption from purposeful solving, planning and creating",
+        "creative should bridge discovery, confidence, decision and an executable real-world or commercial next step",
+        "progress-oriented measures such as qualified saves, outbound actions, cart or lead starts and completed next steps are more useful than dwell time alone",
+        "analog aesthetic, dumb phones, nature film photography and phone-free activity searches support real-world utility but are not separate command systems",
+        "Q5 utility, holiday creative variety, Beauty specificity and visual-search readiness remain active and already represented in the catalogue"
       ],
-      "commands_added": [],
+      "commands_added": [
+        "/intent-to-action — Turn attention-led creative into an intent-led customer-progress path from discovery to decision and a useful real-world next step."
+      ],
       "commands_updated": [],
       "skipped": [
-        "No Beauty, Visual Search, Q5 or holiday additions because the durable behaviors are already implemented by existing commands",
-        "No retro-pop update because /retro-pop-branding already captures the reusable mascot, illustration, packaging, print-texture and social system",
-        "No jewellery-photography or cinematic-photography alias because these broad inspiration-board labels are already covered by product, jewellery, camera, lighting and art-direction commands",
-        "No command was derived from Pinterest pages that returned HTTP 403 or from search snippets lacking current board detail",
-        "No script version bump because a status-only monitor update is sufficient"
+        "No separate /intention-economy or /design-for-exit alias because /intent-to-action captures the durable operating behavior without naming churn",
+        "No analog-aesthetic, dumb-phone, phone-free-event or nature-film-photography commands because these are topical expressions rather than reusable production systems; /analog-keepsake and existing photography controls already cover relevant styling",
+        "No changes to /performance-creative-mix because it remains focused on variant breadth and testing, while /intent-to-action has the distinct job of mapping creative to customer progress",
+        "No command was derived from public Pinterest boards that returned HTTP 403"
       ],
       "sources": [
         {
           "title": "Pinterest Newsroom — latest news",
           "url": "https://newsroom.pinterest.com/",
+          "status": "accessed"
+        },
+        {
+          "title": "Pinterest Newsroom — Why intention matters more than attention",
+          "url": "https://newsroom.pinterest.com/news/why-intention-matters-more-than-attention/",
           "status": "accessed"
         },
         {
@@ -65,74 +71,65 @@
           "title": "Pinterest public board — Advance 2026 Design Trends (Philippines)",
           "url": "https://ph.pinterest.com/samuelleon8822/advance-2026-design-trends/",
           "status": "inaccessible (HTTP 403)"
-        },
-        {
-          "title": "Pinterest public board — Saturdays Creative Direction 2026",
-          "url": "https://id.pinterest.com/tbayusukma/saturdays-creative-direction-2026/",
-          "status": "indexed in search; direct access returned HTTP 403"
-        },
-        {
-          "title": "Pinterest public board — Creative Direction",
-          "url": "https://mx.pinterest.com/sofiabasof/creative-direction/",
-          "status": "indexed in search; direct access returned HTTP 403"
-        },
-        {
-          "title": "Pinterest public board — Photography / Creative Direction",
-          "url": "https://nz.pinterest.com/mhavika/photography-creative-direction/",
-          "status": "indexed in search; direct access returned HTTP 403"
         }
       ]
     },
     "build": {
-      "state": "skipped",
-      "started_at": null,
-      "completed_at": null,
-      "detail": "No materially useful, non-duplicate command or runtime change was identified. Production v2.21.0 was retained unchanged.",
-      "scope": "v2.21.0 retained; 717 commands; 42 categories; 40 executable bundle mappings"
+      "state": "passed",
+      "started_at": "2026-10-14T02:49:35.000Z",
+      "completed_at": "2026-10-14T02:50:10.000Z",
+      "detail": "Added one non-duplicate command, bumped @version and System Monitor BUILD_VERSION to 2.22.0, and regenerated metadata exactly from the userscript header.",
+      "scope": "v2.21.0 → v2.22.0; 717 → 718 commands; 42 categories; 40 executable bundle mappings"
     },
     "test": {
       "state": "passed",
-      "started_at": "2026-10-13T02:47:15.000Z",
-      "completed_at": "2026-10-13T02:47:26.317Z",
-      "detail": "All 18 current-release regression checks passed: syntax; version sync; exact base and prior-trend preservation; command count, addition, removal and duplicate checks; /retro-pop-branding integrity; categories; bundles and references; metadata parity; monitor/runtime anchors; updater controls; settings/history compatibility; runtime closure.",
-      "scope": "18/18 checks; v2.21.0; 717 commands; SHA-256 7853f640c08df6ca3a9e0fd6ebefec58863b17a561e39a172eaa64c13fdb328f"
+      "started_at": "2026-10-14T02:50:10.000Z",
+      "completed_at": "2026-10-14T02:50:42.441Z",
+      "detail": "All 18 regression checks passed: syntax; version sync; exact base and prior-trend preservation; command count, addition, removal and duplicate checks; new-command integrity; categories; bundles and references; metadata parity; monitor/runtime anchors; updater controls; settings/history compatibility; runtime closure.",
+      "scope": "18/18 checks; all 717 prior commands preserved; SHA-256 941309b2abec93509dd77e4631fe92851a1f90956fd58100e76608280290c76e"
     },
     "deploy": {
       "state": "verified",
-      "started_at": "2026-10-13T02:47:30.000Z",
-      "completed_at": "2026-10-13T02:48:43.303Z",
-      "detail": "No userscript or metadata deployment was needed. The completed scan record was published to main with a blob-SHA conflict guard and refetched for exact verification. The unchanged v2.21.0 userscript and metadata were read from main before the decision. Browser installation is not claimed.",
-      "scope": "command-center-status.json status-only publication; release remains v2.21.0"
+      "started_at": "2026-10-14T02:50:50.000Z",
+      "completed_at": "2026-10-14T02:52:16.047Z",
+      "detail": "v2.22.0 metadata and userscript were published to main with blob-SHA conflict guards, then refetched from main and verified byte-for-byte with matching version and SHA-256. This completed monitor record is published separately with its own conflict guard; browser installation is not claimed.",
+      "scope": "metadata commit 2a83c111cb3dba7791f53d07e61210d05f837ca3; userscript commit 687194a354fa1d9b9a8905470fcd7778ad6123b3"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-10-13T02:45:45.000Z",
-    "completed_at": "2026-10-13T02:47:10.000Z",
-    "pinterest_status": "Pinterest's official Newsroom, Business guidance, public-board URLs and indexed Pinterest inspiration were checked on 13 October 2026. The newest official trend report remains the 6 October Beauty Trend Report. Previously reviewed Q5, holiday optimization and visual-search signals are unchanged. Direct public-board access returned HTTP 403 today; Pinterest's search index exposed only older 2026 design and creative-direction boards, with no sufficiently current or distinct command-level signal.",
-    "chatgpt_status": "Production v2.21.0 with 717 commands was read before the decision. No script or metadata change was materially justified. All 717 commands, 42 categories, 40 executable bundle mappings, personal creative intelligence, settings and Firefox updater controls remain unchanged. The live release passed 18 regression checks; browser installation remains locally observable only after userscript reload.",
+    "started_at": "2026-10-14T02:48:04.000Z",
+    "completed_at": "2026-10-14T02:49:35.000Z",
+    "pinterest_status": "Pinterest's official Newsroom published 'Why intention matters more than attention' on 13 October 2026. It introduces a distinct creative-direction signal: design for customer progress from active discovery to decision and useful real-world action, rather than optimizing only for captured attention or dwell time. Existing Q5, holiday, Beauty and visual-search guidance was also checked. Direct public-board pages returned HTTP 403 today, so no command was derived from inaccessible board content.",
+    "chatgpt_status": "Production v2.21.0 with 717 commands was read before modification. v2.22.0 adds exactly /intent-to-action, preserves all 717 prior commands, 42 categories, 40 executable bundle mappings, personal creative intelligence, settings and Firefox updater compatibility, and passed 18 regression checks. Repository bytes are verified; the version installed in the browser remains locally observable only after userscript reload.",
     "trends": [
-      "the 6 October Beauty Trend Report remains Pinterest’s newest official trend report and is already represented by /beauty-trend-system",
-      "Visual Search Ads remain an active product-discovery signal already represented by /visual-search-ready and product-ad controls",
-      "Q5 self-purchase, planning, utility, asset-reuse and creative-variety guidance remains covered by /performance-creative-mix and /trend-to-brand",
-      "holiday optimization guidance still favors multiple formats, at least five distinct creatives, clear products, lifestyle context and legible offers",
-      "indexed Pinterest inspiration continues to surface retro-pop, packaging, typography, jewellery photography and cinematic photography boards, but no newly accessible or current cluster",
-      "no credible new storyboard, UGC, image-editing, cinematography or creative-direction production method emerged from today’s Pinterest sources"
+      "the intention economy shifts creative success from time captured to meaningful customer progress",
+      "Scroll Mode versus Action Mode distinguishes passive consumption from purposeful solving, planning and creating",
+      "creative should bridge discovery, confidence, decision and an executable real-world or commercial next step",
+      "progress-oriented measures such as qualified saves, outbound actions, cart or lead starts and completed next steps are more useful than dwell time alone",
+      "analog aesthetic, dumb phones, nature film photography and phone-free activity searches support real-world utility but are not separate command systems",
+      "Q5 utility, holiday creative variety, Beauty specificity and visual-search readiness remain active and already represented in the catalogue"
     ],
-    "commands_added": [],
+    "commands_added": [
+      "/intent-to-action — Turn attention-led creative into an intent-led customer-progress path from discovery to decision and a useful real-world next step."
+    ],
     "commands_updated": [],
     "skipped": [
-      "No Beauty, Visual Search, Q5 or holiday additions because the durable behaviors are already implemented by existing commands",
-      "No retro-pop update because /retro-pop-branding already captures the reusable mascot, illustration, packaging, print-texture and social system",
-      "No jewellery-photography or cinematic-photography alias because these broad inspiration-board labels are already covered by product, jewellery, camera, lighting and art-direction commands",
-      "No command was derived from Pinterest pages that returned HTTP 403 or from search snippets lacking current board detail",
-      "No script version bump because a status-only monitor update is sufficient"
+      "No separate /intention-economy or /design-for-exit alias because /intent-to-action captures the durable operating behavior without naming churn",
+      "No analog-aesthetic, dumb-phone, phone-free-event or nature-film-photography commands because these are topical expressions rather than reusable production systems; /analog-keepsake and existing photography controls already cover relevant styling",
+      "No changes to /performance-creative-mix because it remains focused on variant breadth and testing, while /intent-to-action has the distinct job of mapping creative to customer progress",
+      "No command was derived from public Pinterest boards that returned HTTP 403"
     ],
     "sources": [
       {
         "title": "Pinterest Newsroom — latest news",
         "url": "https://newsroom.pinterest.com/",
+        "status": "accessed"
+      },
+      {
+        "title": "Pinterest Newsroom — Why intention matters more than attention",
+        "url": "https://newsroom.pinterest.com/news/why-intention-matters-more-than-attention/",
         "status": "accessed"
       },
       {
@@ -159,26 +156,18 @@
         "title": "Pinterest public board — Advance 2026 Design Trends (Philippines)",
         "url": "https://ph.pinterest.com/samuelleon8822/advance-2026-design-trends/",
         "status": "inaccessible (HTTP 403)"
-      },
-      {
-        "title": "Pinterest public board — Saturdays Creative Direction 2026",
-        "url": "https://id.pinterest.com/tbayusukma/saturdays-creative-direction-2026/",
-        "status": "indexed in search; direct access returned HTTP 403"
-      },
-      {
-        "title": "Pinterest public board — Creative Direction",
-        "url": "https://mx.pinterest.com/sofiabasof/creative-direction/",
-        "status": "indexed in search; direct access returned HTTP 403"
-      },
-      {
-        "title": "Pinterest public board — Photography / Creative Direction",
-        "url": "https://nz.pinterest.com/mhavika/photography-creative-direction/",
-        "status": "indexed in search; direct access returned HTTP 403"
       }
     ]
   },
-  "action_required": "No repository action is required. If the browser is not yet running v2.21.0, use System Monitor → Check Latest Version → Install / Update, reload ChatGPT and confirm locally.",
+  "action_required": "Use System Monitor → Check Latest Version → Install / Update, reload ChatGPT and confirm v2.22.0 locally. Repository publication is verified; only the local userscript can confirm the browser is running the release.",
   "history": [
+    {
+      "updated_at": "2026-10-14T02:52:16.047Z",
+      "version": "2.22.0",
+      "summary": "14 October scan added /intent-to-action from Pinterest’s new intention-economy guidance; 718 commands passed 18 regression checks and repository publication was verified.",
+      "test_state": "passed",
+      "deploy_state": "verified"
+    },
     {
       "updated_at": "2026-10-13T02:48:43.303Z",
       "version": "2.21.0",
