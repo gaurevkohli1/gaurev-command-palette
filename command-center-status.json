@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-16T02:53:17.274Z",
+  "updated_at": "2026-10-16T02:54:05.108Z",
   "release": {
     "version": "2.22.0",
     "built_at": "2026-10-14T02:51:11.000Z",
@@ -108,10 +108,10 @@
       "scope": "18/18 checks; all 718 production commands preserved; SHA-256 941309b2abec93509dd77e4631fe92851a1f90956fd58100e76608280290c76e"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-10-16T02:52:30.000Z",
-      "completed_at": null,
-      "detail": "Publishing today’s completed no-change monitor record to main; production userscript and metadata remain unchanged.",
+      "completed_at": "2026-10-16T02:54:05.108Z",
+      "detail": "The completed no-change monitor record was published to main with a blob-SHA conflict guard, and the production userscript, metadata and status were refetched and verified. Drive status and regression-report replacements were also verified. Browser installation is not claimed.",
       "scope": "Status-only publication for v2.22.0; no userscript or metadata write"
     }
   },
@@ -200,11 +200,11 @@
   "action_required": "No repository action is required. The browser-installed version remains locally observable only; use System Monitor to confirm v2.22.0 after reload if needed.",
   "history": [
     {
-      "updated_at": "2026-10-16T02:53:17.274Z",
+      "updated_at": "2026-10-16T02:54:05.108Z",
       "version": "2.22.0",
       "summary": "16 October scan found no material non-duplicate command delta; v2.22.0 remained at 718 commands and passed 18 regression checks.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-15T02:58:41.161Z",
