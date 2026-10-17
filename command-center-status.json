@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-17T02:45:59.239Z",
+  "updated_at": "2026-10-17T02:46:47.231Z",
   "release": {
     "version": "2.23.0",
     "built_at": "2026-10-17T02:45:00.000Z",
@@ -79,10 +79,10 @@
       "scope": "18/18 checks; all 718 production commands preserved; SHA-256 dcff93f8af8bf9b2b73a2398afae9b7eac8a0b8c6aa8045ab1c5a3b3f8f37772"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-10-17T02:45:00.000Z",
-      "completed_at": null,
-      "detail": "The v2.23.0 userscript and matching metadata were published to main with blob-SHA conflict guards and refetched byte-for-byte. Publishing the completed monitor record and Drive mirrors.",
+      "completed_at": "2026-10-17T02:46:47.231Z",
+      "detail": "The v2.23.0 userscript, matching metadata and completed monitor record were published to main with blob-SHA conflict guards. Public repository bytes, version markers and SHA-256 were refetched and verified; Drive status and regression-report replacements were also verified. Browser installation is not claimed.",
       "scope": "v2.23.0 release; /trend-to-brand updated in place; 718 commands retained"
     }
   },
@@ -139,14 +139,14 @@
       }
     ]
   },
-  "action_required": "Publication verification is still in progress. Do not treat the browser as updated until the final verified record is visible and v2.23.0 is installed locally.",
+  "action_required": "Repository and Drive publication are complete. In the browser, open System Monitor, choose Check Latest Version, install or update to v2.23.0, reload ChatGPT and confirm the locally installed version; only the local userscript can observe that final browser state.",
   "history": [
     {
-      "updated_at": "2026-10-17T02:45:59.239Z",
+      "updated_at": "2026-10-17T02:46:47.231Z",
       "version": "2.23.0",
       "summary": "17 October scan expanded /trend-to-brand with Pinterest’s full brand-fit, cross-category and shoppable activation workflow; 718 commands passed 18 regression checks.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-16T02:54:05.108Z",
