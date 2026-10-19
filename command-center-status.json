@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-19T03:24:49.280Z",
+  "updated_at": "2026-10-19T03:25:32.937Z",
   "release": {
     "version": "2.24.0",
     "built_at": "2026-10-19T03:24:00.000Z",
@@ -80,10 +80,10 @@
       "scope": "18/18 checks; all 718 prior commands preserved; SHA-256 7e8af8acf3d5eb092acac45d0f731b58f741def8ba84dbaa7dbf720cdd0ae02d"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-10-19T03:24:00.000Z",
-      "completed_at": null,
-      "detail": "The v2.24.0 userscript and matching metadata were published to main with blob-SHA conflict guards and refetched byte-for-byte. Publishing the completed monitor record and Drive mirrors.",
+      "completed_at": "2026-10-19T03:25:32.937Z",
+      "detail": "The v2.24.0 userscript, matching metadata and completed monitor record were published to main with blob-SHA conflict guards. Repository bytes, version markers and SHA-256 were refetched and verified; Drive status and regression-report replacements also matched exactly. Browser installation is not claimed.",
       "scope": "v2.24.0 release; /catalog-creative-system added; 719 commands total"
     }
   },
@@ -141,14 +141,14 @@
       }
     ]
   },
-  "action_required": "Publication verification is still in progress. Do not treat the browser as updated until the final verified record is visible and v2.24.0 is installed locally.",
+  "action_required": "Repository and Drive publication are complete. In the browser, open System Monitor, choose Check Latest Version, install or update to v2.24.0, reload ChatGPT and confirm the locally installed version; only the local userscript can observe that final browser state.",
   "history": [
     {
-      "updated_at": "2026-10-19T03:24:49.280Z",
+      "updated_at": "2026-10-19T03:25:32.937Z",
       "version": "2.24.0",
       "summary": "19 October scan added /catalog-creative-system for feed-accurate, shoppable creative at catalogue scale; all 718 prior commands were preserved and 18 regression checks passed.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-18T03:22:57.026Z",
