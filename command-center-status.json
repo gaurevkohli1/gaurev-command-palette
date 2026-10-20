@@ -1,41 +1,41 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-19T03:25:32.937Z",
+  "updated_at": "2026-10-20T02:54:00.000Z",
   "release": {
-    "version": "2.24.0",
-    "built_at": "2026-10-19T03:24:00.000Z",
-    "command_count": 719,
+    "version": "2.25.0",
+    "built_at": "2026-10-20T02:51:20.000Z",
+    "command_count": 720,
     "category_count": 42,
     "bundle_count": 40,
-    "sha256": "7e8af8acf3d5eb092acac45d0f731b58f741def8ba84dbaa7dbf720cdd0ae02d"
+    "sha256": "d4a559124b8506fd8681d33db574a9bc9976994f26cbb83a091f843a9bfce2e7"
   },
   "pipeline": {
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-10-19T03:21:20.000Z",
-      "completed_at": "2026-10-19T03:22:55.000Z",
-      "pinterest_status": "Pinterest's official Business blog, shopping-success guide, shopping-performance checklist and Predicts material were checked on 19 October 2026. Together they expose a durable catalogue-scale creative workflow: verified feed data, meaningful product grouping, product-first plus lifestyle and creator/UGC diversity, shoppable boards or collages, mobile and post-click consistency, reliable tracking and controlled testing. A public Pinterest graphic-design trends board returned HTTP 403, so no visual inference was made from inaccessible content.",
-      "chatgpt_status": "Production v2.23.0 with 718 commands was read before evaluation. /visual-search-ready, /performance-creative-mix and /intent-to-action cover individual assets, testing and the customer journey, but no command joined feed truth, SKU grouping, scalable creative variants, product tagging, post-click parity and measurement into one reusable system. /catalog-creative-system was therefore added as one focused command. All 718 prior commands, 42 categories, 40 executable bundle mappings, settings, personal creative intelligence and Firefox updater controls were preserved; 18 regression checks passed.",
+      "started_at": "2026-10-20T02:47:10.000Z",
+      "completed_at": "2026-10-20T02:50:45.000Z",
+      "pinterest_status": "Pinterest's official Business blog, Gen Z taste report, Design the Exit guidance, Performance+ creative-learning guidance and current public design-inspiration result pages were checked on 20 October 2026. The durable new creative signal is user-led, visual-first taste discovery: niche identity territories, explicit personal agency, safe experimentation and human curation alongside AI. Design-to-action and performance learning remain relevant but are already covered. Four public Pinterest ideas pages exposed search metadata but returned HTTP 403 when opened, so no visual conclusions were drawn from inaccessible content.",
+      "chatgpt_status": "Production v2.24.0 with 719 commands was read before evaluation. /moodboard curates one chosen direction and /trend-to-brand adapts a known trend, but neither turns mixed references, moods, values and dislikes into comparable taste territories with explicit human choice points. /taste-discovery-system was added as one reusable, cross-category command. All 719 prior commands, 42 categories, 40 executable bundle mappings, settings, personal creative intelligence and Firefox updater controls were preserved; 22 regression checks passed.",
       "trends": [
-        "Product-feed accuracy and diagnostics are creative foundations because titles, descriptions, images, prices, availability and product IDs determine discovery and delivery",
-        "Catalogue-scale systems benefit from meaningful assortments with sufficient SKU depth rather than many tiny arbitrary groups",
-        "Shopping creative should deliberately span product-first, lifestyle, creator/UGC, demonstration, curated-board and collage roles while preserving exact product truth",
-        "Shoppable creative requires consistent price, image, promotion and product identity from ad through product page, cart and checkout",
-        "Always-on catalogue learning, seasonal creative rotation and controlled A/B hypotheses are more useful than repeatedly rebuilding campaigns",
-        "Public design-trend snippets repeated human imperfection, retro-futurism, maximalism, distortion and tactility already covered by the existing visual catalogue"
+        "Niche visual identities are being built from moods and values rather than broad mass-market aesthetics",
+        "Visual comparison helps people explore a vibe, narrow options and make more confident creative or purchase decisions",
+        "AI is most useful when it sharpens options while leaving interpretation, curation and final taste decisions with the person",
+        "Taste exploration benefits from safe, non-performative space to try, reject and remix directions without being pushed toward popularity",
+        "Current public inspiration snippets repeat bold or maximal typography, glass, pixel, modular-grid, 3D and disruptive-design motifs already covered by the catalogue",
+        "Launch-test-scale learning loops and strong creative inputs remain important but are already handled by /performance-creative-mix, /catalog-creative-system and /intent-to-action"
       ],
       "commands_added": [
-        "/catalog-creative-system — converts a verified product feed into catalogue-scale product-first, lifestyle, UGC, demonstration, board and collage creative with SKU truth, grouping, preflight checks, post-click parity and a controlled test plan"
+        "/taste-discovery-system — converts references, moods, values and dislikes into three distinct visual taste territories, like-for-like comparisons, a human preference map and coordinated cross-category applications"
       ],
       "commands_updated": [],
       "skipped": [
-        "No separate product-feed-audit command because feed truth and diagnostics are embedded as the first stage of /catalog-creative-system",
-        "No separate shopping-collage, creator-catalog or product-group command because those are coordinated asset and assortment roles inside the new system",
-        "No always-on-shopping or conversion-tracking alias because campaign-duration and tracking checks are safeguards in the new command rather than visual creative commands on their own",
-        "No naive-design, future-medieval, distorted-portrait, maximalism, blur or retro-futurism aliases because existing human, retro, editorial, distortion, tactile and trend-to-brand controls already cover the reusable production behavior",
-        "No command was derived from the inaccessible public Pinterest board"
+        "No Gen-Z-taste, micro-identity or niche-aesthetic aliases because one durable taste-discovery workflow covers the reusable behavior without demographic stereotyping or trend churn",
+        "No separate AI-taste or Pinterest-Assistant command because human agency and visual comparison belong inside the discovery workflow rather than a tool-specific command",
+        "No Performance+ campaign-operations command because /performance-creative-mix, /catalog-creative-system and /intent-to-action already cover strong inputs, controlled tests, learning and action paths",
+        "No bold-type, glass-branding, pixel-grid, 3D-type or disruptive-design aliases because existing typography, layout, brand, distortion and trend-to-brand controls already cover those production behaviors",
+        "No visual command was derived from public Pinterest pages that returned HTTP 403"
       ],
       "sources": [
         {
@@ -44,74 +44,89 @@
           "status": "accessed"
         },
         {
-          "title": "Pinterest Business — Ready, set, shop: How to set up your business for shopping success",
-          "url": "https://business.pinterest.com/blog/how-to-set-up-shopping-ads-on-pinterest/",
+          "title": "Pinterest Business — How Gen Z is taking back their taste",
+          "url": "https://business.pinterest.com/blog/how-gen-z-is-taking-back-their-taste-from-ai/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Business — 5 best practices for better shopping performance",
-          "url": "https://business.pinterest.com/blog/pinterest-shopping-ads-guide/",
+          "title": "Pinterest Business — Why brands need to fuel a life, not fill a feed",
+          "url": "https://business.pinterest.com/blog/design-the-exit/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Business — Pinterest Predicts 2026",
-          "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
+          "title": "Pinterest Business — Make Pinterest Performance+ campaigns your new default",
+          "url": "https://business.pinterest.com/blog/pinterest-performance-plus-campaigns/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest public board — Graphic Design Trends 2026",
-          "url": "https://es.pinterest.com/zeka_design/graphic-design-trends-2026/",
+          "title": "Pinterest public ideas — Trend Graphics",
+          "url": "https://www.pinterest.com/ideas/trend-graphics/918907585713/",
+          "status": "search metadata accessed; page inaccessible (HTTP 403)"
+        },
+        {
+          "title": "Pinterest public ideas — Trendy Graphic Design Ideas",
+          "url": "https://www.pinterest.com/ideas/trendy-graphic-design-ideas/895032584085/",
+          "status": "search metadata accessed; page inaccessible (HTTP 403)"
+        },
+        {
+          "title": "Pinterest public ideas — Disruptive Graphic Design",
+          "url": "https://www.pinterest.com/ideas/disruptive-graphic-design/896685610331/",
+          "status": "search metadata accessed; page inaccessible (HTTP 403)"
+        },
+        {
+          "title": "Pinterest public ideas — Disruptive Design",
+          "url": "https://www.pinterest.com/ideas/disruptive-design/920518848158/",
           "status": "search metadata accessed; page inaccessible (HTTP 403)"
         }
       ]
     },
     "build": {
       "state": "passed",
-      "started_at": "2026-10-19T03:22:55.000Z",
-      "completed_at": "2026-10-19T03:23:25.000Z",
-      "detail": "Added only /catalog-creative-system, bumped @version and SYSTEM_MONITOR BUILD_VERSION to 2.24.0, and regenerated metadata from the userscript header. No existing command, bundle, setting or compatibility surface was changed or removed.",
-      "scope": "v2.24.0; 719 commands; 42 categories; 40 executable bundle mappings; one command added"
+      "started_at": "2026-10-20T02:50:45.000Z",
+      "completed_at": "2026-10-20T02:51:20.000Z",
+      "detail": "Added only /taste-discovery-system, bumped @version and SYSTEM_MONITOR BUILD_VERSION to 2.25.0, and regenerated metadata from the userscript header. No existing command, bundle, setting or compatibility surface was changed or removed.",
+      "scope": "v2.25.0; 720 commands; 42 categories; 40 executable bundle mappings; one command added"
     },
     "test": {
       "state": "passed",
-      "started_at": "2026-10-19T03:23:25.000Z",
-      "completed_at": "2026-10-19T03:23:41.959Z",
-      "detail": "All 18 checks passed: syntax, synchronized versions, exact reconstruction of prior production bytes, base and existing trend preservation, exact counts, single-command addition, no removals or duplicates, feed-truth safeguards, creative breadth, commerce integrity, category and bundle stability, bundle references, metadata parity, monitor/updater/settings anchors and runtime closure.",
-      "scope": "18/18 checks; all 718 prior commands preserved; SHA-256 7e8af8acf3d5eb092acac45d0f731b58f741def8ba84dbaa7dbf720cdd0ae02d"
+      "started_at": "2026-10-20T02:51:20.000Z",
+      "completed_at": "2026-10-20T02:53:21.399Z",
+      "detail": "All 22 checks passed: syntax, synchronized versions, metadata parity, exact prior-byte reconstruction, base and trend preservation, exact counts, single-command addition, no removals or duplicates, three-territory logic, human-agency and visual-comparison safeguards, cross-category output, IP/sensitivity safety, category and bundle stability, monitor/updater/settings anchors and runtime insertion.",
+      "scope": "22/22 checks; all 719 prior commands preserved; SHA-256 d4a559124b8506fd8681d33db574a9bc9976994f26cbb83a091f843a9bfce2e7"
     },
     "deploy": {
-      "state": "verified",
-      "started_at": "2026-10-19T03:24:00.000Z",
-      "completed_at": "2026-10-19T03:25:32.937Z",
-      "detail": "The v2.24.0 userscript, matching metadata and completed monitor record were published to main with blob-SHA conflict guards. Repository bytes, version markers and SHA-256 were refetched and verified; Drive status and regression-report replacements also matched exactly. Browser installation is not claimed.",
-      "scope": "v2.24.0 release; /catalog-creative-system added; 719 commands total"
+      "state": "published",
+      "started_at": "2026-10-20T02:54:00.000Z",
+      "completed_at": null,
+      "detail": "Publishing the v2.25.0 userscript, matching metadata and this monitor record to main with a branch-head conflict guard. Repository and Drive readback verification remain pending; browser installation is not claimed.",
+      "scope": "v2.25.0 release; /taste-discovery-system added; 720 commands total"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-10-19T03:21:20.000Z",
-    "completed_at": "2026-10-19T03:22:55.000Z",
-    "pinterest_status": "Pinterest's official Business blog, shopping-success guide, shopping-performance checklist and Predicts material were checked on 19 October 2026. Together they expose a durable catalogue-scale creative workflow: verified feed data, meaningful product grouping, product-first plus lifestyle and creator/UGC diversity, shoppable boards or collages, mobile and post-click consistency, reliable tracking and controlled testing. A public Pinterest graphic-design trends board returned HTTP 403, so no visual inference was made from inaccessible content.",
-    "chatgpt_status": "Production v2.23.0 with 718 commands was read before evaluation. /visual-search-ready, /performance-creative-mix and /intent-to-action cover individual assets, testing and the customer journey, but no command joined feed truth, SKU grouping, scalable creative variants, product tagging, post-click parity and measurement into one reusable system. /catalog-creative-system was therefore added as one focused command. All 718 prior commands, 42 categories, 40 executable bundle mappings, settings, personal creative intelligence and Firefox updater controls were preserved; 18 regression checks passed.",
+    "started_at": "2026-10-20T02:47:10.000Z",
+    "completed_at": "2026-10-20T02:50:45.000Z",
+    "pinterest_status": "Pinterest's official Business blog, Gen Z taste report, Design the Exit guidance, Performance+ creative-learning guidance and current public design-inspiration result pages were checked on 20 October 2026. The durable new creative signal is user-led, visual-first taste discovery: niche identity territories, explicit personal agency, safe experimentation and human curation alongside AI. Design-to-action and performance learning remain relevant but are already covered. Four public Pinterest ideas pages exposed search metadata but returned HTTP 403 when opened, so no visual conclusions were drawn from inaccessible content.",
+    "chatgpt_status": "Production v2.24.0 with 719 commands was read before evaluation. /moodboard curates one chosen direction and /trend-to-brand adapts a known trend, but neither turns mixed references, moods, values and dislikes into comparable taste territories with explicit human choice points. /taste-discovery-system was added as one reusable, cross-category command. All 719 prior commands, 42 categories, 40 executable bundle mappings, settings, personal creative intelligence and Firefox updater controls were preserved; 22 regression checks passed.",
     "trends": [
-      "Product-feed accuracy and diagnostics are creative foundations because titles, descriptions, images, prices, availability and product IDs determine discovery and delivery",
-      "Catalogue-scale systems benefit from meaningful assortments with sufficient SKU depth rather than many tiny arbitrary groups",
-      "Shopping creative should deliberately span product-first, lifestyle, creator/UGC, demonstration, curated-board and collage roles while preserving exact product truth",
-      "Shoppable creative requires consistent price, image, promotion and product identity from ad through product page, cart and checkout",
-      "Always-on catalogue learning, seasonal creative rotation and controlled A/B hypotheses are more useful than repeatedly rebuilding campaigns",
-      "Public design-trend snippets repeated human imperfection, retro-futurism, maximalism, distortion and tactility already covered by the existing visual catalogue"
+      "Niche visual identities are being built from moods and values rather than broad mass-market aesthetics",
+      "Visual comparison helps people explore a vibe, narrow options and make more confident creative or purchase decisions",
+      "AI is most useful when it sharpens options while leaving interpretation, curation and final taste decisions with the person",
+      "Taste exploration benefits from safe, non-performative space to try, reject and remix directions without being pushed toward popularity",
+      "Current public inspiration snippets repeat bold or maximal typography, glass, pixel, modular-grid, 3D and disruptive-design motifs already covered by the catalogue",
+      "Launch-test-scale learning loops and strong creative inputs remain important but are already handled by /performance-creative-mix, /catalog-creative-system and /intent-to-action"
     ],
     "commands_added": [
-      "/catalog-creative-system — converts a verified product feed into catalogue-scale product-first, lifestyle, UGC, demonstration, board and collage creative with SKU truth, grouping, preflight checks, post-click parity and a controlled test plan"
+      "/taste-discovery-system — converts references, moods, values and dislikes into three distinct visual taste territories, like-for-like comparisons, a human preference map and coordinated cross-category applications"
     ],
     "commands_updated": [],
     "skipped": [
-      "No separate product-feed-audit command because feed truth and diagnostics are embedded as the first stage of /catalog-creative-system",
-      "No separate shopping-collage, creator-catalog or product-group command because those are coordinated asset and assortment roles inside the new system",
-      "No always-on-shopping or conversion-tracking alias because campaign-duration and tracking checks are safeguards in the new command rather than visual creative commands on their own",
-      "No naive-design, future-medieval, distorted-portrait, maximalism, blur or retro-futurism aliases because existing human, retro, editorial, distortion, tactile and trend-to-brand controls already cover the reusable production behavior",
-      "No command was derived from the inaccessible public Pinterest board"
+      "No Gen-Z-taste, micro-identity or niche-aesthetic aliases because one durable taste-discovery workflow covers the reusable behavior without demographic stereotyping or trend churn",
+      "No separate AI-taste or Pinterest-Assistant command because human agency and visual comparison belong inside the discovery workflow rather than a tool-specific command",
+      "No Performance+ campaign-operations command because /performance-creative-mix, /catalog-creative-system and /intent-to-action already cover strong inputs, controlled tests, learning and action paths",
+      "No bold-type, glass-branding, pixel-grid, 3D-type or disruptive-design aliases because existing typography, layout, brand, distortion and trend-to-brand controls already cover those production behaviors",
+      "No visual command was derived from public Pinterest pages that returned HTTP 403"
     ],
     "sources": [
       {
@@ -120,29 +135,51 @@
         "status": "accessed"
       },
       {
-        "title": "Pinterest Business — Ready, set, shop: How to set up your business for shopping success",
-        "url": "https://business.pinterest.com/blog/how-to-set-up-shopping-ads-on-pinterest/",
+        "title": "Pinterest Business — How Gen Z is taking back their taste",
+        "url": "https://business.pinterest.com/blog/how-gen-z-is-taking-back-their-taste-from-ai/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Business — 5 best practices for better shopping performance",
-        "url": "https://business.pinterest.com/blog/pinterest-shopping-ads-guide/",
+        "title": "Pinterest Business — Why brands need to fuel a life, not fill a feed",
+        "url": "https://business.pinterest.com/blog/design-the-exit/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Business — Pinterest Predicts 2026",
-        "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
+        "title": "Pinterest Business — Make Pinterest Performance+ campaigns your new default",
+        "url": "https://business.pinterest.com/blog/pinterest-performance-plus-campaigns/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest public board — Graphic Design Trends 2026",
-        "url": "https://es.pinterest.com/zeka_design/graphic-design-trends-2026/",
+        "title": "Pinterest public ideas — Trend Graphics",
+        "url": "https://www.pinterest.com/ideas/trend-graphics/918907585713/",
+        "status": "search metadata accessed; page inaccessible (HTTP 403)"
+      },
+      {
+        "title": "Pinterest public ideas — Trendy Graphic Design Ideas",
+        "url": "https://www.pinterest.com/ideas/trendy-graphic-design-ideas/895032584085/",
+        "status": "search metadata accessed; page inaccessible (HTTP 403)"
+      },
+      {
+        "title": "Pinterest public ideas — Disruptive Graphic Design",
+        "url": "https://www.pinterest.com/ideas/disruptive-graphic-design/896685610331/",
+        "status": "search metadata accessed; page inaccessible (HTTP 403)"
+      },
+      {
+        "title": "Pinterest public ideas — Disruptive Design",
+        "url": "https://www.pinterest.com/ideas/disruptive-design/920518848158/",
         "status": "search metadata accessed; page inaccessible (HTTP 403)"
       }
     ]
   },
-  "action_required": "Repository and Drive publication are complete. In the browser, open System Monitor, choose Check Latest Version, install or update to v2.24.0, reload ChatGPT and confirm the locally installed version; only the local userscript can observe that final browser state.",
+  "action_required": "Repository publication is in progress. Final repository and Drive readback verification is pending; browser installation can only be confirmed locally after reload.",
   "history": [
+    {
+      "updated_at": "2026-10-20T02:54:00.000Z",
+      "version": "2.25.0",
+      "summary": "20 October scan added /taste-discovery-system for human-led visual identity exploration; all 719 prior commands were preserved and 22 regression checks passed.",
+      "test_state": "passed",
+      "deploy_state": "published"
+    },
     {
       "updated_at": "2026-10-19T03:25:32.937Z",
       "version": "2.24.0",
