@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-22T03:01:30.000Z",
+  "updated_at": "2026-10-22T03:01:49.365Z",
   "release": {
     "version": "2.25.0",
     "built_at": "2026-10-20T02:51:20.000Z",
@@ -87,10 +87,10 @@
       "scope": "18/18 checks; v2.25.0 unchanged; 720 commands preserved; SHA-256 d4a559124b8506fd8681d33db574a9bc9976994f26cbb83a091f843a9bfce2e7"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-10-22T03:01:30.000Z",
-      "completed_at": null,
-      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, followed by repository and Drive readback verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "completed_at": "2026-10-22T03:01:49.365Z",
+      "detail": "The completed 22 October no-change monitor record was published to main with a blob-SHA conflict guard. The unchanged v2.25.0 userscript and metadata, GitHub status, Drive status and Drive regression report were refetched and matched exactly. Browser installation is not claimed.",
       "scope": "22 October 2026 monitor record; production remains v2.25.0"
     }
   },
@@ -155,14 +155,14 @@
       }
     ]
   },
-  "action_required": "No command update is required. Repository and Drive readback verification of the completed daily monitor record is still in progress.",
+  "action_required": "None. Production remains v2.25.0 with 720 commands; the repository and Drive monitor records are verified. Only the local userscript can report the version currently running in the browser.",
   "history": [
     {
-      "updated_at": "2026-10-22T03:01:30.000Z",
+      "updated_at": "2026-10-22T03:01:49.365Z",
       "version": "2.25.0",
       "summary": "22 October scan found no material non-duplicate command delta; v2.25.0 remained at 720 commands and passed 18 regression checks.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-21T02:55:30.000Z",
