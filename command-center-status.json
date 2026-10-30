@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-30T03:13:20.152Z",
+  "updated_at": "2026-10-30T03:17:39.892Z",
   "release": {
     "version": "2.27.0",
     "built_at": "2026-10-30T03:12:30.000Z",
@@ -100,11 +100,11 @@
       "scope": "22/22 checks; 722 commands; 42 categories; 40 bundles; SHA-256 d302e33e67932c00377ad086c3d9112ba74bcf99c3e2323472756013f9dde2a0"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-10-30T03:13:20.152Z",
-      "completed_at": null,
-      "detail": "Publishing userscript, metadata and monitor status to main with blob-SHA conflict guards, then updating Drive mirrors and refetching released bytes. Browser installation is not claimed.",
-      "scope": "v2.27.0 userscript, metadata, monitor status and Drive regression evidence"
+      "completed_at": "2026-10-30T03:17:39.892Z",
+      "detail": "The v2.27.0 userscript, matching metadata and completed monitor record were published to main with blob-SHA conflict guards. GitHub userscript, metadata and status plus Drive status and regression evidence were refetched and matched exactly. Browser installation is not claimed.",
+      "scope": "v2.27.0 release; 722 commands; 42 categories; 40 executable bundle mappings"
     }
   },
   "scan": {
@@ -181,14 +181,14 @@
       }
     ]
   },
-  "action_required": "No action is required while publication verification is in progress. Browser installation remains locally observable only.",
+  "action_required": "Install or update v2.27.0 through the userscript System Monitor, then reload ChatGPT. Only the local userscript can confirm the version currently running in the browser.",
   "history": [
     {
-      "updated_at": "2026-10-30T03:13:20.152Z",
+      "updated_at": "2026-10-30T03:17:39.892Z",
       "version": "2.27.0",
       "summary": "Added /spatial-restyle-system for architecture-locked, reference-led spatial editing; 722 commands and 22 regression checks passed.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-29T03:08:24.290Z",
