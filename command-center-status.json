@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-31T03:06:02.590Z",
+  "updated_at": "2026-10-31T03:07:17.435Z",
   "release": {
     "version": "2.27.0",
     "built_at": "2026-10-30T03:12:30.000Z",
@@ -99,10 +99,10 @@
       "scope": "22/22 checks; v2.27.0 unchanged; 722 commands preserved; SHA-256 d302e33e67932c00377ad086c3d9112ba74bcf99c3e2323472756013f9dde2a0"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-10-31T03:06:02.590Z",
-      "completed_at": null,
-      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, followed by public raw and Drive readback verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "completed_at": "2026-10-31T03:07:17.435Z",
+      "detail": "The completed 31 October no-change monitor record was published to main with a blob-SHA conflict guard. The unchanged v2.27.0 userscript and metadata, public commit-pinned files, GitHub status, Drive status and Drive regression report were refetched and matched exactly. Browser installation is not claimed.",
       "scope": "31 October 2026 monitor record; production remains v2.27.0"
     }
   },
@@ -179,14 +179,14 @@
       }
     ]
   },
-  "action_required": "No command update is required. Repository, public raw and Drive readback verification of the completed daily monitor record is still in progress.",
+  "action_required": "None. Production remains v2.27.0 with 722 commands; repository and Drive monitor records are verified. Only the local userscript can report the version currently running in the browser.",
   "history": [
     {
-      "updated_at": "2026-10-31T03:06:02.590Z",
+      "updated_at": "2026-10-31T03:07:17.435Z",
       "version": "2.27.0",
       "summary": "31 October scan found no material non-duplicate command delta; v2.27.0 remained at 722 commands and passed 22 regression checks.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-10-30T03:17:39.892Z",
