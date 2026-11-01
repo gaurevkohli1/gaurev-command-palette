@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-10-31T03:07:17.435Z",
+  "updated_at": "2026-11-01T03:04:23.174Z",
   "release": {
     "version": "2.27.0",
     "built_at": "2026-10-30T03:12:30.000Z",
@@ -14,26 +14,26 @@
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-10-31T02:58:00.000Z",
-      "completed_at": "2026-10-31T03:04:30.000Z",
-      "pinterest_status": "Pinterest's official Newsroom, Business, Creator Trends, Pinterest Trends, Hobbies report, Pinterest Predicts, 2026 Palette and relevant public Pinterest inspiration were checked on 31 October 2026. No newer official design or creator publication appeared after the 26 October Programmatic Deals announcement. Current signals continue to center on personal remixing, seasonal beauty and fashion, tactile/offline hobbies, zine and collage making, colour-led discovery, spatial Restyle and visual intent. Two public Pinterest Pins were tested directly; one returned HTTP 403 and the other was inaccessible, so no visual conclusion was derived from them.",
-      "chatgpt_status": "Production v2.27.0 with 722 commands was read before evaluation. /spatial-restyle-system now covers reference-led room and set edits; /taste-discovery-system and /trend-to-brand cover personal remixing; /beauty-trend-system covers precise seasonal beauty; /zine-editorial-system, /analog-keepsake and tactile controls cover offline craft and collage; /emotional-palette covers colour strategy; /visual-search-ready, /catalog-creative-system and /performance-creative-mix cover visual-intent advertising. No materially new command was warranted. The userscript and metadata remained byte-identical, and all 22 regression checks passed.",
+      "started_at": "2026-11-01T02:57:30.000Z",
+      "completed_at": "2026-11-01T03:03:30.000Z",
+      "pinterest_status": "Pinterest's official Newsroom, Business, Creator, Hobbies, Predicts, Palette, November content-calendar and Collages guidance plus relevant public Pinterest inspiration were checked on 1 November 2026. No newer official design or creator publication appeared after the 26 October Programmatic Deals announcement. Collages reinforce a source-led workflow of cutting out, curating and refining objects for room layouts, outfit flat lays, party planning and offline action, but this is already represented by the existing moodboard, layout, zine, spatial-restyle and content-lifecycle systems. Two public Pinterest Pins were tested directly; one returned HTTP 403 and the other was inaccessible, so no visual conclusion was derived from them.",
+      "chatgpt_status": "Production v2.27.0 with 722 commands was read before evaluation. /moodboard and /layout cover direction and hierarchy; /zine-editorial-system covers expressive collage rhythm; /spatial-restyle-system covers reference-led rooms; /content-lifecycle-system covers collage as a planned asset role; /taste-discovery-system covers like-for-like visual territories. A separate collage alias would duplicate these capabilities and reverse the existing anti-fragmentation decision without adding a distinct production workflow. No materially new command was warranted. The userscript and metadata remained byte-identical, and all 22 regression checks passed.",
       "trends": [
-        "Pinterest’s current official featured update remains Programmatic Deals, a buying and measurement development rather than a new visual-production grammar",
-        "Personal remixing remains the durable response to trend fatigue across fashion, beauty, interiors and campaign work",
-        "Creator trends remain Copper Hair, Suede Styling, Vamp Romantic and Glamoratti",
-        "Hobbies reporting continues to support zine revival, collage, journaling, tactile craft, curated collections and personalised technology",
-        "The 2026 Palette continues to emphasize emotionally useful colour, bold monochrome, seasonal accents and unexpected pairings",
-        "Restyle and visual search continue to connect reference-led exploration with comparison and action"
+        "Pinterest Collages continue to turn source images and Pins into cutout-based plans for rooms, outfits, parties and offline execution",
+        "The Hobbies report continues to support zine revival, digital collage, journaling, playful printables and personalised technology",
+        "November planning moments are Illuminate, Homemade, Gratitude and Harvest",
+        "Beauty remains specific and personally edited rather than copied literally",
+        "The 2026 Palette continues to emphasize emotionally useful colour and bold cross-category combinations",
+        "Personal remixing remains Pinterest’s durable answer to trend fatigue"
       ],
       "commands_added": [],
       "commands_updated": [],
       "skipped": [
+        "No separate collage command because /moodboard, /layout, /zine-editorial-system, /spatial-restyle-system, /taste-discovery-system and /content-lifecycle-system already cover its durable planning and production workflow",
+        "No Illuminate, Homemade, Gratitude or Harvest aliases because the content-calendar topics are seasonal prompts already handled by lifecycle, food, lifestyle, editorial and storyboard controls",
+        "No Copper Hair, Vamp Romantic, Glamoratti or Makeup Maximalism aliases because /beauty-trend-system and existing palette, material and trend-translation systems already cover them",
+        "No individual Palette-colour commands because /emotional-palette and /trend-to-brand already support colour-led activation without hue-specific churn",
         "No programmatic-creative command because /performance-creative-mix, /intent-to-action and /catalog-creative-system already cover the reusable creative and measurement layer",
-        "No Copper Hair, Suede Styling, Vamp Romantic or Glamoratti aliases because existing beauty, fashion, material, palette and trend-translation systems already cover them",
-        "No zine, collage, journaling or personalised-tech aliases because /zine-editorial-system, /analog-keepsake, /taste-discovery-system and existing layout/material controls cover their production needs",
-        "No individual Palette-colour commands because /emotional-palette and /trend-to-brand already support colour-led and seasonal activation without hue-specific churn",
-        "No additional Restyle or visual-search command because /spatial-restyle-system and /visual-search-ready already cover their durable workflows",
         "No visual conclusion was derived from the two public Pinterest Pin pages that were inaccessible during direct access checks"
       ],
       "sources": [
@@ -43,13 +43,8 @@
           "status": "accessed"
         },
         {
-          "title": "Pinterest Newsroom — Pinterest unlocks premium inventory for programmatic buyers",
-          "url": "https://newsroom.pinterest.com/en-gb/news/pinterest-programmatic-deals/",
-          "status": "accessed"
-        },
-        {
-          "title": "Pinterest Creators — Trends to try",
-          "url": "https://create.pinterest.com/creators/trends/",
+          "title": "Pinterest Create — Pinterest Collages: what they are and how to make them",
+          "url": "https://create.pinterest.com/product-features/how-to-create-collages/",
           "status": "accessed"
         },
         {
@@ -58,8 +53,8 @@
           "status": "accessed"
         },
         {
-          "title": "Pinterest Trends — Trends overview",
-          "url": "https://trends.pinterest.com/",
+          "title": "Pinterest Newsroom — Beauty Trend Report 2026",
+          "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
           "status": "accessed"
         },
         {
@@ -68,8 +63,13 @@
           "status": "accessed"
         },
         {
-          "title": "Pinterest Business — The 2026 Pinterest Palette",
-          "url": "https://business.pinterest.com/en-gb/pinterest-palette/",
+          "title": "Pinterest Newsroom — The 2026 Pinterest Palette",
+          "url": "https://newsroom.pinterest.com/news/from-cool-blue-to-persimmon-meet-the-2026-pinterest-palette/",
+          "status": "accessed"
+        },
+        {
+          "title": "Pinterest Create — 2026 Content Planning Calendar",
+          "url": "https://create.pinterest.com/en-us/resources/content-calendar-2026/",
           "status": "accessed"
         },
         {
@@ -93,42 +93,42 @@
     },
     "test": {
       "state": "passed",
-      "started_at": "2026-10-31T03:04:30.000Z",
-      "completed_at": "2026-10-31T03:06:02.590Z",
+      "started_at": "2026-11-01T03:03:30.000Z",
+      "completed_at": "2026-11-01T03:04:23.174Z",
       "detail": "All 22 checks passed: syntax, dual version sync, exact metadata parity, base-catalogue and prior trend-command preservation, exact counts, unique names, bundle/reference stability, spatial-restyle scope and safety, release SHA/schema/history, settings structures, recent command preservation and runtime/updater anchors.",
       "scope": "22/22 checks; v2.27.0 unchanged; 722 commands preserved; SHA-256 d302e33e67932c00377ad086c3d9112ba74bcf99c3e2323472756013f9dde2a0"
     },
     "deploy": {
-      "state": "verified",
-      "started_at": "2026-10-31T03:06:02.590Z",
-      "completed_at": "2026-10-31T03:07:17.435Z",
-      "detail": "The completed 31 October no-change monitor record was published to main with a blob-SHA conflict guard. The unchanged v2.27.0 userscript and metadata, public commit-pinned files, GitHub status, Drive status and Drive regression report were refetched and matched exactly. Browser installation is not claimed.",
-      "scope": "31 October 2026 monitor record; production remains v2.27.0"
+      "state": "published",
+      "started_at": "2026-11-01T03:04:23.174Z",
+      "completed_at": null,
+      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, followed by public raw and Drive readback verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "scope": "1 November 2026 monitor record; production remains v2.27.0"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-10-31T02:58:00.000Z",
-    "completed_at": "2026-10-31T03:04:30.000Z",
-    "pinterest_status": "Pinterest's official Newsroom, Business, Creator Trends, Pinterest Trends, Hobbies report, Pinterest Predicts, 2026 Palette and relevant public Pinterest inspiration were checked on 31 October 2026. No newer official design or creator publication appeared after the 26 October Programmatic Deals announcement. Current signals continue to center on personal remixing, seasonal beauty and fashion, tactile/offline hobbies, zine and collage making, colour-led discovery, spatial Restyle and visual intent. Two public Pinterest Pins were tested directly; one returned HTTP 403 and the other was inaccessible, so no visual conclusion was derived from them.",
-    "chatgpt_status": "Production v2.27.0 with 722 commands was read before evaluation. /spatial-restyle-system now covers reference-led room and set edits; /taste-discovery-system and /trend-to-brand cover personal remixing; /beauty-trend-system covers precise seasonal beauty; /zine-editorial-system, /analog-keepsake and tactile controls cover offline craft and collage; /emotional-palette covers colour strategy; /visual-search-ready, /catalog-creative-system and /performance-creative-mix cover visual-intent advertising. No materially new command was warranted. The userscript and metadata remained byte-identical, and all 22 regression checks passed.",
+    "started_at": "2026-11-01T02:57:30.000Z",
+    "completed_at": "2026-11-01T03:03:30.000Z",
+    "pinterest_status": "Pinterest's official Newsroom, Business, Creator, Hobbies, Predicts, Palette, November content-calendar and Collages guidance plus relevant public Pinterest inspiration were checked on 1 November 2026. No newer official design or creator publication appeared after the 26 October Programmatic Deals announcement. Collages reinforce a source-led workflow of cutting out, curating and refining objects for room layouts, outfit flat lays, party planning and offline action, but this is already represented by the existing moodboard, layout, zine, spatial-restyle and content-lifecycle systems. Two public Pinterest Pins were tested directly; one returned HTTP 403 and the other was inaccessible, so no visual conclusion was derived from them.",
+    "chatgpt_status": "Production v2.27.0 with 722 commands was read before evaluation. /moodboard and /layout cover direction and hierarchy; /zine-editorial-system covers expressive collage rhythm; /spatial-restyle-system covers reference-led rooms; /content-lifecycle-system covers collage as a planned asset role; /taste-discovery-system covers like-for-like visual territories. A separate collage alias would duplicate these capabilities and reverse the existing anti-fragmentation decision without adding a distinct production workflow. No materially new command was warranted. The userscript and metadata remained byte-identical, and all 22 regression checks passed.",
     "trends": [
-      "Pinterest’s current official featured update remains Programmatic Deals, a buying and measurement development rather than a new visual-production grammar",
-      "Personal remixing remains the durable response to trend fatigue across fashion, beauty, interiors and campaign work",
-      "Creator trends remain Copper Hair, Suede Styling, Vamp Romantic and Glamoratti",
-      "Hobbies reporting continues to support zine revival, collage, journaling, tactile craft, curated collections and personalised technology",
-      "The 2026 Palette continues to emphasize emotionally useful colour, bold monochrome, seasonal accents and unexpected pairings",
-      "Restyle and visual search continue to connect reference-led exploration with comparison and action"
+      "Pinterest Collages continue to turn source images and Pins into cutout-based plans for rooms, outfits, parties and offline execution",
+      "The Hobbies report continues to support zine revival, digital collage, journaling, playful printables and personalised technology",
+      "November planning moments are Illuminate, Homemade, Gratitude and Harvest",
+      "Beauty remains specific and personally edited rather than copied literally",
+      "The 2026 Palette continues to emphasize emotionally useful colour and bold cross-category combinations",
+      "Personal remixing remains Pinterest’s durable answer to trend fatigue"
     ],
     "commands_added": [],
     "commands_updated": [],
     "skipped": [
+      "No separate collage command because /moodboard, /layout, /zine-editorial-system, /spatial-restyle-system, /taste-discovery-system and /content-lifecycle-system already cover its durable planning and production workflow",
+      "No Illuminate, Homemade, Gratitude or Harvest aliases because the content-calendar topics are seasonal prompts already handled by lifecycle, food, lifestyle, editorial and storyboard controls",
+      "No Copper Hair, Vamp Romantic, Glamoratti or Makeup Maximalism aliases because /beauty-trend-system and existing palette, material and trend-translation systems already cover them",
+      "No individual Palette-colour commands because /emotional-palette and /trend-to-brand already support colour-led activation without hue-specific churn",
       "No programmatic-creative command because /performance-creative-mix, /intent-to-action and /catalog-creative-system already cover the reusable creative and measurement layer",
-      "No Copper Hair, Suede Styling, Vamp Romantic or Glamoratti aliases because existing beauty, fashion, material, palette and trend-translation systems already cover them",
-      "No zine, collage, journaling or personalised-tech aliases because /zine-editorial-system, /analog-keepsake, /taste-discovery-system and existing layout/material controls cover their production needs",
-      "No individual Palette-colour commands because /emotional-palette and /trend-to-brand already support colour-led and seasonal activation without hue-specific churn",
-      "No additional Restyle or visual-search command because /spatial-restyle-system and /visual-search-ready already cover their durable workflows",
       "No visual conclusion was derived from the two public Pinterest Pin pages that were inaccessible during direct access checks"
     ],
     "sources": [
@@ -138,13 +138,8 @@
         "status": "accessed"
       },
       {
-        "title": "Pinterest Newsroom — Pinterest unlocks premium inventory for programmatic buyers",
-        "url": "https://newsroom.pinterest.com/en-gb/news/pinterest-programmatic-deals/",
-        "status": "accessed"
-      },
-      {
-        "title": "Pinterest Creators — Trends to try",
-        "url": "https://create.pinterest.com/creators/trends/",
+        "title": "Pinterest Create — Pinterest Collages: what they are and how to make them",
+        "url": "https://create.pinterest.com/product-features/how-to-create-collages/",
         "status": "accessed"
       },
       {
@@ -153,8 +148,8 @@
         "status": "accessed"
       },
       {
-        "title": "Pinterest Trends — Trends overview",
-        "url": "https://trends.pinterest.com/",
+        "title": "Pinterest Newsroom — Beauty Trend Report 2026",
+        "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
         "status": "accessed"
       },
       {
@@ -163,8 +158,13 @@
         "status": "accessed"
       },
       {
-        "title": "Pinterest Business — The 2026 Pinterest Palette",
-        "url": "https://business.pinterest.com/en-gb/pinterest-palette/",
+        "title": "Pinterest Newsroom — The 2026 Pinterest Palette",
+        "url": "https://newsroom.pinterest.com/news/from-cool-blue-to-persimmon-meet-the-2026-pinterest-palette/",
+        "status": "accessed"
+      },
+      {
+        "title": "Pinterest Create — 2026 Content Planning Calendar",
+        "url": "https://create.pinterest.com/en-us/resources/content-calendar-2026/",
         "status": "accessed"
       },
       {
@@ -179,8 +179,15 @@
       }
     ]
   },
-  "action_required": "None. Production remains v2.27.0 with 722 commands; repository and Drive monitor records are verified. Only the local userscript can report the version currently running in the browser.",
+  "action_required": "No command update is required. Repository, public raw and Drive readback verification of the completed daily monitor record is still in progress.",
   "history": [
+    {
+      "updated_at": "2026-11-01T03:04:23.174Z",
+      "version": "2.27.0",
+      "summary": "1 November scan found no material non-duplicate command delta; v2.27.0 remained at 722 commands and passed 22 regression checks.",
+      "test_state": "passed",
+      "deploy_state": "published"
+    },
     {
       "updated_at": "2026-10-31T03:07:17.435Z",
       "version": "2.27.0",
