@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-11-03T03:24:02.376Z",
+  "updated_at": "2026-11-03T03:25:35.763Z",
   "release": {
     "version": "2.28.0",
     "built_at": "2026-11-03T03:23:18.677Z",
@@ -111,10 +111,10 @@
       "scope": "22/22 checks; v2.28.0; 723 commands; SHA-256 20592aec78dfc83982577f92dca9a2676a14d5d6418d22b15e5e29bd8f8f0043"
     },
     "deploy": {
-      "state": "published",
+      "state": "verified",
       "started_at": "2026-11-03T03:24:02.376Z",
-      "completed_at": null,
-      "detail": "Publishing userscript, metadata and completed monitor record to main with per-file blob-SHA conflict guards, then updating Drive and refetching GitHub, public commit-pinned raw files and Drive for exact byte verification. Browser installation is not claimed.",
+      "completed_at": "2026-11-03T03:25:35.763Z",
+      "detail": "v2.28.0 userscript, matching metadata and the completed 3 November monitor record were published to main with per-file blob-SHA conflict guards. GitHub files, commit-pinned public raw bytes, Drive status and Drive regression report were refetched and matched exactly. Browser installation is not claimed.",
       "scope": "v2.28.0 userscript, metadata, status and regression report"
     }
   },
@@ -203,14 +203,14 @@
       }
     ]
   },
-  "action_required": "Repository and Drive publication of v2.28.0 is in progress. Do not treat this prepared record as browser installation.",
+  "action_required": "Use System Monitor → Check Latest Version → Install / Update, then reload ChatGPT to confirm v2.28.0 locally. Repository publication is verified; only the local userscript can report the version currently running in the browser.",
   "history": [
     {
-      "updated_at": "2026-11-03T03:24:02.376Z",
+      "updated_at": "2026-11-03T03:25:35.763Z",
       "version": "2.28.0",
       "summary": "Added /surface-pattern-system for repeat architecture, scale, mixing, application and QA; 723 commands passed 22 regression checks.",
       "test_state": "passed",
-      "deploy_state": "published"
+      "deploy_state": "verified"
     },
     {
       "updated_at": "2026-11-02T03:29:30.858Z",
