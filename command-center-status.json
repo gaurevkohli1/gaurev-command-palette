@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-11-06T03:21:44.646Z",
+  "updated_at": "2026-11-07T03:11:19.089Z",
   "release": {
     "version": "2.28.0",
     "built_at": "2026-11-03T03:23:18.677Z",
@@ -14,24 +14,26 @@
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-11-06T03:17:30.000Z",
-      "completed_at": "2026-11-06T03:18:45.000Z",
-      "pinterest_status": "Pinterest's Newsroom, Business Palette reporting, public Design guides, Creator trends, Fall Hobbies report, November content calendar and linked public inspiration were checked on 6 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The creator page continues Opera-inspired accessories, Whimsy Party, Skirt Season and Suede Styling; the Fall report continues tactile, screen-free hobbies. Palette guidance emphasizes exact named hues, monochrome walls, colour-forward UGC, seasonal detail swaps and discovery tools. Gen Z typography guidance emphasizes chunky all-caps, selective 3D depth, sticker phrases, repetition and one controlled rule-break. These are already represented by the live palette, emotional-palette, typography, type-led, zine, brand, fashion, social and campaign systems. Four linked public inspiration pages again returned HTTP 403, so no unsupported visual conclusion was derived from them.",
-      "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with Drive before evaluation. /palette and /emotional-palette already define colour roles, contrast, material response and channel use; /taste-discovery-system and /trend-to-brand cover personalised colour discovery and brand translation. /typeled, /typography, /zine-editorial-system, /retro-pop-branding, /layout and social/poster systems already cover expressive display type, dimensional treatments, sticker-like accents, repetition, rhythm and controlled imperfection while preserving legibility. /theatrical-opulence, fashion/wardrobe systems and campaign bundles cover the monthly style signals. Separate Palette, Gen Z font or seasonal trend aliases would be redundant and short-lived, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
+      "started_at": "2026-11-07T03:05:00.000Z",
+      "completed_at": "2026-11-07T03:10:00.000Z",
+      "pinterest_status": "Pinterest's Newsroom, Business reporting, Design guides, Creator trends, 2026 Hobbies report, November content calendar and linked public inspiration were checked on 7 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The current Creator page features Copper Hair, Suede Styling, Vamp Romantic and Glamoratti; the Beauty report frames copper/cherry-cola hair, maximalist makeup and dark reflective details as specific, personal edits rather than copy-exact looks. The Hobbies report continues tactile, screen-free making, zines, collages and analogue observation. Pinterest Business's Design the Exit guidance adds an intent-led discovery-to-action structure, while Barbie Restyle demonstrates reference-based room comparison and focused add/swap/erase edits. These durable methods are already represented by /beauty-trend-system, /emotional-palette, /trend-to-brand, /zine-editorial-system, /intent-to-action, /spatial-restyle-system and existing fashion, social, UGC and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
+      "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with Drive before evaluation. /beauty-trend-system already converts precise hair, makeup and nail references into identity-safe editorial, close-detail, product and UGC variants; /emotional-palette and /trend-to-brand cover palette translation without replacing the brand. /intent-to-action already maps active intent through discovery, confidence, decision and a proportional real-world CTA, matching Design the Exit. /spatial-restyle-system already locks room geometry and camera while producing comparable directions and focused add, remove or swap passes, covering the Restyle method. /zine-editorial-system, /content-lifecycle-system, fashion/wardrobe systems and social/campaign bundles cover the remaining monthly and seasonal signals. New copper, suede, Vamp Romantic, Glamoratti, Restyle or Design the Exit aliases would be redundant or short-lived, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
       "trends": [
-        "Gen Z typography continues to favor ultra-bold all-caps, chunky display architecture, selective 3D depth, sticker-like phrases, rhythmic repetition and one controlled rule-break per composition",
-        "Pinterest Palette guidance promotes exact named hues, monochrome creative, colour-forward UGC, seasonal styling swaps and discovery-led interaction",
-        "Opera-inspired accessories and Whimsy Party continue theatrical luxury and visibly handmade celebration signals",
-        "Skirt Season and Suede Styling remain seasonal wardrobe and material signals rather than reusable production methods",
-        "Fall hobby signals continue tactile, screen-free making, home-café presentation, naturalist illustration and curated-clutter storytelling",
+        "Copper Hair, Vamp Romantic and Glamoratti reinforce precise, personalised beauty editing: warm copper/cherry tones, dark reflective details, sculptural makeup and maximalist styling",
+        "Suede Styling remains a seasonal wardrobe and tactile-material signal rather than a reusable production method",
+        "Design the Exit frames creative as a short path from possibility through useful guidance to a specific real-world next step",
+        "Barbie Restyle demonstrates reference-based spatial comparison with geometry-preserving add, swap, erase and prompt edits",
+        "Hobby signals continue tactile, screen-free making, zine/collage systems, naturalist observation and analogue storytelling",
+        "Pinterest Palette and Design guides continue exact named hues, restrained palette systems, expressive display typography and disciplined brand-kit rules",
         "Pinterest’s latest featured Newsroom update remains Programmatic Deals and does not add a new visual-production grammar"
       ],
       "commands_added": [],
       "commands_updated": [],
       "skipped": [
-        "No Gen Z font alias because /typeled, /typography, /zine-editorial-system, /retro-pop-branding, /layout and social/poster systems already cover the durable expressive-type grammar",
-        "No Pinterest Palette alias because /palette, /emotional-palette, /taste-discovery-system and /trend-to-brand already cover exact roles, contrast, personalisation, seasonal application and campaign translation",
-        "No Opera, Whimsy Party, Skirt Season or Suede Styling aliases because existing theatrical, creative-direction, campaign, fashion and wardrobe workflows already cover the transferable methods",
+        "No Copper Hair, Vamp Romantic or Glamoratti aliases because /beauty-trend-system, /emotional-palette and existing portrait, fashion, product and UGC workflows already cover the reusable method without hard-coding a seasonal look",
+        "No Suede Styling alias because existing fashion, wardrobe, material-realism and campaign systems already cover the transferable method",
+        "No Design the Exit alias because /intent-to-action already covers active intent, useful guidance, friction removal, a proportional CTA and a real-world next step",
+        "No Barbie Restyle alias because /spatial-restyle-system and focused image-editing commands already preserve architecture and camera while comparing directions and performing controlled add, remove or swap edits",
         "No November Illuminate, Homemade, Gratitude or Harvest aliases because /content-lifecycle-system and existing social, storyboard, food, lifestyle and campaign systems already handle seasonal planning",
         "No visual claims were derived from the four linked public Pinterest inspiration pages that returned HTTP 403"
       ],
@@ -54,6 +56,16 @@
         {
           "title": "Pinterest Newsroom — 2026 Hobbies Trend Report",
           "url": "https://newsroom.pinterest.com/news/2026-pinterest-hobbies-trend-report/",
+          "status": "accessed"
+        },
+        {
+          "title": "Pinterest Newsroom — Pinterest Beauty Trend Report 2026",
+          "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
+          "status": "accessed"
+        },
+        {
+          "title": "Pinterest Newsroom — Barbie x Pinterest Restyle",
+          "url": "https://newsroom.pinterest.com/news/barbie-x-pinterest-restyle/",
           "status": "accessed"
         },
         {
@@ -87,23 +99,28 @@
           "status": "accessed"
         },
         {
-          "title": "Pinterest public inspiration — Dramatic details inspired by the opera",
-          "url": "https://www.pinterest.com/fashion/dramatic-details-inspired-by-the-opera/",
-          "status": "inaccessible (HTTP 403)"
+          "title": "Pinterest Business — Why brands need to fuel a life, not fill a feed",
+          "url": "https://business.pinterest.com/en-gb/blog/design-the-exit/",
+          "status": "accessed"
         },
         {
-          "title": "Pinterest public inspiration — Your sign to throw a Whimsy Party",
-          "url": "https://www.pinterest.com/trends/your-sign-to-throw-a-whimsy-party/",
-          "status": "inaccessible (HTTP 403)"
-        },
-        {
-          "title": "Pinterest public inspiration — Skirt Season",
-          "url": "https://www.pinterest.com/fashion/skirt-season/",
+          "title": "Pinterest public inspiration — Copper Hair",
+          "url": "https://www.pinterest.com/trends/go-copper-this-fall/",
           "status": "inaccessible (HTTP 403)"
         },
         {
           "title": "Pinterest public inspiration — Suede Styling",
           "url": "https://www.pinterest.com/trends/suede-styling/",
+          "status": "inaccessible (HTTP 403)"
+        },
+        {
+          "title": "Pinterest public inspiration — Vamp Romantic",
+          "url": "https://www.pinterest.com/PinterestPredicts/vamp-romantic/",
+          "status": "inaccessible (HTTP 403)"
+        },
+        {
+          "title": "Pinterest public inspiration — Glamoratti",
+          "url": "https://www.pinterest.com/PinterestPredicts/glamoratti/",
           "status": "inaccessible (HTTP 403)"
         }
       ]
@@ -117,40 +134,42 @@
     },
     "test": {
       "state": "passed",
-      "started_at": "2026-11-06T03:18:45.000Z",
-      "completed_at": "2026-11-06T03:20:32.332Z",
+      "started_at": "2026-11-07T03:10:00.000Z",
+      "completed_at": "2026-11-07T03:11:19.089Z",
       "detail": "All 22 checks passed: syntax, dual version sync, exact metadata parity, base and prior trend-catalogue preservation, exact counts, unique names, bundle/reference stability, surface-pattern scope and safety, release SHA/schema/history, settings structures, recent command preservation and runtime/updater anchors.",
       "scope": "22/22 checks; v2.28.0 unchanged; 723 commands preserved; SHA-256 20592aec78dfc83982577f92dca9a2676a14d5d6418d22b15e5e29bd8f8f0043"
     },
     "deploy": {
-      "state": "verified",
-      "started_at": "2026-11-06T03:20:32.332Z",
-      "completed_at": "2026-11-06T03:21:44.646Z",
-      "detail": "The completed 6 November no-change monitor record was published to main with a blob-SHA conflict guard. The unchanged v2.28.0 userscript and metadata, commit-pinned GitHub files, GitHub status, Drive status and Drive regression report were refetched and matched exactly. Browser installation is not claimed.",
-      "scope": "6 November 2026 monitor record; production remains v2.28.0"
+      "state": "published",
+      "started_at": "2026-11-07T03:11:19.089Z",
+      "completed_at": null,
+      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, updating Drive, then refetching GitHub, commit-pinned release files and Drive for exact byte verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "scope": "7 November 2026 monitor record; production remains v2.28.0"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-11-06T03:17:30.000Z",
-    "completed_at": "2026-11-06T03:18:45.000Z",
-    "pinterest_status": "Pinterest's Newsroom, Business Palette reporting, public Design guides, Creator trends, Fall Hobbies report, November content calendar and linked public inspiration were checked on 6 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The creator page continues Opera-inspired accessories, Whimsy Party, Skirt Season and Suede Styling; the Fall report continues tactile, screen-free hobbies. Palette guidance emphasizes exact named hues, monochrome walls, colour-forward UGC, seasonal detail swaps and discovery tools. Gen Z typography guidance emphasizes chunky all-caps, selective 3D depth, sticker phrases, repetition and one controlled rule-break. These are already represented by the live palette, emotional-palette, typography, type-led, zine, brand, fashion, social and campaign systems. Four linked public inspiration pages again returned HTTP 403, so no unsupported visual conclusion was derived from them.",
-    "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with Drive before evaluation. /palette and /emotional-palette already define colour roles, contrast, material response and channel use; /taste-discovery-system and /trend-to-brand cover personalised colour discovery and brand translation. /typeled, /typography, /zine-editorial-system, /retro-pop-branding, /layout and social/poster systems already cover expressive display type, dimensional treatments, sticker-like accents, repetition, rhythm and controlled imperfection while preserving legibility. /theatrical-opulence, fashion/wardrobe systems and campaign bundles cover the monthly style signals. Separate Palette, Gen Z font or seasonal trend aliases would be redundant and short-lived, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
+    "started_at": "2026-11-07T03:05:00.000Z",
+    "completed_at": "2026-11-07T03:10:00.000Z",
+    "pinterest_status": "Pinterest's Newsroom, Business reporting, Design guides, Creator trends, 2026 Hobbies report, November content calendar and linked public inspiration were checked on 7 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The current Creator page features Copper Hair, Suede Styling, Vamp Romantic and Glamoratti; the Beauty report frames copper/cherry-cola hair, maximalist makeup and dark reflective details as specific, personal edits rather than copy-exact looks. The Hobbies report continues tactile, screen-free making, zines, collages and analogue observation. Pinterest Business's Design the Exit guidance adds an intent-led discovery-to-action structure, while Barbie Restyle demonstrates reference-based room comparison and focused add/swap/erase edits. These durable methods are already represented by /beauty-trend-system, /emotional-palette, /trend-to-brand, /zine-editorial-system, /intent-to-action, /spatial-restyle-system and existing fashion, social, UGC and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
+    "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with Drive before evaluation. /beauty-trend-system already converts precise hair, makeup and nail references into identity-safe editorial, close-detail, product and UGC variants; /emotional-palette and /trend-to-brand cover palette translation without replacing the brand. /intent-to-action already maps active intent through discovery, confidence, decision and a proportional real-world CTA, matching Design the Exit. /spatial-restyle-system already locks room geometry and camera while producing comparable directions and focused add, remove or swap passes, covering the Restyle method. /zine-editorial-system, /content-lifecycle-system, fashion/wardrobe systems and social/campaign bundles cover the remaining monthly and seasonal signals. New copper, suede, Vamp Romantic, Glamoratti, Restyle or Design the Exit aliases would be redundant or short-lived, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
     "trends": [
-      "Gen Z typography continues to favor ultra-bold all-caps, chunky display architecture, selective 3D depth, sticker-like phrases, rhythmic repetition and one controlled rule-break per composition",
-      "Pinterest Palette guidance promotes exact named hues, monochrome creative, colour-forward UGC, seasonal styling swaps and discovery-led interaction",
-      "Opera-inspired accessories and Whimsy Party continue theatrical luxury and visibly handmade celebration signals",
-      "Skirt Season and Suede Styling remain seasonal wardrobe and material signals rather than reusable production methods",
-      "Fall hobby signals continue tactile, screen-free making, home-café presentation, naturalist illustration and curated-clutter storytelling",
+      "Copper Hair, Vamp Romantic and Glamoratti reinforce precise, personalised beauty editing: warm copper/cherry tones, dark reflective details, sculptural makeup and maximalist styling",
+      "Suede Styling remains a seasonal wardrobe and tactile-material signal rather than a reusable production method",
+      "Design the Exit frames creative as a short path from possibility through useful guidance to a specific real-world next step",
+      "Barbie Restyle demonstrates reference-based spatial comparison with geometry-preserving add, swap, erase and prompt edits",
+      "Hobby signals continue tactile, screen-free making, zine/collage systems, naturalist observation and analogue storytelling",
+      "Pinterest Palette and Design guides continue exact named hues, restrained palette systems, expressive display typography and disciplined brand-kit rules",
       "Pinterest’s latest featured Newsroom update remains Programmatic Deals and does not add a new visual-production grammar"
     ],
     "commands_added": [],
     "commands_updated": [],
     "skipped": [
-      "No Gen Z font alias because /typeled, /typography, /zine-editorial-system, /retro-pop-branding, /layout and social/poster systems already cover the durable expressive-type grammar",
-      "No Pinterest Palette alias because /palette, /emotional-palette, /taste-discovery-system and /trend-to-brand already cover exact roles, contrast, personalisation, seasonal application and campaign translation",
-      "No Opera, Whimsy Party, Skirt Season or Suede Styling aliases because existing theatrical, creative-direction, campaign, fashion and wardrobe workflows already cover the transferable methods",
+      "No Copper Hair, Vamp Romantic or Glamoratti aliases because /beauty-trend-system, /emotional-palette and existing portrait, fashion, product and UGC workflows already cover the reusable method without hard-coding a seasonal look",
+      "No Suede Styling alias because existing fashion, wardrobe, material-realism and campaign systems already cover the transferable method",
+      "No Design the Exit alias because /intent-to-action already covers active intent, useful guidance, friction removal, a proportional CTA and a real-world next step",
+      "No Barbie Restyle alias because /spatial-restyle-system and focused image-editing commands already preserve architecture and camera while comparing directions and performing controlled add, remove or swap edits",
       "No November Illuminate, Homemade, Gratitude or Harvest aliases because /content-lifecycle-system and existing social, storyboard, food, lifestyle and campaign systems already handle seasonal planning",
       "No visual claims were derived from the four linked public Pinterest inspiration pages that returned HTTP 403"
     ],
@@ -173,6 +192,16 @@
       {
         "title": "Pinterest Newsroom — 2026 Hobbies Trend Report",
         "url": "https://newsroom.pinterest.com/news/2026-pinterest-hobbies-trend-report/",
+        "status": "accessed"
+      },
+      {
+        "title": "Pinterest Newsroom — Pinterest Beauty Trend Report 2026",
+        "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
+        "status": "accessed"
+      },
+      {
+        "title": "Pinterest Newsroom — Barbie x Pinterest Restyle",
+        "url": "https://newsroom.pinterest.com/news/barbie-x-pinterest-restyle/",
         "status": "accessed"
       },
       {
@@ -206,29 +235,41 @@
         "status": "accessed"
       },
       {
-        "title": "Pinterest public inspiration — Dramatic details inspired by the opera",
-        "url": "https://www.pinterest.com/fashion/dramatic-details-inspired-by-the-opera/",
-        "status": "inaccessible (HTTP 403)"
+        "title": "Pinterest Business — Why brands need to fuel a life, not fill a feed",
+        "url": "https://business.pinterest.com/en-gb/blog/design-the-exit/",
+        "status": "accessed"
       },
       {
-        "title": "Pinterest public inspiration — Your sign to throw a Whimsy Party",
-        "url": "https://www.pinterest.com/trends/your-sign-to-throw-a-whimsy-party/",
-        "status": "inaccessible (HTTP 403)"
-      },
-      {
-        "title": "Pinterest public inspiration — Skirt Season",
-        "url": "https://www.pinterest.com/fashion/skirt-season/",
+        "title": "Pinterest public inspiration — Copper Hair",
+        "url": "https://www.pinterest.com/trends/go-copper-this-fall/",
         "status": "inaccessible (HTTP 403)"
       },
       {
         "title": "Pinterest public inspiration — Suede Styling",
         "url": "https://www.pinterest.com/trends/suede-styling/",
         "status": "inaccessible (HTTP 403)"
+      },
+      {
+        "title": "Pinterest public inspiration — Vamp Romantic",
+        "url": "https://www.pinterest.com/PinterestPredicts/vamp-romantic/",
+        "status": "inaccessible (HTTP 403)"
+      },
+      {
+        "title": "Pinterest public inspiration — Glamoratti",
+        "url": "https://www.pinterest.com/PinterestPredicts/glamoratti/",
+        "status": "inaccessible (HTTP 403)"
       }
     ]
   },
-  "action_required": "None. Production remains v2.28.0 with 723 commands; repository and Drive monitor records are verified. Only the local userscript can report the version currently running in the browser.",
+  "action_required": "No command update is required. Repository and Drive readback verification of the completed daily monitor record is still in progress.",
   "history": [
+    {
+      "updated_at": "2026-11-07T03:11:19.089Z",
+      "version": "2.28.0",
+      "summary": "7 November scan found no material non-duplicate command delta; v2.28.0 remained at 723 commands and passed 22 regression checks.",
+      "test_state": "passed",
+      "deploy_state": "published"
+    },
     {
       "updated_at": "2026-11-06T03:21:44.646Z",
       "version": "2.28.0",
