@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-11-09T03:17:40.562Z",
+  "updated_at": "2026-11-10T03:19:03.620Z",
   "release": {
     "version": "2.28.0",
     "built_at": "2026-11-03T03:23:18.677Z",
@@ -14,17 +14,19 @@
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-11-09T03:08:00.000Z",
-      "completed_at": "2026-11-09T03:15:00.000Z",
-      "pinterest_status": "Pinterest's Newsroom, Business reporting, Design guides, Creator trends, 2026 Hobbies report, November content calendar and linked public inspiration were checked on 9 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The current Creator preview features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling. The Beauty report continues specificity-first personal edits; the Hobbies report continues tactile, screen-free making, zines, collages and analogue observation; and Pinterest Palette and Gen Z typography guidance continue exact colour roles, expressive display type and controlled rule-breaking. These durable methods are already represented by /theatrical-opulence, /beauty-trend-system, /emotional-palette, /trend-to-brand, /zine-editorial-system, /content-lifecycle-system and existing fashion, social, UGC and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
-      "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with Drive before evaluation. /theatrical-opulence covers layered drapery, stage-light contrast and vintage-theatre luxury; fashion, wardrobe and material-realism commands cover skirt and suede execution; /creative, /artdirect, /variation, social and campaign bundles cover handmade Whimsy Party translation. /beauty-trend-system, /emotional-palette, /typeled, /typography, /zine-editorial-system and /content-lifecycle-system cover the durable beauty, colour, typography and tactile-hobby signals. Separate Opera, Whimsy Party, Skirt Season or Suede Styling aliases would be redundant and short-lived, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
+      "started_at": "2026-11-10T03:14:46.000Z",
+      "completed_at": "2026-11-10T03:17:30.000Z",
+      "pinterest_status": "Pinterest's Newsroom, Business reporting, Creator trends, Pinterest Predicts 2026, the 2026 Beauty, Men's and Hobbies reports, Q5 creative guidance and linked public inspiration were checked on 10 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The current Creator preview still features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling. The Men's report emphasizes intentional hosting, offline hobbies and no-phone activities; Q5 guidance shifts gifting to self-purchase, celebration to planning and urgency to utility. These durable methods are already represented by /intent-to-action, /content-lifecycle-system, /performance-creative-mix, /trend-to-brand, /theatrical-opulence, /beauty-trend-system and existing fashion, social, UGC, product-ad and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
+      "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with the latest connected Drive monitor records before evaluation. /intent-to-action already maps active intent, useful proof, friction removal and a proportional next step; /content-lifecycle-system already handles seasonal refresh and reuse; /performance-creative-mix covers meaningful multi-format creative variation. /theatrical-opulence covers Opera styling, while fashion, wardrobe and material-realism commands cover skirt and suede execution; /creative, /artdirect, /variation and campaign bundles cover handmade Whimsy Party translation. Separate Q5, intentional-hosting, Opera, Whimsy Party, Skirt Season or Suede Styling aliases would be redundant or seasonal, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
       "trends": [
         "Opera-inspired Accessories continue theatrical old-world glamour through selective cummerbunds, feather brooches, satin pouches and fur-trimmed accents",
         "Whimsy Party continues handmade celebration through paper chains, crowns, bedazzled baked goods, cheerful colour and visible personal effort",
         "Skirt Season and Suede Styling remain seasonal wardrobe, silhouette and tactile-material signals rather than reusable production methods",
         "Beauty specificity continues personal, reference-led edits instead of copying a complete trend look",
+        "The intentional-man signal emphasizes low-lift hosting, offline hobbies, no-phone activities, grooming and considered personal style",
+        "Q5 creative guidance shifts gifting to self-purchase, celebration to planning and artificial urgency to practical next-step utility",
         "Hobby signals continue tactile, screen-free making, zine/collage systems, naturalist observation and analogue storytelling",
-        "Pinterest Palette and Design guides continue exact named hues, restrained palette systems, expressive display typography and disciplined brand-kit rules",
+        "Pinterest Palette and Pinterest Predicts continue emotional colour utility, identity curation and personal remixing rather than literal trend copying",
         "Pinterest’s latest featured Newsroom update remains Programmatic Deals and does not add a new visual-production grammar"
       ],
       "commands_added": [],
@@ -33,8 +35,8 @@
         "No Opera-inspired Accessories alias because /theatrical-opulence and existing luxury, fashion, product and campaign systems already cover the transferable method",
         "No Whimsy Party alias because existing creative-direction, variation, social, handmade-editorial and campaign workflows already cover the reusable production grammar",
         "No Skirt Season or Suede Styling aliases because existing fashion, wardrobe, material-realism and campaign systems already cover the transferable method",
-        "No separate Beauty specificity, Palette or Gen Z type aliases because the durable methods are already covered by /beauty-trend-system, /emotional-palette, /trend-to-brand, /typeled, /typography and /zine-editorial-system",
-        "No November Illuminate, Homemade, Gratitude or Harvest aliases because /content-lifecycle-system and existing social, storyboard, food, lifestyle and campaign systems already handle seasonal planning",
+        "No separate Q5 or intentional-hosting command because /intent-to-action, /content-lifecycle-system, /performance-creative-mix and existing campaign workflows already cover the durable planning, utility and creative-refresh method",
+        "No separate Beauty specificity, Palette or identity-curation aliases because the durable methods are already covered by /beauty-trend-system, /emotional-palette, /taste-discovery-system and /trend-to-brand",
         "No visual claims were derived from the four linked public Pinterest inspiration pages that returned HTTP 403"
       ],
       "sources": [
@@ -64,43 +66,33 @@
           "status": "accessed"
         },
         {
-          "title": "Pinterest Newsroom — Barbie x Pinterest Restyle",
-          "url": "https://newsroom.pinterest.com/news/barbie-x-pinterest-restyle/",
+          "title": "Pinterest Newsroom — 2026 Men’s Trend Report",
+          "url": "https://newsroom.pinterest.com/news/men-trend-report-2026/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Design — Brand Design Kit essentials for a cohesive visual identity",
-          "url": "https://guide.pinterest.com/design/brand-design-kit/",
+          "title": "Pinterest Newsroom — Pinterest Predicts 2026",
+          "url": "https://newsroom.pinterest.com/news/pinterest-predicts-nonconformity-self-preservation-and-escapism-drive-21-trends-for-2026/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Design — Colors: How to Choose Palettes That Actually Work",
-          "url": "https://guide.pinterest.com/design/colors/",
+          "title": "Pinterest Newsroom — 2026 Pinterest Palette",
+          "url": "https://newsroom.pinterest.com/news/from-cool-blue-to-persimmon-meet-the-2026-pinterest-palette/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Design — Patterns: How to Choose, Scale, and Mix Repeats",
-          "url": "https://guide.pinterest.com/design/patterns/",
+          "title": "Pinterest Business — How to refresh your creative for Q5",
+          "url": "https://business.pinterest.com/en-au/blog/refresh-your-creative-for-q5/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Design — Gen Z Font Trends That Make Type Feel Alive",
-          "url": "https://guide.pinterest.com/design/gen-z-font-trends/",
+          "title": "Pinterest Business — Holiday 2026 guide",
+          "url": "https://business.pinterest.com/blog/holiday-2026-starts-now-a-pinterest-guide-to-success/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Business — 2026 Pinterest Palette",
-          "url": "https://business.pinterest.com/en-gb/pinterest-palette/",
-          "status": "accessed"
-        },
-        {
-          "title": "Pinterest Business — Official news and insights",
-          "url": "https://business.pinterest.com/blog/",
-          "status": "accessed"
-        },
-        {
-          "title": "Pinterest Business — Why brands need to fuel a life, not fill a feed",
-          "url": "https://business.pinterest.com/en-gb/blog/design-the-exit/",
+          "title": "Pinterest Business — Pinterest Predicts 2026",
+          "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
           "status": "accessed"
         },
         {
@@ -134,33 +126,35 @@
     },
     "test": {
       "state": "passed",
-      "started_at": "2026-11-09T03:15:00.000Z",
-      "completed_at": "2026-11-09T03:16:35.894Z",
+      "started_at": "2026-11-10T03:17:30.000Z",
+      "completed_at": "2026-11-10T03:19:03.620Z",
       "detail": "All 22 checks passed: syntax, dual version sync, exact metadata parity, base and prior trend-catalogue preservation, exact counts, unique names, bundle/reference stability, surface-pattern scope and safety, release SHA/schema/history, settings structures, recent command preservation and runtime/updater anchors.",
       "scope": "22/22 checks; v2.28.0 unchanged; 723 commands preserved; SHA-256 20592aec78dfc83982577f92dca9a2676a14d5d6418d22b15e5e29bd8f8f0043"
     },
     "deploy": {
-      "state": "verified",
-      "started_at": "2026-11-09T03:16:35.894Z",
-      "completed_at": "2026-11-09T03:17:40.562Z",
-      "detail": "The completed 9 November no-change monitor record was published to main with a blob-SHA conflict guard. The unchanged v2.28.0 userscript and metadata, commit-pinned GitHub files, GitHub status, Drive status and Drive regression report were refetched and matched exactly. Browser installation is not claimed.",
-      "scope": "9 November 2026 monitor record; production remains v2.28.0"
+      "state": "published",
+      "started_at": "2026-11-10T03:19:03.620Z",
+      "completed_at": null,
+      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, updating Drive, then refetching GitHub, commit-pinned release files and Drive for exact byte verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "scope": "10 November 2026 monitor record; production remains v2.28.0"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-11-09T03:08:00.000Z",
-    "completed_at": "2026-11-09T03:15:00.000Z",
-    "pinterest_status": "Pinterest's Newsroom, Business reporting, Design guides, Creator trends, 2026 Hobbies report, November content calendar and linked public inspiration were checked on 9 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The current Creator preview features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling. The Beauty report continues specificity-first personal edits; the Hobbies report continues tactile, screen-free making, zines, collages and analogue observation; and Pinterest Palette and Gen Z typography guidance continue exact colour roles, expressive display type and controlled rule-breaking. These durable methods are already represented by /theatrical-opulence, /beauty-trend-system, /emotional-palette, /trend-to-brand, /zine-editorial-system, /content-lifecycle-system and existing fashion, social, UGC and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
-    "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with Drive before evaluation. /theatrical-opulence covers layered drapery, stage-light contrast and vintage-theatre luxury; fashion, wardrobe and material-realism commands cover skirt and suede execution; /creative, /artdirect, /variation, social and campaign bundles cover handmade Whimsy Party translation. /beauty-trend-system, /emotional-palette, /typeled, /typography, /zine-editorial-system and /content-lifecycle-system cover the durable beauty, colour, typography and tactile-hobby signals. Separate Opera, Whimsy Party, Skirt Season or Suede Styling aliases would be redundant and short-lived, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
+    "started_at": "2026-11-10T03:14:46.000Z",
+    "completed_at": "2026-11-10T03:17:30.000Z",
+    "pinterest_status": "Pinterest's Newsroom, Business reporting, Creator trends, Pinterest Predicts 2026, the 2026 Beauty, Men's and Hobbies reports, Q5 creative guidance and linked public inspiration were checked on 10 November 2026. No newer featured Newsroom item appeared after the 26 October Programmatic Deals announcement. The current Creator preview still features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling. The Men's report emphasizes intentional hosting, offline hobbies and no-phone activities; Q5 guidance shifts gifting to self-purchase, celebration to planning and urgency to utility. These durable methods are already represented by /intent-to-action, /content-lifecycle-system, /performance-creative-mix, /trend-to-brand, /theatrical-opulence, /beauty-trend-system and existing fashion, social, UGC, product-ad and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
+    "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with the latest connected Drive monitor records before evaluation. /intent-to-action already maps active intent, useful proof, friction removal and a proportional next step; /content-lifecycle-system already handles seasonal refresh and reuse; /performance-creative-mix covers meaningful multi-format creative variation. /theatrical-opulence covers Opera styling, while fashion, wardrobe and material-realism commands cover skirt and suede execution; /creative, /artdirect, /variation and campaign bundles cover handmade Whimsy Party translation. Separate Q5, intentional-hosting, Opera, Whimsy Party, Skirt Season or Suede Styling aliases would be redundant or seasonal, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
     "trends": [
       "Opera-inspired Accessories continue theatrical old-world glamour through selective cummerbunds, feather brooches, satin pouches and fur-trimmed accents",
       "Whimsy Party continues handmade celebration through paper chains, crowns, bedazzled baked goods, cheerful colour and visible personal effort",
       "Skirt Season and Suede Styling remain seasonal wardrobe, silhouette and tactile-material signals rather than reusable production methods",
       "Beauty specificity continues personal, reference-led edits instead of copying a complete trend look",
+      "The intentional-man signal emphasizes low-lift hosting, offline hobbies, no-phone activities, grooming and considered personal style",
+      "Q5 creative guidance shifts gifting to self-purchase, celebration to planning and artificial urgency to practical next-step utility",
       "Hobby signals continue tactile, screen-free making, zine/collage systems, naturalist observation and analogue storytelling",
-      "Pinterest Palette and Design guides continue exact named hues, restrained palette systems, expressive display typography and disciplined brand-kit rules",
+      "Pinterest Palette and Pinterest Predicts continue emotional colour utility, identity curation and personal remixing rather than literal trend copying",
       "Pinterest’s latest featured Newsroom update remains Programmatic Deals and does not add a new visual-production grammar"
     ],
     "commands_added": [],
@@ -169,8 +163,8 @@
       "No Opera-inspired Accessories alias because /theatrical-opulence and existing luxury, fashion, product and campaign systems already cover the transferable method",
       "No Whimsy Party alias because existing creative-direction, variation, social, handmade-editorial and campaign workflows already cover the reusable production grammar",
       "No Skirt Season or Suede Styling aliases because existing fashion, wardrobe, material-realism and campaign systems already cover the transferable method",
-      "No separate Beauty specificity, Palette or Gen Z type aliases because the durable methods are already covered by /beauty-trend-system, /emotional-palette, /trend-to-brand, /typeled, /typography and /zine-editorial-system",
-      "No November Illuminate, Homemade, Gratitude or Harvest aliases because /content-lifecycle-system and existing social, storyboard, food, lifestyle and campaign systems already handle seasonal planning",
+      "No separate Q5 or intentional-hosting command because /intent-to-action, /content-lifecycle-system, /performance-creative-mix and existing campaign workflows already cover the durable planning, utility and creative-refresh method",
+      "No separate Beauty specificity, Palette or identity-curation aliases because the durable methods are already covered by /beauty-trend-system, /emotional-palette, /taste-discovery-system and /trend-to-brand",
       "No visual claims were derived from the four linked public Pinterest inspiration pages that returned HTTP 403"
     ],
     "sources": [
@@ -200,43 +194,33 @@
         "status": "accessed"
       },
       {
-        "title": "Pinterest Newsroom — Barbie x Pinterest Restyle",
-        "url": "https://newsroom.pinterest.com/news/barbie-x-pinterest-restyle/",
+        "title": "Pinterest Newsroom — 2026 Men’s Trend Report",
+        "url": "https://newsroom.pinterest.com/news/men-trend-report-2026/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Design — Brand Design Kit essentials for a cohesive visual identity",
-        "url": "https://guide.pinterest.com/design/brand-design-kit/",
+        "title": "Pinterest Newsroom — Pinterest Predicts 2026",
+        "url": "https://newsroom.pinterest.com/news/pinterest-predicts-nonconformity-self-preservation-and-escapism-drive-21-trends-for-2026/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Design — Colors: How to Choose Palettes That Actually Work",
-        "url": "https://guide.pinterest.com/design/colors/",
+        "title": "Pinterest Newsroom — 2026 Pinterest Palette",
+        "url": "https://newsroom.pinterest.com/news/from-cool-blue-to-persimmon-meet-the-2026-pinterest-palette/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Design — Patterns: How to Choose, Scale, and Mix Repeats",
-        "url": "https://guide.pinterest.com/design/patterns/",
+        "title": "Pinterest Business — How to refresh your creative for Q5",
+        "url": "https://business.pinterest.com/en-au/blog/refresh-your-creative-for-q5/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Design — Gen Z Font Trends That Make Type Feel Alive",
-        "url": "https://guide.pinterest.com/design/gen-z-font-trends/",
+        "title": "Pinterest Business — Holiday 2026 guide",
+        "url": "https://business.pinterest.com/blog/holiday-2026-starts-now-a-pinterest-guide-to-success/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Business — 2026 Pinterest Palette",
-        "url": "https://business.pinterest.com/en-gb/pinterest-palette/",
-        "status": "accessed"
-      },
-      {
-        "title": "Pinterest Business — Official news and insights",
-        "url": "https://business.pinterest.com/blog/",
-        "status": "accessed"
-      },
-      {
-        "title": "Pinterest Business — Why brands need to fuel a life, not fill a feed",
-        "url": "https://business.pinterest.com/en-gb/blog/design-the-exit/",
+        "title": "Pinterest Business — Pinterest Predicts 2026",
+        "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
         "status": "accessed"
       },
       {
@@ -261,8 +245,15 @@
       }
     ]
   },
-  "action_required": "None. Production remains v2.28.0 with 723 commands; repository and Drive monitor records are verified. Only the local userscript can report the version currently running in the browser.",
+  "action_required": "No command update is required. Repository and Drive readback verification of the completed daily monitor record is still in progress.",
   "history": [
+    {
+      "updated_at": "2026-11-10T03:19:03.620Z",
+      "version": "2.28.0",
+      "summary": "10 November scan found no material non-duplicate command delta; v2.28.0 remained at 723 commands and passed 22 regression checks.",
+      "test_state": "passed",
+      "deploy_state": "published"
+    },
     {
       "updated_at": "2026-11-09T03:17:40.562Z",
       "version": "2.28.0",
