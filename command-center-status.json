@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-11-11T02:49:26.227Z",
+  "updated_at": "2026-11-11T02:50:34.658Z",
   "release": {
     "version": "2.28.0",
     "built_at": "2026-11-03T03:23:18.677Z",
@@ -135,8 +135,8 @@
     "deploy": {
       "state": "published",
       "started_at": "2026-11-11T02:49:26.227Z",
-      "completed_at": null,
-      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, updating Drive, then refetching GitHub, commit-pinned release files and Drive for exact byte verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "completed_at": "2026-11-11T02:50:34.658Z",
+      "detail": "The completed 11 November no-change monitor record was published to main with a blob-SHA conflict guard. GitHub main and commit-pinned files were refetched through the connected repository and matched exactly; Drive status and regression-report bytes also matched. Direct public raw.githubusercontent.com verification returned DisabledError in the retrieval environment, so deployment is truthfully marked published rather than verified. Browser installation is not claimed.",
       "scope": "11 November 2026 monitor record; production remains v2.28.0"
     }
   },
@@ -247,10 +247,10 @@
       }
     ]
   },
-  "action_required": "No command update is required. Repository and Drive readback verification of the completed daily monitor record is still in progress.",
+  "action_required": "No action is required from Gaurev. Production remains v2.28.0 with 723 commands; GitHub publication and Drive byte readbacks succeeded. Direct public raw endpoint verification is pending because the retrieval environment returned DisabledError. Only the local userscript can report the version currently running in the browser.",
   "history": [
     {
-      "updated_at": "2026-11-11T02:49:26.227Z",
+      "updated_at": "2026-11-11T02:50:34.658Z",
       "version": "2.28.0",
       "summary": "11 November scan found no material non-duplicate command delta; v2.28.0 remained at 723 commands and passed 22 regression checks.",
       "test_state": "passed",
