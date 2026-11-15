@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "gaurev-command-palette",
-  "updated_at": "2026-11-14T03:28:41.443Z",
+  "updated_at": "2026-11-15T03:23:27.197Z",
   "release": {
     "version": "2.28.0",
     "built_at": "2026-11-03T03:23:18.677Z",
@@ -14,9 +14,9 @@
     "scan": {
       "state": "passed",
       "status": "passed",
-      "started_at": "2026-11-14T03:20:00.000Z",
-      "completed_at": "2026-11-14T03:26:30.000Z",
-      "pinterest_status": "Pinterest's Creator trends, Trends overview, 12 November festive-shopping announcement, Hobbies report, typography guidance and linked public inspiration were checked on 14 November 2026. The current Creator page still features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling. The new official shopping update combines multi-turn visual planning, side-by-side product comparison, wishlists with price or stock notifications, curated gift boards and shoppable guidance. The durable method is helping people move from open-ended discovery through refinement and factual comparison to a saved or purchased next step. These mechanics are already represented by /taste-discovery-system, /comparison, /intent-to-action, /catalog-creative-system, /visual-search-ready and existing board, social, product-ad and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
+      "started_at": "2026-11-15T03:20:00.000Z",
+      "completed_at": "2026-11-15T03:22:30.000Z",
+      "pinterest_status": "Pinterest's current Creator trends, 12 November festive-shopping announcement, 2026 Predicts reporting, November/December content calendar, colour, typography and brand-system guidance, and linked public inspiration were checked on 15 November 2026. The freshly crawled Creator preview still features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling, with Home café engineering retained in its supporting trend report. The latest official Newsroom item remains the 12 November shopping update combining multi-turn visual planning, factual product comparison, wishlists, curated deal and gift-guide boards, and shoppable guidance. The durable method is helping people move from open-ended discovery through refinement and comparison to a saved or purchased next step. These mechanics are already represented by /taste-discovery-system, /comparison, /intent-to-action, /catalog-creative-system, /visual-search-ready and existing board, social, product-ad, food/beverage and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
       "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with byte-matching Drive status and regression records before evaluation. /taste-discovery-system already supports multi-turn preference refinement and like-for-like visual comparison; /comparison requires aligned factual product criteria without invented superiority; /intent-to-action maps discovery, confidence, decision and action; /catalog-creative-system preserves price, availability, URL, product truth and shoppable destinations. Existing seasonal, festival, carousel, social, UGC and product-ad commands already cover gift guides, festive boards, wrapping-detail content and creator-led deal curation. A separate holiday-shopping, wishlist or gift-guide alias would be seasonal duplication rather than a new production capability, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
       "trends": [
         "Opera-inspired Accessories continue theatrical old-world glamour through selective cummerbunds, feather brooches, satin pouches and fur-trimmed accents",
@@ -30,6 +30,9 @@
         "Brand-kit guidance favors compact decision rules for logo variants, palette, type, imagery and repeatable templates over option-heavy moodboards",
         "Hobby signals continue tactile, screen-free making, zine/collage systems, naturalist observation and analogue storytelling",
         "Pinterest Palette, Beauty and Gen Z type guidance continue emotional colour utility, specificity, expressive display type and personal remixing",
+        "Home café engineering continues to emphasize process, setup, limited-drop styling and crafted beverage presentation rather than a new reusable command method",
+        "Pinterest colour guidance favors one anchor hue, deliberate value contrast, a compact repeatable palette and testing in real materials or lighting",
+        "November and December calendar themes remain Illuminate, Homemade, Gratitude, Harvest, Sneak peek, RSVP, Fully festive and Wrapped",
         "Pinterest Trends continues to frame saves as an intent signal and supports regional search, save and shopping analysis"
       ],
       "commands_added": [],
@@ -41,6 +44,7 @@
         "No holiday-shopping or wishlist command because /taste-discovery-system, /intent-to-action, /catalog-creative-system and /visual-search-ready already cover discovery, refinement, saving and shoppable action",
         "No gift-comparison command because /comparison already requires matched factual criteria, while catalogue and product-ad systems preserve price, availability, reviews and SKU truth",
         "No gift-guide alias because seasonal, festival, carousel, social, UGC, product-ad and campaign workflows already cover curated festive-board execution",
+        "No home-café command because existing food and beverage, product, UGC, process-demo, limited-drop and campaign systems already cover the transferable method",
         "No separate Gen Z type or headline-style command because /typeled, /typography, /layout and /zine-editorial-system already cover bold display type, hierarchy, modular type blocks, repetition and controlled expressive moves",
         "No separate brand-kit command because /brandstyle, /palette, /typography, /layout and /BRAND-SYSTEM-MAX already cover compact cross-touchpoint identity rules and templates",
         "No separate Beauty specificity, Palette or identity-curation aliases because the durable methods are already covered by /beauty-trend-system, /emotional-palette, /taste-discovery-system and /trend-to-brand",
@@ -49,7 +53,7 @@
       "sources": [
         {
           "title": "Pinterest Newsroom — Featured news",
-          "url": "https://newsroom.pinterest.com/en-gb/",
+          "url": "https://newsroom.pinterest.com/",
           "status": "accessed"
         },
         {
@@ -59,37 +63,22 @@
         },
         {
           "title": "Pinterest Create — Trends to try",
-          "url": "https://create.pinterest.com/creators/trends/?pp=0",
-          "status": "accessed"
-        },
-        {
-          "title": "Pinterest Trends — Trends overview",
-          "url": "https://trends.pinterest.com/",
+          "url": "https://create.pinterest.com/en-in/creators/trends/?show_preview=true",
           "status": "accessed"
         },
         {
           "title": "Pinterest Create — 2026 content planning calendar",
-          "url": "https://create.pinterest.com/en-GB/resources/content-calendar-2026/?pp=1%23best-practices",
+          "url": "https://create.pinterest.com/en-GB/resources/content-calendar-2026/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Newsroom — 2026 Hobbies Trend Report",
-          "url": "https://newsroom.pinterest.com/news/2026-pinterest-hobbies-trend-report/",
+          "title": "Pinterest Newsroom — Pinterest Predicts 2026",
+          "url": "https://newsroom.pinterest.com/news/pinterest-predicts-nonconformity-self-preservation-and-escapism-drive-21-trends-for-2026/",
           "status": "accessed"
         },
         {
-          "title": "Pinterest Newsroom — Pinterest Beauty Trend Report 2026",
-          "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
-          "status": "accessed"
-        },
-        {
-          "title": "Pinterest Business — Pinterest Predicts 2026",
-          "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
-          "status": "accessed"
-        },
-        {
-          "title": "Pinterest Design — Headline styles",
-          "url": "https://guide.pinterest.com/design/headline-styles/",
+          "title": "Pinterest Design — Colour systems",
+          "url": "https://guide.pinterest.com/design/colors/",
           "status": "accessed"
         },
         {
@@ -133,25 +122,25 @@
     },
     "test": {
       "state": "passed",
-      "started_at": "2026-11-14T03:26:30.000Z",
-      "completed_at": "2026-11-14T03:27:27.344Z",
+      "started_at": "2026-11-15T03:22:30.000Z",
+      "completed_at": "2026-11-15T03:23:27.197Z",
       "detail": "All 22 checks passed: syntax, dual version sync, exact metadata parity, base and prior trend-catalogue preservation, exact counts, unique names, bundle/reference stability, surface-pattern scope and safety, release SHA/schema/history, settings structures, recent command preservation and runtime/updater anchors.",
       "scope": "22/22 checks; v2.28.0 unchanged; 723 commands preserved; SHA-256 20592aec78dfc83982577f92dca9a2676a14d5d6418d22b15e5e29bd8f8f0043"
     },
     "deploy": {
       "state": "published",
-      "started_at": "2026-11-14T03:27:27.344Z",
-      "completed_at": "2026-11-14T03:28:41.443Z",
-      "detail": "The completed 14 November no-change monitor record was published to main with a blob-SHA conflict guard. GitHub main and commit-pinned files were refetched through the connected repository and matched exactly; Drive status and regression-report bytes also matched. Direct public raw.githubusercontent.com verification returned DisabledError in the retrieval environment, so deployment is truthfully marked published rather than verified. Browser installation is not claimed.",
-      "scope": "14 November 2026 monitor record; production remains v2.28.0"
+      "started_at": "2026-11-15T03:23:27.197Z",
+      "completed_at": null,
+      "detail": "Publishing the completed no-change monitor record to main with a blob-SHA conflict guard, updating Drive, then refetching GitHub, commit-pinned release files and Drive for exact byte verification. Userscript and metadata bytes remain unchanged; browser installation is not claimed.",
+      "scope": "15 November 2026 monitor record; production remains v2.28.0"
     }
   },
   "scan": {
     "state": "passed",
     "status": "passed",
-    "started_at": "2026-11-14T03:20:00.000Z",
-    "completed_at": "2026-11-14T03:26:30.000Z",
-    "pinterest_status": "Pinterest's Creator trends, Trends overview, 12 November festive-shopping announcement, Hobbies report, typography guidance and linked public inspiration were checked on 14 November 2026. The current Creator page still features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling. The new official shopping update combines multi-turn visual planning, side-by-side product comparison, wishlists with price or stock notifications, curated gift boards and shoppable guidance. The durable method is helping people move from open-ended discovery through refinement and factual comparison to a saved or purchased next step. These mechanics are already represented by /taste-discovery-system, /comparison, /intent-to-action, /catalog-creative-system, /visual-search-ready and existing board, social, product-ad and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
+    "started_at": "2026-11-15T03:20:00.000Z",
+    "completed_at": "2026-11-15T03:22:30.000Z",
+    "pinterest_status": "Pinterest's current Creator trends, 12 November festive-shopping announcement, 2026 Predicts reporting, November/December content calendar, colour, typography and brand-system guidance, and linked public inspiration were checked on 15 November 2026. The freshly crawled Creator preview still features Opera-inspired Accessories, Whimsy Party, Skirt Season and Suede Styling, with Home café engineering retained in its supporting trend report. The latest official Newsroom item remains the 12 November shopping update combining multi-turn visual planning, factual product comparison, wishlists, curated deal and gift-guide boards, and shoppable guidance. The durable method is helping people move from open-ended discovery through refinement and comparison to a saved or purchased next step. These mechanics are already represented by /taste-discovery-system, /comparison, /intent-to-action, /catalog-creative-system, /visual-search-ready and existing board, social, product-ad, food/beverage and campaign systems. Four linked public inspiration pages returned HTTP 403, so no unsupported visual conclusion was derived from them.",
     "chatgpt_status": "Production v2.28.0 with 723 commands, 42 categories and 40 bundles was read from GitHub main and compared with byte-matching Drive status and regression records before evaluation. /taste-discovery-system already supports multi-turn preference refinement and like-for-like visual comparison; /comparison requires aligned factual product criteria without invented superiority; /intent-to-action maps discovery, confidence, decision and action; /catalog-creative-system preserves price, availability, URL, product truth and shoppable destinations. Existing seasonal, festival, carousel, social, UGC and product-ad commands already cover gift guides, festive boards, wrapping-detail content and creator-led deal curation. A separate holiday-shopping, wishlist or gift-guide alias would be seasonal duplication rather than a new production capability, so the userscript and metadata remained byte-identical. All 22 regression checks passed.",
     "trends": [
       "Opera-inspired Accessories continue theatrical old-world glamour through selective cummerbunds, feather brooches, satin pouches and fur-trimmed accents",
@@ -165,6 +154,9 @@
       "Brand-kit guidance favors compact decision rules for logo variants, palette, type, imagery and repeatable templates over option-heavy moodboards",
       "Hobby signals continue tactile, screen-free making, zine/collage systems, naturalist observation and analogue storytelling",
       "Pinterest Palette, Beauty and Gen Z type guidance continue emotional colour utility, specificity, expressive display type and personal remixing",
+      "Home café engineering continues to emphasize process, setup, limited-drop styling and crafted beverage presentation rather than a new reusable command method",
+      "Pinterest colour guidance favors one anchor hue, deliberate value contrast, a compact repeatable palette and testing in real materials or lighting",
+      "November and December calendar themes remain Illuminate, Homemade, Gratitude, Harvest, Sneak peek, RSVP, Fully festive and Wrapped",
       "Pinterest Trends continues to frame saves as an intent signal and supports regional search, save and shopping analysis"
     ],
     "commands_added": [],
@@ -176,6 +168,7 @@
       "No holiday-shopping or wishlist command because /taste-discovery-system, /intent-to-action, /catalog-creative-system and /visual-search-ready already cover discovery, refinement, saving and shoppable action",
       "No gift-comparison command because /comparison already requires matched factual criteria, while catalogue and product-ad systems preserve price, availability, reviews and SKU truth",
       "No gift-guide alias because seasonal, festival, carousel, social, UGC, product-ad and campaign workflows already cover curated festive-board execution",
+      "No home-café command because existing food and beverage, product, UGC, process-demo, limited-drop and campaign systems already cover the transferable method",
       "No separate Gen Z type or headline-style command because /typeled, /typography, /layout and /zine-editorial-system already cover bold display type, hierarchy, modular type blocks, repetition and controlled expressive moves",
       "No separate brand-kit command because /brandstyle, /palette, /typography, /layout and /BRAND-SYSTEM-MAX already cover compact cross-touchpoint identity rules and templates",
       "No separate Beauty specificity, Palette or identity-curation aliases because the durable methods are already covered by /beauty-trend-system, /emotional-palette, /taste-discovery-system and /trend-to-brand",
@@ -184,7 +177,7 @@
     "sources": [
       {
         "title": "Pinterest Newsroom — Featured news",
-        "url": "https://newsroom.pinterest.com/en-gb/",
+        "url": "https://newsroom.pinterest.com/",
         "status": "accessed"
       },
       {
@@ -194,37 +187,22 @@
       },
       {
         "title": "Pinterest Create — Trends to try",
-        "url": "https://create.pinterest.com/creators/trends/?pp=0",
-        "status": "accessed"
-      },
-      {
-        "title": "Pinterest Trends — Trends overview",
-        "url": "https://trends.pinterest.com/",
+        "url": "https://create.pinterest.com/en-in/creators/trends/?show_preview=true",
         "status": "accessed"
       },
       {
         "title": "Pinterest Create — 2026 content planning calendar",
-        "url": "https://create.pinterest.com/en-GB/resources/content-calendar-2026/?pp=1%23best-practices",
+        "url": "https://create.pinterest.com/en-GB/resources/content-calendar-2026/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Newsroom — 2026 Hobbies Trend Report",
-        "url": "https://newsroom.pinterest.com/news/2026-pinterest-hobbies-trend-report/",
+        "title": "Pinterest Newsroom — Pinterest Predicts 2026",
+        "url": "https://newsroom.pinterest.com/news/pinterest-predicts-nonconformity-self-preservation-and-escapism-drive-21-trends-for-2026/",
         "status": "accessed"
       },
       {
-        "title": "Pinterest Newsroom — Pinterest Beauty Trend Report 2026",
-        "url": "https://newsroom.pinterest.com/news/beauty-trend-report-2026/",
-        "status": "accessed"
-      },
-      {
-        "title": "Pinterest Business — Pinterest Predicts 2026",
-        "url": "https://business.pinterest.com/blog/pinterest-predicts-2026-turn-trends-into-unlimited-possibilities/",
-        "status": "accessed"
-      },
-      {
-        "title": "Pinterest Design — Headline styles",
-        "url": "https://guide.pinterest.com/design/headline-styles/",
+        "title": "Pinterest Design — Colour systems",
+        "url": "https://guide.pinterest.com/design/colors/",
         "status": "accessed"
       },
       {
@@ -259,8 +237,15 @@
       }
     ]
   },
-  "action_required": "No action is required from Gaurev. Production remains v2.28.0 with 723 commands; GitHub publication and Drive byte readbacks succeeded. Direct public raw endpoint verification is pending because the retrieval environment returned DisabledError. Only the local userscript can report the version currently running in the browser.",
+  "action_required": "No command update is required. Repository and Drive readback verification of the completed daily monitor record is still in progress.",
   "history": [
+    {
+      "updated_at": "2026-11-15T03:23:27.197Z",
+      "version": "2.28.0",
+      "summary": "15 November scan found no material non-duplicate command delta; v2.28.0 remained at 723 commands and passed 22 regression checks.",
+      "test_state": "passed",
+      "deploy_state": "published"
+    },
     {
       "updated_at": "2026-11-14T03:28:41.443Z",
       "version": "2.28.0",
